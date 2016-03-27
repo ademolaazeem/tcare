@@ -1,0 +1,24 @@
+
+
+
+carer Scheduling
+
+- Carer login to his/her page, go work availability
+- Carer availability setup (Carer specifies when he is available) 
+- Admin can assign carer to a patient
+- Carer must accept or reject Each assignment
+
+- Book Holiday on Calendar (if Carer books holiday, the admin will be able to grant or deny the request ) 
+
+(If carer is on holiday there is going to be flag not to assign client to that person at that time )
+
+
+- If carer rejects that's cover
+- Admin sends email to all carer about who's available for cover.
+- Admin assigns cover based on first response from carer
+
+
+- Timesheet is uploaded each month
+- Facebook forum
+- Call on Client's phone 1421800947743 to admin
+- 1 login 3 to logout

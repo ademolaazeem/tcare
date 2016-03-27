@@ -1,6 +1,6 @@
 <?php 
 
-    // First we execute our common code to connection to the database and start the session 
+    // First we execute our CommonClass code to connection to the database and start the session
     require("common.php"); 
      
     // This if statement checks to determine whether the registration form has been submitted 
@@ -178,12 +178,12 @@
         } 
          
         // This redirects the user back to the login page after they register 
-        header("Location: login.php"); 
+        header("Location: loginOld.php");
          
         // Calling die or exit after performing a redirect using the header function 
         // is critical.  The rest of your PHP script will continue to execute and 
         // will be sent to the user if you do not die or exit. 
-        die("Redirecting to login.php"); 
+        die("Redirecting to loginOld.php");
     } 
      
 ?> 

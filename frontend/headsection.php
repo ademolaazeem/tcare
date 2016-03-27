@@ -11,7 +11,7 @@
                 </button>
                 <a class="navbar-brand logo" href="#">
                     <span><i class="fa fa-stethoscope"></i></span>
-                    HealthCare
+                    T-Care HomeCare
                 </a>
             </div>
 
@@ -20,11 +20,9 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="#">Home</a></li>
                     <li><a href="">Services</a></li>
-                    <li><a href="doctors.html">Doctors</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="faq.html">FAQs</a></li>
-                    <li><a href="gallery.html">Gallery</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="../admin/login.php">Login</a></li>
+                    <li><a href="aboutus.php">About Us</a></li>
+                    <li><a href="contact.php">Contact Us</a></li>
                 </ul>
             </div><!-- navbar-collapse -->
         </div><!-- container-fluid -->

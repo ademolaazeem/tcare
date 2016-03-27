@@ -64,7 +64,7 @@ background:green; margin-left:30px;color: #D4E6F4; clear :both; height: margin-r
 
 <?php 
 
-    // First we execute our common code to connection to the database and start the session 
+    // First we execute our CommonClass code to connection to the database and start the session
     require("common.php"); 
      
     // At the top of the page we check to see whether the user is logged in or not 

@@ -49,9 +49,11 @@ background:green; margin-left:30px;color: #D4E6F4; clear :both; height: margin-r
     
   </body>
 </html><br />
-<body style="background:#FFFAF0;">
+</body>
 <h4 style="color:black;font-weight:bold;font-style:italic;margin-left:25px;">Welcome</h4>
-<p style="background:whit;color:black;font-style:italic;font-size:23px;margin-left:25px;"> <span style="font-size:18px;"> 
+<p style="background:whit;color:black;font-style:italic;font-size:23px;margin-left:25px;">
+
+    <span style="font-size:18px;">
 This site is ultimately about schedule remodelling.often in care home administration,there is a constraint in terms of information dessemination between the carers 
 and the administrators.
 Therefoe,there is a need for a functioning application that would expidite information exchange between these two key departments in care bussiness.

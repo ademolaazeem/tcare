@@ -14,7 +14,7 @@
     // http://en.wikipedia.org/wiki/UTF-8 
     $options = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'); 
      
-    // A try/catch statement is a common method of error handling in object oriented code. 
+    // A try/catch statement is a CommonClass method of error handling in object oriented code.
     // First, PHP executes the code within the try block.  If at any time it encounters an 
     // error while executing that code, it stops immediately and jumps down to the 
     // catch block.  For more detailed information on exceptions and try/catch blocks: 

@@ -61,7 +61,7 @@ background:green; margin-left:30px;color: #D4E6F4; clear :both; height: margin-r
 
 <?php 
 
-    // First we execute our common code to connection to the database and start the session 
+    // First we execute our CommonClass code to connection to the database and start the session
     require("common.php"); 
      
     // This if statement checks to determine whether the registration form has been submitted 
@@ -175,9 +175,9 @@ background:green; margin-left:30px;color: #D4E6F4; clear :both; height: margin-r
         // Again, we are using special tokens (technically called parameters) to 
         // protect against SQL injection attacks. 
         $query = "INSERT INTO tblcarer(username, password, salt,emailaddress,firstname,
-		lastname,sex,address,county,ppsnumber,dateofbirth,authid, phone)
-            VALUES (:username, :password, :salt, :emailaddress,:firstname, 
-                :lastname, :sex,:address,:county, :ppsnumber,:dateofbirth, :authid,:phone)"; 
+		lastname, sex, address, county, ppsnumber, dateofbirth, authid, phone)
+		VALUES (:username, :password, :salt, :emailaddress,:firstname,
+		:lastname, :sex,:address,:county, :ppsnumber,:dateofbirth, :authid,:phone)";
          
         // A salt is randomly generated here to protect again brute force attacks 
         // and rainbow table attacks.  The following statement generates a hex 

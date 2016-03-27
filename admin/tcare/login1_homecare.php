@@ -49,7 +49,7 @@ background:green; margin-left:30px;color: #D4E6F4; clear :both; height: margin-r
     
   </body>
 </html><br />
-<body style="background:#FFFAF0;">
+</body>
 
        <div class="admin" style="text-align:center; margin-top:25px;margin-left:400px;margin-right:400px">
 
@@ -57,7 +57,7 @@ background:green; margin-left:30px;color: #D4E6F4; clear :both; height: margin-r
 
 <?php 
 
-    // First we execute our common code to connection to the database and start the session 
+    // First we execute our CommonClass code to connection to the database and start the session
     require("common.php"); 
      
     // This variable will be used to re-display the user's username to them in the 
