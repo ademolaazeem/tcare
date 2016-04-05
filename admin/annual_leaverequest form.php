@@ -52,6 +52,7 @@
           </div>
           <div class="clearfix"></div>
 
+
           <!-- menu prile quick info -->
           <div class="profile">
             <div class="profile_pic">
@@ -112,11 +113,11 @@
                     </li>
                     <li><a href="widgets.html">Widgets</a>
                     </li>
-                    <li><a href="submit_timeshet.php">Timesheet</a>
+                    <li><a href="submit_timesheet.php">Timesheet</a>
                     </li>
-                      <li><a href="inbox.html">Inbox</a>
+                    <li><a href="inbox.html">Inbox</a>
                     </li>
-                    <li><a href="book_holiday.php">Book Holiday</a>
+                    <li><a href="book_holiday.html">Book Holiday</a>
                     </li>
                   </ul>
                 </li>
@@ -317,10 +318,11 @@
 
       <!-- page content -->
       <div class="right_col" role="main">
+
         <div class="">
           <div class="page-title">
             <div class="title_left">
-              <h3>Pricing Tables</h3>
+              <h3>Form Upload </h3>
             </div>
 
             <div class="title_right">
@@ -337,11 +339,10 @@
           <div class="clearfix"></div>
 
           <div class="row">
-
             <div class="col-md-12 col-sm-12 col-xs-12">
-              <div class="x_panel" style="height:600px;">
+              <div class="x_panel">
                 <div class="x_title">
-                  <h2>Pricing Tables Design</h2>
+                  <h2>Dropzone multiple file uploader</h2>
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
@@ -359,152 +360,16 @@
                   </ul>
                   <div class="clearfix"></div>
                 </div>
-
                 <div class="x_content">
-                  <div class="row">
 
-                    <div class="col-md-12">
+                  <p>Drag multiple files to the box below for multi upload or click to select files. This is for demonstration purposes only, the files are not uploaded to any server.</p>
+                  <form action="choices/form_upload.html" class="dropzone" style="border: 1px solid #e5e5e5; height: 300px; "></form>
 
-                      <!-- price element -->
-                      <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="pricing">
-                          <div class="title">
-                            <h2>Tally Box Design</h2>
-                            <h1>free</h1>
-                          </div>
-                          <div class="x_content">
-                            <div class="">
-                              <div class="pricing_features">
-                                <ul class="list-unstyled text-left">
-                                  <li><i class="fa fa-times text-danger"></i> 2 years access <strong> to all storage locations</strong></li>
-                                  <li><i class="fa fa-times text-danger"></i> <strong>Unlimited</strong> storage</li>
-                                  <li><i class="fa fa-check text-success"></i> Limited <strong> download quota</strong></li>
-                                  <li><i class="fa fa-check text-success"></i> <strong>Cash on Delivery</strong></li>
-                                  <li><i class="fa fa-check text-success"></i> All time <strong> updates</strong></li>
-                                  <li><i class="fa fa-times text-danger"></i> <strong>Unlimited</strong> access to all files</li>
-                                  <li><i class="fa fa-times text-danger"></i> <strong>Allowed</strong> to be exclusing per sale</li>
-                                </ul>
-                              </div>
-                            </div>
-                            <div class="pricing_footer">
-                              <a href="javascript:void(0);" class="btn btn-success btn-block" role="button">Download <span> now!</span></a>
-                              <p>
-                                <a href="javascript:void(0);">Sign up</a>
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- price element -->
-
-                      <!-- price element -->
-                      <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="pricing ui-ribbon-container">
-                          <div class="ui-ribbon-wrapper">
-                            <div class="ui-ribbon">
-                              30% Off
-                            </div>
-                          </div>
-                          <div class="title">
-                            <h2>Tally Box Design</h2>
-                            <h1>$25</h1>
-                            <span>Monthly</span>
-                          </div>
-                          <div class="x_content">
-                            <div class="">
-                              <div class="pricing_features">
-                                <ul class="list-unstyled text-left">
-                                  <li><i class="fa fa-check text-success"></i> 2 years access <strong> to all storage locations</strong></li>
-                                  <li><i class="fa fa-check text-success"></i> <strong>Unlimited</strong> storage</li>
-                                  <li><i class="fa fa-check text-success"></i> Limited <strong> download quota</strong></li>
-                                  <li><i class="fa fa-check text-success"></i> <strong>Cash on Delivery</strong></li>
-                                  <li><i class="fa fa-check text-success"></i> All time <strong> updates</strong></li>
-                                  <li><i class="fa fa-times text-danger"></i> <strong>Unlimited</strong> access to all files</li>
-                                  <li><i class="fa fa-times text-danger"></i> <strong>Allowed</strong> to be exclusing per sale</li>
-                                </ul>
-                              </div>
-                            </div>
-                            <div class="pricing_footer">
-                              <a href="javascript:void(0);" class="btn btn-primary btn-block" role="button">Download <span> now!</span></a>
-                              <p>
-                                <a href="javascript:void(0);">Sign up</a>
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- price element -->
-
-                      <!-- price element -->
-                      <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="pricing">
-                          <div class="title">
-                            <h2>Tally Box Design</h2>
-                            <h1>$25</h1>
-                            <span>Monthly</span>
-                          </div>
-                          <div class="x_content">
-                            <div class="">
-                              <div class="pricing_features">
-                                <ul class="list-unstyled text-left">
-                                  <li><i class="fa fa-check text-success"></i> 2 years access <strong> to all storage locations</strong></li>
-                                  <li><i class="fa fa-check text-success"></i> <strong>Unlimited</strong> storage</li>
-                                  <li><i class="fa fa-check text-success"></i> Limited <strong> download quota</strong></li>
-                                  <li><i class="fa fa-check text-success"></i> <strong>Cash on Delivery</strong></li>
-                                  <li><i class="fa fa-check text-success"></i> All time <strong> updates</strong></li>
-                                  <li><i class="fa fa-times text-danger"></i> <strong>Unlimited</strong> access to all files</li>
-                                  <li><i class="fa fa-times text-danger"></i> <strong>Allowed</strong> to be exclusing per sale</li>
-                                </ul>
-                              </div>
-                            </div>
-                            <div class="pricing_footer">
-                              <a href="javascript:void(0);" class="btn btn-success btn-block" role="button">Download <span> now!</span></a>
-                              <p>
-                                <a href="javascript:void(0);">Sign up</a>
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- price element -->
-
-                      <!-- price element -->
-                      <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="pricing">
-                          <div class="title">
-                            <h2>Tally Box Design</h2>
-                            <h1>$25</h1>
-                            <span>Monthly</span>
-                          </div>
-                          <div class="x_content">
-                            <div class="">
-                              <div class="pricing_features">
-                                <ul class="list-unstyled text-left">
-                                  <li><i class="fa fa-check text-success"></i> 2 years access <strong> to all storage locations</strong></li>
-                                  <li><i class="fa fa-check text-success"></i> <strong>Unlimited</strong> storage</li>
-                                  <li><i class="fa fa-check text-success"></i> Limited <strong> download quota</strong></li>
-                                  <li><i class="fa fa-check text-success"></i> <strong>Cash on Delivery</strong></li>
-                                  <li><i class="fa fa-check text-success"></i> All time <strong> updates</strong></li>
-                                  <li><i class="fa fa-check text-success"></i> <strong>Unlimited</strong> access to all files</li>
-                                  <li><i class="fa fa-check text-success"></i> <strong>Allowed</strong> to be exclusing per sale</li>
-                                </ul>
-                              </div>
-                            </div>
-                            <div class="pricing_footer">
-                              <a href="javascript:void(0);" class="btn btn-success btn-block" role="button">Download <span> now!</span></a>
-                              <p>
-                                <a href="javascript:void(0);">Sign up</a>
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- price element -->
-                    </div>
-
-                  </div>
+                  <br />
+                  <br />
+                  <br />
+                  <br />
                 </div>
-
               </div>
             </div>
           </div>
@@ -513,7 +378,7 @@
         <!-- footer content -->
         <footer>
           <div class="copyright-info">
-            <p class="pull-right">Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+            <p class="pull-right">Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>      
             </p>
           </div>
           <div class="clearfix"></div>
@@ -534,7 +399,7 @@
   </div>
 
   <script src="js/bootstrap.min.js"></script>
-  
+
   <!-- bootstrap progress js -->
   <script src="js/progressbar/bootstrap-progressbar.min.js"></script>
   <script src="js/nicescroll/jquery.nicescroll.min.js"></script>
@@ -542,10 +407,10 @@
   <script src="js/icheck/icheck.min.js"></script>
 
   <script src="js/custom.js"></script>
-
+  <!-- dropzone -->
+  <script src="js/dropzone/dropzone.js"></script>
   <!-- pace -->
   <script src="js/pace/pace.min.js"></script>
-
 </body>
 
 </html>

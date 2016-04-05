@@ -8,7 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Gentallela Alela! | </title>
+  <title>Assign Shift</title>
 
   <!-- Bootstrap core CSS -->
 
@@ -54,7 +54,7 @@
         <div class="left_col scroll-view">
 
           <div class="navbar nav_title" style="border: 0;">
-            <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentellela Alela!</span></a>
+            <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Assign Shift!</span></a>
           </div>
           <div class="clearfix"></div>
 
@@ -66,7 +66,7 @@
             </div>
             <div class="profile_info">
               <span>Welcome,</span>
-              <h2>John Doe</h2>
+              <h2>Busayo </h2>
             </div>
           </div>
           <!-- /menu prile quick info -->
@@ -79,16 +79,7 @@
             <div class="menu_section">
               <h3>General</h3>
               <ul class="nav side-menu">
-                <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
-                  <ul class="nav child_menu" style="display: none">
-                    <li><a href="index.html">Dashboard</a>
-                    </li>
-                    <li><a href="index2.html">Dashboard2</a>
-                    </li>
-                    <li><a href="index3.html">Dashboard3</a>
-                    </li>
-                  </ul>
-                </li>
+               
                 <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
                     <li><a href="form.html">General Form</a>
@@ -99,94 +90,16 @@
                     </li>
                     <li><a href="form_wizards.html">Form Wizard</a>
                     </li>
-                       <li><a href="annual_leaverequestform.php">Upload Request form</a>
+                    <li><a href="form_upload.html">Form Upload</a>
                     </li>
-                    <li><a href="form_buttons.html">Form Buttons</a>
-                    </li>
+                   
                   </ul>
                 </li>
-                <li><a><i class="fa fa-desktop"></i> UI Elements <span class="fa fa-chevron-down"></span></a>
-                  <ul class="nav child_menu" style="display: none">
-                    <li><a href="general_elements.html">General Elements</a>
-                    </li>
-                    <li><a href="media_gallery.html">Media Gallery</a>
-                    </li>
-                    <li><a href="typography.html">Typography</a>
-                    </li>
-                    <li><a href="icons.html">Icons</a>
-                    </li>
-                    <li><a href="glyphicons.html">Glyphicons</a>
-                    </li>
-                    <li><a href="widgets.html">Widgets</a>
-                    </li>
-                    <li><a href="submit_timesheet.php">Timesheet</a>
-                    </li>
-                    <li><a href="inbox.html">Inbox</a>
-                    </li>
-                    <li><a href="book_holiday.php">Book Holiday</a>
-                    </li>
-                  </ul>
-                </li>
-                <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
-                  <ul class="nav child_menu" style="display: none">
-                    <li><a href="tables.html">Tables</a>
-                    </li>
-                         <li><a href="manage_patientlist.php">Manage Patient </a></li>
-                    </li>
-                  </ul>
-                </li>
-                <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
-                  <ul class="nav child_menu" style="display: none">
-                    <li><a href="chartjs.html">Chart JS</a>
-                    </li>
-                    <li><a href="chartjs2.html">Chart JS2</a>
-                    </li>
-                    <li><a href="morisjs.html">Moris JS</a>
-                    </li>
-                    <li><a href="echarts.html">ECharts </a>
-                    </li>
-                    <li><a href="other_charts.html">Other Charts </a>
-                    </li>
-                  </ul>
-                </li>
+               
+                
               </ul>
             </div>
-            <div class="menu_section">
-              <h3>Live On</h3>
-              <ul class="nav side-menu">
-                <li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
-                  <ul class="nav child_menu" style="display: none">
-                    <li><a href="e_commerce.html">E-commerce</a>
-                    </li>
-                    <li><a href="projects.html">Projects</a>
-                    </li>
-                    <li><a href="project_detail.html">Project Detail</a>
-                    </li>
-                    <li><a href="contacts.html">Contacts</a>
-                    </li>
-                    <li><a href="admin_profile.php">Admin Profile</a>
-                    </li>
-                  </ul>
-                </li>
-                <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
-                  <ul class="nav child_menu" style="display: none">
-                    <li><a href="page_404.html">404 Error</a>
-                    </li>
-                    <li><a href="page_500.html">500 Error</a>
-                    </li>
-                    <li><a href="plain_page.html">Plain Page</a>
-                    </li>
-                    <li><a href="login.php">Login Page</a>
-                    </li>
-                    <li><a href="pricing_tables.html">Pricing Tables</a>
-                    </li>
-
-                  </ul>
-                </li>
-                <li><a><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a>
-                </li>
-              </ul>
-            </div>
+            
 
           </div>
           <!-- /sidebar menu -->
@@ -431,127 +344,8 @@
                 </div>
               </div>
             </div>
-            <!-- /form input mask -->
-
-            <!-- form color picker -->
-            <div class="col-md-6 col-sm-12 col-xs-12">
-              <div class="x_panel">
-                <div class="x_title">
-                  <h2>Color Picker</h2>
-                  <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Settings 1</a>
-                        </li>
-                        <li><a href="#">Settings 2</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                  </ul>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                  <br />
-                  <form class="form-horizontal form-label-left">
-
-                    <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12">Default Input</label>
-                      <div class="col-md-9 col-sm-9 col-xs-12">
-                        <input type="text" class="demo1 form-control" value="#5367ce" />
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12">Styled</label>
-                      <div class="col-md-9 col-sm-9 col-xs-12">
-                        <div class="input-group demo2">
-                          <input type="text" value="#e01ab5" class="form-control" />
-                          <span class="input-group-addon"><i></i></span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12">Horizontal bar</label>
-                      <div class="col-md-9 col-sm-9 col-xs-12">
-                        <input type="text" class="form-control demo colorpicker-element" data-horizontal="true" id="demo_forceformat" value="#8fff00">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12">Vertical bar</label>
-                      <div class="col-md-9 col-sm-9 col-xs-12">
-                        <input type="text" class="form-control demo colorpicker-element" id="demo_forceformat3" value="#8fff00">
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12">Inline picker</label>
-                      <div class="col-md-9 col-sm-9 col-xs-12">
-                        <div class="well">
-                          <div id="demo_cont" class="demo demo-auto inl-bl colorpicker-element" data-container="#demo_cont" data-color="rgba(150,216,62,0.55)" data-inline="true"></div>
-                          <div class="demo demo-auto inl-bl colorpicker-element" data-container="true" data-color="rgb(50,216,62)" data-inline="true" style="margin-left:20px;"></div>
-                        </div>
-                      </div>
-                    </div>
-
-                  </form>
-                </div>
-              </div>
-            </div>
-            <!-- /form color picker -->
-
-            <!-- form input knob -->
-            <div class="col-md-12">
-              <div class="x_panel">
-                <div class="x_title">
-                  <h2>Input knob</h2>
-                  <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Settings 1</a>
-                        </li>
-                        <li><a href="#">Settings 2</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                  </ul>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                  <div class="col-md-2">
-                    <p>Display value</p>
-                    <input class="knob" data-width="100" data-height="120" data-min="-100" data-displayPrevious=true data-fgColor="#26B99A" value="44">
-                  </div>
-                  <div class="col-md-2">
-                    <p>&#215; 'cursor' mode</p>
-                    <input class="knob" data-width="100" data-height="120" data-cursor=true data-fgColor="#34495E" value="29">
-                  </div>
-                  <div class="col-md-2">
-                    <p>Step 0.1</p>
-                    <input class="knob" data-width="100" data-height="120" data-min="-10000" data-displayPrevious=true data-fgColor="#26B99A" data-max="10000" data-step=".1" value="0">
-                  </div>
-                  <div class="col-md-2">
-                    <p>Angle arc</p>
-                    <input class="knob" data-width="100" data-height="120" data-angleOffset=-125 data-angleArc=250 data-fgColor="#34495E" data-rotation="anticlockwise" value="35">
-                  </div>
-                  <div class="col-md-2">
-                    <p>Alternate design</p>
-                    <input class="knob" data-width="110" data-height="120" data-displayPrevious=true data-fgColor="#26B99A" data-skin="tron" data-thickness=".2" value="75">
-                  </div>
-                  <div class="col-md-2">
-                    <p>Angle offset</p>
-                    <input class="knob" data-width="100" data-height="120" data-angleOffset=90 data-linecap=round data-fgColor="#26B99A" value="35">
-                  </div>
-                </div>
-              </div>
-            </div>
+         
+            
             <!-- /form input knob -->
 
           </div>
@@ -1400,391 +1194,22 @@
 
 
               <!-- form grid slider -->
-              <div class="x_panel" style="">
-                <div class="x_title">
-                  <h2>Grid Slider</h2>
-                  <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Settings 1</a>
-                        </li>
-                        <li><a href="#">Settings 2</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                  </ul>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                  <div class="row grid_slider">
-
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                      <p>Default grid slider with min and max values</p>
-                      <input type="text" id="range" value="" name="range" />
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                      <p>Grid with slider labels are far away outside it's container</p>
-                      <input type="text" id="range_25" value="" name="range" />
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                      <p>Grid with labels inside container using force_edges attribute</p>
-                      <input type="text" id="range_27" value="" name="range" />
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                      <p>Create Grid with pre-defined steps</p>
-                      <input type="text" id="range_26" value="" name="range" />
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                      <p>Prevent one from dragging the labels</p>
-                      <input type="text" id="range_31" value="" name="range" />
-                    </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                      <p>Grid with minimum and maximum values</p>
-                      <input type="text" class="range_min_max" value="" name="range" />
-                    </div>
-                    <div>
-                      <p>Grid With time in 24 hour format</p>
-                      <input type="text" class="range_time24" value="" name="range" />
-                    </div>
-                  </div>
-                </div>
-              </div>
+            
               <br />
               <br />
               <!-- /form grid slider -->
 
               <!-- image cropping -->
               <div class="container">
+              
                 <div class="row">
-                  <div class="col-md-9">
-                    <!-- <h3 class="page-header">Demo:</h3> -->
-                    <div class="img-container">
-                      <img src="images/picture2.jpg" alt="Picture">
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <!-- <h3 class="page-header">Preview:</h3> -->
-                    <div class="docs-preview clearfix">
-                      <div class="img-preview preview-lg"></div>
-                      <div class="img-preview preview-md"></div>
-                      <div class="img-preview preview-sm"></div>
-                      <div class="img-preview preview-xs"></div>
-                    </div>
 
-                    <!-- <h3 class="page-header">Data:</h3> -->
-                    <div class="docs-data">
-                      <div class="input-group">
-                        <label class="input-group-addon" for="dataX">X</label>
-                        <input class="form-control" id="dataX" type="text" placeholder="x">
-                        <span class="input-group-addon">px</span>
-                      </div>
-                      <div class="input-group">
-                        <label class="input-group-addon" for="dataY">Y</label>
-                        <input class="form-control" id="dataY" type="text" placeholder="y">
-                        <span class="input-group-addon">px</span>
-                      </div>
-                      <div class="input-group">
-                        <label class="input-group-addon" for="dataWidth">Width</label>
-                        <input class="form-control" id="dataWidth" type="text" placeholder="width">
-                        <span class="input-group-addon">px</span>
-                      </div>
-                      <div class="input-group">
-                        <label class="input-group-addon" for="dataHeight">Height</label>
-                        <input class="form-control" id="dataHeight" type="text" placeholder="height">
-                        <span class="input-group-addon">px</span>
-                      </div>
-                      <div class="input-group">
-                        <label class="input-group-addon" for="dataRotate">Rotate</label>
-                        <input class="form-control" id="dataRotate" type="text" placeholder="rotate">
-                        <span class="input-group-addon">deg</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-9 docs-buttons">
-                    <!-- <h3 class="page-header">Toolbar:</h3> -->
-                    <div class="btn-group">
-                      <button class="btn btn-primary" data-method="setDragMode" data-option="move" type="button" title="Move">
-                        <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;setDragMode&quot;, &quot;move&quot;)">
-                                          <span class="fa fa-arrows"></span>
-                        </span>
-                      </button>
-                      <button class="btn btn-primary" data-method="setDragMode" data-option="crop" type="button" title="Crop">
-                        <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;setDragMode&quot;, &quot;crop&quot;)">
-                                          <span class="fa fa-crop"></span>
-                        </span>
-                      </button>
-                      <button class="btn btn-primary" data-method="zoom" data-option="0.1" type="button" title="Zoom In">
-                        <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;zoom&quot;, 0.1)">
-                                          <span class="fa fa-search-plus"></span>
-                        </span>
-                      </button>
-                      <button class="btn btn-primary" data-method="zoom" data-option="-0.1" type="button" title="Zoom Out">
-                        <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;zoom&quot;, -0.1)">
-                                          <span class="fa fa-search-minus"></span>
-                        </span>
-                      </button>
-                      <button class="btn btn-primary" data-method="rotate" data-option="-45" type="button" title="Rotate Left">
-                        <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;rotate&quot;, -45)">
-                                          <span class="fa fa-rotate-left"></span>
-                        </span>
-                      </button>
-                      <button class="btn btn-primary" data-method="rotate" data-option="45" type="button" title="Rotate Right">
-                        <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;rotate&quot;, 45)">
-                                          <span class="fa fa-rotate-right"></span>
-                        </span>
-                      </button>
-                    </div>
-
-                    <div class="btn-group">
-                      <button class="btn btn-primary" data-method="disable" type="button" title="Disable">
-                        <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;disable&quot;)">
-                                          <span class="fa fa-lock"></span>
-                        </span>
-                      </button>
-                      <button class="btn btn-primary" data-method="enable" type="button" title="Enable">
-                        <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;enable&quot;)">
-                                          <span class="fa fa-unlock"></span>
-                        </span>
-                      </button>
-                      <button class="btn btn-primary" data-method="clear" type="button" title="Clear">
-                        <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;clear&quot;)">
-                                          <span class="fa fa-close"></span>
-                        </span>
-                      </button>
-                      <button class="btn btn-primary" data-method="reset" type="button" title="Reset">
-                        <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;reset&quot;)">
-                                          <span class="fa fa-refresh"></span>
-                        </span>
-                      </button>
-                      <label class="btn btn-primary btn-upload" for="inputImage" title="Upload image file">
-                        <input class="sr-only" id="inputImage" name="file" type="file" accept="image/*">
-                        <span class="docs-tooltip" data-toggle="tooltip" title="Import image with Blob URLs">
-                                          <span class="fa fa-upload"></span>
-                        </span>
-                      </label>
-                      <button class="btn btn-primary" data-method="destroy" type="button" title="Destroy">
-                        <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;destroy&quot;)">
-                                          <span class="fa fa-power-off"></span>
-                        </span>
-                      </button>
-                    </div>
-
-                    <div class="btn-group btn-group-crop">
-                      <button class="btn btn-primary" data-method="getDataURL" type="button">
-                        <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;getDataURL&quot;)">
-                                          Get Data URL
-                                        </span>
-                      </button>
-                      <button class="btn btn-primary" data-method="getDataURL" data-option="image/jpeg" type="button">
-                        <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;getDataURL&quot;, &quot;image/jpeg&quot;)">
-                                          JPG
-                                        </span>
-                      </button>
-                      <!-- <button class="btn btn-primary" data-method="getDataURL" data-option="image/webp" type="button">
-                                        <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;getDataURL&quot;, &quot;image/webp&quot;)">
-                                          WEBP
-                                        </span>
-                                      </button> -->
-                      <button class="btn btn-primary" data-method="getDataURL" data-option="{ &quot;width&quot;: 160, &quot;height&quot;: 90 }" type="button">
-                        <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;getDataURL&quot;, { &quot;width&quot;: 160, &quot;height&quot;: 90 })">
-                                          160 &times; 90
-                                        </span>
-                      </button>
-                      <button class="btn btn-primary" data-method="getDataURL" data-option="{ &quot;width&quot;: 320, &quot;height&quot;: 180 }" type="button">
-                        <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;getDataURL&quot;, { &quot;width&quot;: 320, &quot;height&quot;: 180 })">
-                                          320 &times; 180
-                                        </span>
-                      </button>
-                    </div>
-
-                    <!-- Show the cropped image in modal -->
-                    <div class="modal fade docs-cropped" id="getDataURLModal" aria-hidden="true" aria-labelledby="getDataURLTitle" role="dialog" tabindex="-1">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <button class="close" data-dismiss="modal" type="button" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title" id="getDataURLTitle">Cropped</h4>
-                          </div>
-                          <div class="modal-body"></div>
-                          <!-- <div class="modal-footer">
-                                            <button class="btn btn-primary" data-dismiss="modal" type="button">Close</button>
-                                          </div> -->
-                        </div>
-                      </div>
-                    </div>
-                    <!-- /.modal -->
-
-                    <div class="btn-group">
-                      <button class="btn btn-primary" data-method="getData" data-option="" data-target="#putData" type="button">
-                        <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;getData&quot;)">
-                                          Get Data
-                                        </span>
-                      </button>
-                      <button class="btn btn-primary" data-method="getData" data-option="true" data-target="#putData" type="button">
-                        <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;getData&quot;, true)">
-                                          Rounded
-                                        </span>
-                      </button>
-                    </div>
-                    <div class="btn-group">
-                      <button class="btn btn-primary" data-method="getImageData" data-option="" data-target="#putData" type="button">
-                        <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;getImageData&quot;)">
-                                          Get Image Data
-                                        </span>
-                      </button>
-                      <button class="btn btn-primary" data-method="getImageData" data-option="true" data-target="#putData" type="button">
-                        <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;getImageData&quot;, true)">
-                                          All
-                                        </span>
-                      </button>
-                    </div>
-                    <button class="btn btn-primary" data-method="setImageData" data-target="#putData" type="button">
-                      <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;setImageData&quot;, data)">
-                                        Set Image Data
-                                      </span>
-                    </button>
-                    <button class="btn btn-primary" data-method="getCropBoxData" data-option="" data-target="#putData" type="button">
-                      <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;getCropBoxData&quot;)">
-                                        Get Crop Box Data
-                                      </span>
-                    </button>
-                    <button class="btn btn-primary" data-method="setCropBoxData" data-target="#putData" type="button">
-                      <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;setCropBoxData&quot;, data)">
-                                        Set Crop Box Data
-                                      </span>
-                    </button>
-                    <input class="form-control" id="putData" type="text" placeholder="Get data to here or set data with this value">
-
-                  </div>
                   <!-- /.docs-buttons -->
 
                   <div class="col-md-3 docs-toggles">
                     <!-- <h3 class="page-header">Toggles:</h3> -->
-                    <div class="btn-group btn-group-justified" data-toggle="buttons">
-                      <label class="btn btn-primary active" data-method="setAspectRatio" data-option="1.7777777777777777" title="Set Aspect Ratio">
-                        <input class="sr-only" id="aspestRatio1" name="aspestRatio" value="1.7777777777777777" type="radio">
-                        <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;setAspectRatio&quot;, 16 / 9)">
-                                          16:9
-                                        </span>
-                      </label>
-                      <label class="btn btn-primary" data-method="setAspectRatio" data-option="1.3333333333333333" title="Set Aspect Ratio">
-                        <input class="sr-only" id="aspestRatio2" name="aspestRatio" value="1.3333333333333333" type="radio">
-                        <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;setAspectRatio&quot;, 4 / 3)">
-                                          4:3
-                                        </span>
-                      </label>
-                      <label class="btn btn-primary" data-method="setAspectRatio" data-option="1" title="Set Aspect Ratio">
-                        <input class="sr-only" id="aspestRatio3" name="aspestRatio" value="1" type="radio">
-                        <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;setAspectRatio&quot;, 1 / 1)">
-                                          1:1
-                                        </span>
-                      </label>
-                      <label class="btn btn-primary" data-method="setAspectRatio" data-option="0.6666666666666666" title="Set Aspect Ratio">
-                        <input class="sr-only" id="aspestRatio4" name="aspestRatio" value="0.6666666666666666" type="radio">
-                        <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;setAspectRatio&quot;, 2 / 3)">
-                                          2:3
-                                        </span>
-                      </label>
-                      <label class="btn btn-primary" data-method="setAspectRatio" data-option="NaN" title="Set Aspect Ratio">
-                        <input class="sr-only" id="aspestRatio5" name="aspestRatio" value="NaN" type="radio">
-                        <span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;setAspectRatio&quot;, NaN)">
-                                          Free
-                                        </span>
-                      </label>
-                    </div>
 
-                    <div class="dropdown dropup docs-options">
-                      <button class="btn btn-primary btn-block dropdown-toggle" id="toggleOptions" type="button" data-toggle="dropdown" aria-expanded="true">
-                        Toggle Options
-                        <span class="caret"></span>
-                      </button>
-                      <ul class="dropdown-menu" role="menu" aria-labelledby="toggleOptions">
-                        <li role="presentation">
-                          <label class="checkbox-inline">
-                            <input type="checkbox" name="option" value="global" checked> global
-                          </label>
-                        </li>
-                        <li role="presentation">
-                          <label class="checkbox-inline">
-                            <input type="checkbox" name="option" value="responsive" checked> responsive
-                          </label>
-                        </li>
-                        <li role="presentation">
-                          <label class="checkbox-inline">
-                            <input type="checkbox" name="option" value="checkImageOrigin" checked> checkImageOrigin
-                          </label>
-                        </li>
 
-                        <li role="presentation">
-                          <label class="checkbox-inline">
-                            <input type="checkbox" name="option" value="modal" checked> modal
-                          </label>
-                        </li>
-                        <li role="presentation">
-                          <label class="checkbox-inline">
-                            <input type="checkbox" name="option" value="guides" checked> guides
-                          </label>
-                        </li>
-                        <li role="presentation">
-                          <label class="checkbox-inline">
-                            <input type="checkbox" name="option" value="highlight" checked> highlight
-                          </label>
-                        </li>
-                        <li role="presentation">
-                          <label class="checkbox-inline">
-                            <input type="checkbox" name="option" value="background" checked> background
-                          </label>
-                        </li>
-
-                        <li role="presentation">
-                          <label class="checkbox-inline">
-                            <input type="checkbox" name="option" value="autoCrop" checked> autoCrop
-                          </label>
-                        </li>
-                        <li role="presentation">
-                          <label class="checkbox-inline">
-                            <input type="checkbox" name="option" value="dragCrop" checked> dragCrop
-                          </label>
-                        </li>
-                        <li role="presentation">
-                          <label class="checkbox-inline">
-                            <input type="checkbox" name="option" value="movable" checked> movable
-                          </label>
-                        </li>
-                        <li role="presentation">
-                          <label class="checkbox-inline">
-                            <input type="checkbox" name="option" value="resizable" checked> resizable
-                          </label>
-                        </li>
-                        <li role="presentation">
-                          <label class="checkbox-inline">
-                            <input type="checkbox" name="option" value="rotatable" checked> rotatable
-                          </label>
-                        </li>
-                        <li role="presentation">
-                          <label class="checkbox-inline">
-                            <input type="checkbox" name="option" value="zoomable" checked> zoomable
-                          </label>
-                        </li>
-                        <li role="presentation">
-                          <label class="checkbox-inline">
-                            <input type="checkbox" name="option" value="touchDragZoom" checked> touchDragZoom
-                          </label>
-                        </li>
-                        <li role="presentation">
-                          <label class="checkbox-inline">
-                            <input type="checkbox" name="option" value="mouseWheelZoom" checked> mouseWheelZoom
-                          </label>
-                        </li>
-                      </ul>
-                    </div>
                     <!-- /.dropdown -->
                   </div>
                   <!-- /.docs-toggles -->
@@ -1795,15 +1220,6 @@
           </div>
         </div>
 
-        <!-- footer content -->
-        <footer>
-          <div class="copyright-info">
-            <p class="pull-right">Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-            </p>
-          </div>
-          <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
 
       </div>
       <!-- /page content -->
@@ -1811,12 +1227,7 @@
 
   </div>
 
-  <div id="custom_notifications" class="custom-notifications dsp_none">
-    <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
-    </ul>
-    <div class="clearfix"></div>
-    <div id="notif-group" class="tabbed_notifications"></div>
-  </div>
+ 
 
   <script src="js/bootstrap.min.js"></script>
 
