@@ -59,7 +59,7 @@
             </div>
             <div class="profile_info">
               <span>Welcome,</span>
-              <h2>John Doe</h2>
+              <h2>Busayo</h2>
             </div>
           </div>
           <!-- /menu prile quick info -->
@@ -112,11 +112,11 @@
                     </li>
                     <li><a href="widgets.html">Widgets</a>
                     </li>
-                    <li><a href="submit_timesheet.php">Timesheet</a>
+                    <li><a href="invoice.html">Invoice</a>
                     </li>
                     <li><a href="inbox.html">Inbox</a>
                     </li>
-                    <li><a href="book_holiday.php">Book Holiday</a>
+                    <li><a href="calender.html">Calender</a>
                     </li>
                   </ul>
                 </li>
@@ -157,7 +157,7 @@
                     </li>
                     <li><a href="contacts.html">Contacts</a>
                     </li>
-                    <li><a href="admin_profile.php">Admin Profile</a>
+                    <li><a href="profile.html">Profile</a>
                     </li>
                   </ul>
                 </li>

@@ -21,18 +21,20 @@
   <link href="css/custom.css" rel="stylesheet">
   <link href="css/icheck/flat/green.css" rel="stylesheet">
 
+  <link href="css/calendar/fullcalendar.css" rel="stylesheet">
+  <link href="css/calendar/fullcalendar.print.css" rel="stylesheet" media="print">
 
   <script src="js/jquery.min.js"></script>
 
   <!--[if lt IE 9]>
-        <script src="../assets/js/ie8-responsive-file-warning.js"></script>
-        <![endif]-->
+            <script src="../assets/js/ie8-responsive-file-warning.js"></script>
+            <![endif]-->
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
+              <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+              <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+            <![endif]-->
 
 </head>
 
@@ -51,6 +53,7 @@
             <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentellela Alela!</span></a>
           </div>
           <div class="clearfix"></div>
+
 
           <!-- menu prile quick info -->
           <div class="profile">
@@ -112,9 +115,9 @@
                     </li>
                     <li><a href="widgets.html">Widgets</a>
                     </li>
-                    <li><a href="submit_timeshet.php">Timesheet</a>
+                    <li><a href="submit_timesheet.php">Timesheet</a>
                     </li>
-                      <li><a href="inbox.html">Inbox</a>
+                    <li><a href="inbox.html">Inbox</a>
                     </li>
                     <li><a href="book_holiday.php">Book Holiday</a>
                     </li>
@@ -122,24 +125,17 @@
                 </li>
                 <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
-                    <li><a href="tables.html">Tables</a>
-                    </li>
-                    <li><a href="tables_dynamic.html">Table Dynamic</a>
-                    </li>
+                    <li><a href="tables.html">Tables</a></li>
+                    <li><a href="tables_dynamic.html">Table Dynamic</a></li>
                   </ul>
                 </li>
                 <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
-                    <li><a href="chartjs.html">Chart JS</a>
-                    </li>
-                    <li><a href="chartjs2.html">Chart JS2</a>
-                    </li>
-                    <li><a href="morisjs.html">Moris JS</a>
-                    </li>
-                    <li><a href="echarts.html">ECharts </a>
-                    </li>
-                    <li><a href="other_charts.html">Other Charts </a>
-                    </li>
+                    <li><a href="chartjs.html">Chart JS</a></li>
+                    <li><a href="chartjs2.html">Chart JS2</a></li>
+                    <li><a href="morisjs.html">Moris JS</a></li>
+                    <li><a href="echarts.html">ECharts </a></li>
+                    <li><a href="other_charts.html">Other Charts </a></li>
                   </ul>
                 </li>
               </ul>
@@ -157,7 +153,7 @@
                     </li>
                     <li><a href="contacts.html">Contacts</a>
                     </li>
-                    <li><a href="admin_profile.php">Admin Profile</a>
+                    <li><a href="admin_profile.php">Profile</a>
                     </li>
                   </ul>
                 </li>
@@ -244,57 +240,57 @@
                   <li>
                     <a>
                       <span class="image">
-                                        <img src="images/img.jpg" alt="Profile Image" />
-                                    </span>
+                                                    <img src="images/img.jpg" alt="Profile Image" />
+                                                </span>
                       <span>
-                                        <span>John Smith</span>
+                                                    <span>John Smith</span>
                       <span class="time">3 mins ago</span>
                       </span>
                       <span class="message">
-                                        Film festivals used to be do-or-die moments for movie makers. They were where...
-                                    </span>
+                                                    Film festivals used to be do-or-die moments for movie makers. They were where...
+                                                </span>
                     </a>
                   </li>
                   <li>
                     <a>
                       <span class="image">
-                                        <img src="images/img.jpg" alt="Profile Image" />
-                                    </span>
+                                                    <img src="images/img.jpg" alt="Profile Image" />
+                                                </span>
                       <span>
-                                        <span>John Smith</span>
+                                                    <span>John Smith</span>
                       <span class="time">3 mins ago</span>
                       </span>
                       <span class="message">
-                                        Film festivals used to be do-or-die moments for movie makers. They were where...
-                                    </span>
+                                                    Film festivals used to be do-or-die moments for movie makers. They were where...
+                                                </span>
                     </a>
                   </li>
                   <li>
                     <a>
                       <span class="image">
-                                        <img src="images/img.jpg" alt="Profile Image" />
-                                    </span>
+                                                    <img src="images/img.jpg" alt="Profile Image" />
+                                                </span>
                       <span>
-                                        <span>John Smith</span>
+                                                    <span>John Smith</span>
                       <span class="time">3 mins ago</span>
                       </span>
                       <span class="message">
-                                        Film festivals used to be do-or-die moments for movie makers. They were where...
-                                    </span>
+                                                    Film festivals used to be do-or-die moments for movie makers. They were where...
+                                                </span>
                     </a>
                   </li>
                   <li>
                     <a>
                       <span class="image">
-                                        <img src="images/img.jpg" alt="Profile Image" />
-                                    </span>
+                                                    <img src="images/img.jpg" alt="Profile Image" />
+                                                </span>
                       <span>
-                                        <span>John Smith</span>
+                                                    <span>John Smith</span>
                       <span class="time">3 mins ago</span>
                       </span>
                       <span class="message">
-                                        Film festivals used to be do-or-die moments for movie makers. They were where...
-                                    </span>
+                                                    Film festivals used to be do-or-die moments for movie makers. They were where...
+                                                </span>
                     </a>
                   </li>
                   <li>
@@ -318,9 +314,15 @@
       <!-- page content -->
       <div class="right_col" role="main">
         <div class="">
+
           <div class="page-title">
             <div class="title_left">
-              <h3>Pricing Tables</h3>
+              <h3>
+                                    Calender
+                                    <small>
+                                        Click to add/edit events
+                                    </small>
+                                </h3>
             </div>
 
             <div class="title_right">
@@ -328,8 +330,8 @@
                 <div class="input-group">
                   <input type="text" class="form-control" placeholder="Search for...">
                   <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Go!</button>
-                        </span>
+                                            <button class="btn btn-default" type="button">Go!</button>
+                                        </span>
                 </div>
               </div>
             </div>
@@ -337,11 +339,10 @@
           <div class="clearfix"></div>
 
           <div class="row">
-
-            <div class="col-md-12 col-sm-12 col-xs-12">
-              <div class="x_panel" style="height:600px;">
+            <div class="col-md-12">
+              <div class="x_panel">
                 <div class="x_title">
-                  <h2>Pricing Tables Design</h2>
+                  <h2>Calender Events <small>Sessions</small></h2>
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
@@ -359,152 +360,11 @@
                   </ul>
                   <div class="clearfix"></div>
                 </div>
-
                 <div class="x_content">
-                  <div class="row">
 
-                    <div class="col-md-12">
+                  <div id='calendar'></div>
 
-                      <!-- price element -->
-                      <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="pricing">
-                          <div class="title">
-                            <h2>Tally Box Design</h2>
-                            <h1>free</h1>
-                          </div>
-                          <div class="x_content">
-                            <div class="">
-                              <div class="pricing_features">
-                                <ul class="list-unstyled text-left">
-                                  <li><i class="fa fa-times text-danger"></i> 2 years access <strong> to all storage locations</strong></li>
-                                  <li><i class="fa fa-times text-danger"></i> <strong>Unlimited</strong> storage</li>
-                                  <li><i class="fa fa-check text-success"></i> Limited <strong> download quota</strong></li>
-                                  <li><i class="fa fa-check text-success"></i> <strong>Cash on Delivery</strong></li>
-                                  <li><i class="fa fa-check text-success"></i> All time <strong> updates</strong></li>
-                                  <li><i class="fa fa-times text-danger"></i> <strong>Unlimited</strong> access to all files</li>
-                                  <li><i class="fa fa-times text-danger"></i> <strong>Allowed</strong> to be exclusing per sale</li>
-                                </ul>
-                              </div>
-                            </div>
-                            <div class="pricing_footer">
-                              <a href="javascript:void(0);" class="btn btn-success btn-block" role="button">Download <span> now!</span></a>
-                              <p>
-                                <a href="javascript:void(0);">Sign up</a>
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- price element -->
-
-                      <!-- price element -->
-                      <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="pricing ui-ribbon-container">
-                          <div class="ui-ribbon-wrapper">
-                            <div class="ui-ribbon">
-                              30% Off
-                            </div>
-                          </div>
-                          <div class="title">
-                            <h2>Tally Box Design</h2>
-                            <h1>$25</h1>
-                            <span>Monthly</span>
-                          </div>
-                          <div class="x_content">
-                            <div class="">
-                              <div class="pricing_features">
-                                <ul class="list-unstyled text-left">
-                                  <li><i class="fa fa-check text-success"></i> 2 years access <strong> to all storage locations</strong></li>
-                                  <li><i class="fa fa-check text-success"></i> <strong>Unlimited</strong> storage</li>
-                                  <li><i class="fa fa-check text-success"></i> Limited <strong> download quota</strong></li>
-                                  <li><i class="fa fa-check text-success"></i> <strong>Cash on Delivery</strong></li>
-                                  <li><i class="fa fa-check text-success"></i> All time <strong> updates</strong></li>
-                                  <li><i class="fa fa-times text-danger"></i> <strong>Unlimited</strong> access to all files</li>
-                                  <li><i class="fa fa-times text-danger"></i> <strong>Allowed</strong> to be exclusing per sale</li>
-                                </ul>
-                              </div>
-                            </div>
-                            <div class="pricing_footer">
-                              <a href="javascript:void(0);" class="btn btn-primary btn-block" role="button">Download <span> now!</span></a>
-                              <p>
-                                <a href="javascript:void(0);">Sign up</a>
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- price element -->
-
-                      <!-- price element -->
-                      <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="pricing">
-                          <div class="title">
-                            <h2>Tally Box Design</h2>
-                            <h1>$25</h1>
-                            <span>Monthly</span>
-                          </div>
-                          <div class="x_content">
-                            <div class="">
-                              <div class="pricing_features">
-                                <ul class="list-unstyled text-left">
-                                  <li><i class="fa fa-check text-success"></i> 2 years access <strong> to all storage locations</strong></li>
-                                  <li><i class="fa fa-check text-success"></i> <strong>Unlimited</strong> storage</li>
-                                  <li><i class="fa fa-check text-success"></i> Limited <strong> download quota</strong></li>
-                                  <li><i class="fa fa-check text-success"></i> <strong>Cash on Delivery</strong></li>
-                                  <li><i class="fa fa-check text-success"></i> All time <strong> updates</strong></li>
-                                  <li><i class="fa fa-times text-danger"></i> <strong>Unlimited</strong> access to all files</li>
-                                  <li><i class="fa fa-times text-danger"></i> <strong>Allowed</strong> to be exclusing per sale</li>
-                                </ul>
-                              </div>
-                            </div>
-                            <div class="pricing_footer">
-                              <a href="javascript:void(0);" class="btn btn-success btn-block" role="button">Download <span> now!</span></a>
-                              <p>
-                                <a href="javascript:void(0);">Sign up</a>
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- price element -->
-
-                      <!-- price element -->
-                      <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="pricing">
-                          <div class="title">
-                            <h2>Tally Box Design</h2>
-                            <h1>$25</h1>
-                            <span>Monthly</span>
-                          </div>
-                          <div class="x_content">
-                            <div class="">
-                              <div class="pricing_features">
-                                <ul class="list-unstyled text-left">
-                                  <li><i class="fa fa-check text-success"></i> 2 years access <strong> to all storage locations</strong></li>
-                                  <li><i class="fa fa-check text-success"></i> <strong>Unlimited</strong> storage</li>
-                                  <li><i class="fa fa-check text-success"></i> Limited <strong> download quota</strong></li>
-                                  <li><i class="fa fa-check text-success"></i> <strong>Cash on Delivery</strong></li>
-                                  <li><i class="fa fa-check text-success"></i> All time <strong> updates</strong></li>
-                                  <li><i class="fa fa-check text-success"></i> <strong>Unlimited</strong> access to all files</li>
-                                  <li><i class="fa fa-check text-success"></i> <strong>Allowed</strong> to be exclusing per sale</li>
-                                </ul>
-                              </div>
-                            </div>
-                            <div class="pricing_footer">
-                              <a href="javascript:void(0);" class="btn btn-success btn-block" role="button">Download <span> now!</span></a>
-                              <p>
-                                <a href="javascript:void(0);">Sign up</a>
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- price element -->
-                    </div>
-
-                  </div>
                 </div>
-
               </div>
             </div>
           </div>
@@ -521,6 +381,82 @@
         <!-- /footer content -->
 
       </div>
+
+
+      <!-- Start Calender modal -->
+      <div id="CalenderModalNew" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h4 class="modal-title" id="myModalLabel">New Calender Entry</h4>
+            </div>
+            <div class="modal-body">
+              <div id="testmodal" style="padding: 5px 20px;">
+                <form id="antoform" class="form-horizontal calender" role="form">
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Title</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="title" name="title">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Description</label>
+                    <div class="col-sm-9">
+                      <textarea class="form-control" style="height:55px;" id="descr" name="descr"></textarea>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default antoclose" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary antosubmit">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="CalenderModalEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h4 class="modal-title" id="myModalLabel2">Edit Calender Entry</h4>
+            </div>
+            <div class="modal-body">
+
+              <div id="testmodal2" style="padding: 5px 20px;">
+                <form id="antoform2" class="form-horizontal calender" role="form">
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Title</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="title2" name="title2">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label">Description</label>
+                    <div class="col-sm-9">
+                      <textarea class="form-control" style="height:55px;" id="descr2" name="descr"></textarea>
+                    </div>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default antoclose2" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary antosubmit2">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="fc_create" data-toggle="modal" data-target="#CalenderModalNew"></div>
+      <div id="fc_edit" data-toggle="modal" data-target="#CalenderModalEdit"></div>
+
+      <!-- End Calender modal -->
       <!-- /page content -->
     </div>
 
@@ -534,6 +470,8 @@
   </div>
 
   <script src="js/bootstrap.min.js"></script>
+
+  <script src="js/nprogress.js"></script>
   
   <!-- bootstrap progress js -->
   <script src="js/progressbar/bootstrap-progressbar.min.js"></script>
@@ -543,9 +481,105 @@
 
   <script src="js/custom.js"></script>
 
+  <script src="js/moment/moment.min.js"></script>
+  <script src="js/calendar/fullcalendar.min.js"></script>
   <!-- pace -->
   <script src="js/pace/pace.min.js"></script>
+  <script>
+    $(window).load(function() {
 
+      var date = new Date();
+      var d = date.getDate();
+      var m = date.getMonth();
+      var y = date.getFullYear();
+      var started;
+      var categoryClass;
+
+      var calendar = $('#calendar').fullCalendar({
+        header: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'month,agendaWeek,agendaDay'
+        },
+        selectable: true,
+        selectHelper: true,
+        select: function(start, end, allDay) {
+          $('#fc_create').click();
+
+          started = start;
+          ended = end
+
+          $(".antosubmit").on("click", function() {
+            var title = $("#title").val();
+            if (end) {
+              ended = end
+            }
+            categoryClass = $("#event_type").val();
+
+            if (title) {
+              calendar.fullCalendar('renderEvent', {
+                  title: title,
+                  start: started,
+                  end: end,
+                  allDay: allDay
+                },
+                true // make the event "stick"
+              );
+            }
+            $('#title').val('');
+            calendar.fullCalendar('unselect');
+
+            $('.antoclose').click();
+
+            return false;
+          });
+        },
+        eventClick: function(calEvent, jsEvent, view) {
+          //alert(calEvent.title, jsEvent, view);
+
+          $('#fc_edit').click();
+          $('#title2').val(calEvent.title);
+          categoryClass = $("#event_type").val();
+
+          $(".antosubmit2").on("click", function() {
+            calEvent.title = $("#title2").val();
+
+            calendar.fullCalendar('updateEvent', calEvent);
+            $('.antoclose2').click();
+          });
+          calendar.fullCalendar('unselect');
+        },
+        editable: true,
+        events: [{
+          title: 'All Day Event',
+          start: new Date(y, m, 1)
+        }, {
+          title: 'Long Event',
+          start: new Date(y, m, d - 5),
+          end: new Date(y, m, d - 2)
+        }, {
+          title: 'Meeting',
+          start: new Date(y, m, d, 10, 30),
+          allDay: false
+        }, {
+          title: 'Lunch',
+          start: new Date(y, m, d + 14, 12, 0),
+          end: new Date(y, m, d, 14, 0),
+          allDay: false
+        }, {
+          title: 'Birthday Party',
+          start: new Date(y, m, d + 1, 19, 0),
+          end: new Date(y, m, d + 1, 22, 30),
+          allDay: false
+        }, {
+          title: 'Click for Google',
+          start: new Date(y, m, 28),
+          end: new Date(y, m, 29),
+          url: 'http://google.com/'
+        }]
+      });
+    });
+  </script>
 </body>
 
 </html>
