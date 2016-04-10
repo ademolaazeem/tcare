@@ -87,542 +87,102 @@ class AdminClassController
 
 		}
 	}
-    public function addRoomFeatures()
-    {
-        $featurename = $this->fm->processfield($_POST['featurename']);
-        $featuredescription = $this->fm->processfield($_POST['featuredescription']);
-        $rate = $this->fm->processfield($_POST['rate']);
-        $discount = $this->fm->processfield($_POST['discount']);
 
-        $userInAttendance=$_SESSION['username'];
-        $delimiter=',';
-        $rate=str_replace($delimiter, '', $rate);
-        $discount=str_replace($delimiter, '', $discount);
-        $pricePaid=floatval($rate)-floatval($discount);
-        $rate=floatval($rate);
-        $discount=floatval($discount);
-        /*$rate=number_format($rate,2);
-        $discount=number_format($discount,2);
-        $pricePaid=number_format($pricePaid,2);
-        */
-
-        //validate
-        if(empty($featurename)||empty($featuredescription)||empty($rate))
-        {
-            //return '<div style="color: #FF0000; font-size: small">Please make sure all fields are filled!</div>';
-            $msg = '<div class="alert alert-block alert-danger fade in">
-               <button data-dismiss="alert" class="close close-sm" type="button">
-                 <i class="fa fa-times"></i>
-               </button>
-               <strong>Oops!</strong> Please make sure all fields are filled!
-             </div>';
-            return $msg;
-        }
-        if(floatval($rate) < floatval($discount))
-        {
-            $msg = '<div class="alert alert-block alert-danger fade in">
-                 <button data-dismiss="alert" class="close close-sm" type="button">
-                   <i class="fa fa-times"></i>
-                 </button>
-                 <strong>Nah!</strong> Please discounts cannot be more than rate!
-               </div>';
-            return $msg;
-
-
-        }
-
-        else {
-
-            $qry = "SELECT * FROM room_feature_tbl WHERE feature_name = '$featurename'";
-
-            $row = $this->db->getNumOfRows($qry);
-            if ($row > 0) {
-                //username in use
-                //return '<font color="#FF0000" size="-2">Username already in use, Try another username</font>';
-                $msg = '<div class="alert alert-block alert-danger fade in">
-               <button data-dismiss="alert" class="close close-sm" type="button">
-                 <i class="fa fa-times"></i>
-               </button>
-               <strong>Oops!</strong> Feature name already in use, Try another Feature name!
-             </div>';
-                return $msg;
-            } else {
-
-                $insertQry = "INSERT INTO room_feature_tbl (feature_name,full_description, rate, discount, price_paid, created_date, created_by)
-			VALUES('$featurename','$featuredescription','$rate','$discount', '$pricePaid', '".date("Y-m-d H:i:s")."', '$userInAttendance')";
-
-                $res = $this->db->executeQuery($insertQry);
-
-                if ($res) {
-                    $this->audit->audit_log("User " . $_SESSION['username'] . " added a new room feature - " . $featurename);
-                    //return '<font color="#006600" size="-2">You have successfully register a staff!</font>';
-                    $msg = '<div class="alert alert-success alert-block fade in">
-                                  <button data-dismiss="alert" class="close close-sm" type="button">
-                                      <i class="fa fa-times"></i>
-                                  </button>
-                                  <h4>
-                                      <i class="fa fa-ok-sign"></i>
-                                    Gracias!
-                                  </h4>
-                                  <p>You have successfully registered a room feature!</p>
-                              </div>';
-                    return $msg;
-                }
-            }
-        }
-
-    }//end addRoomFeatures
-    public function addHallFeatures()
-    {
-        $featureName = $this->fm->processfield($_POST['featureName']);
-        $hallDescription = $this->fm->processfield($_POST['hallDescription']);
-        $rate = $this->fm->processfield($_POST['rate']);
-        $discount = $this->fm->processfield($_POST['discount']);
-
-
-        $userInAttendance=$_SESSION['username'];
-        $delimiter=',';
-        $rate=str_replace($delimiter, '', $rate);
-        $discount=str_replace($delimiter, '', $discount);
-        $pricePaid=floatval($rate)-floatval($discount);
-        $rate=floatval($rate);
-        $discount=floatval($discount);
-        $pricePaid=floatval($pricePaid);
-        /*$rate=number_format($rate,2);
-        $discount=number_format($discount,2);
-        $pricePaid=number_format($pricePaid,2);
-        */
-
-
-        //validate
-        if(empty($featureName)||empty($hallDescription)||empty($rate))
-        {
-            //return '<div style="color: #FF0000; font-size: small">Please make sure all fields are filled!</div>';
-            $msg = '<div class="alert alert-block alert-danger fade in">
-               <button data-dismiss="alert" class="close close-sm" type="button">
-                 <i class="fa fa-times"></i>
-               </button>
-               <strong>Oops!</strong> Please make sure all fields are filled!
-             </div>';
-            return $msg;
-        }
-        else {
-
-            $qry = "SELECT * FROM hall_feature_tbl WHERE feature_name = '$featureName'";
-
-            $row = $this->db->getNumOfRows($qry);
-            if ($row > 0) {
-                //username in use
-                //return '<font color="#FF0000" size="-2">Username already in use, Try another username</font>';
-                $msg = '<div class="alert alert-block alert-danger fade in">
-               <button data-dismiss="alert" class="close close-sm" type="button">
-                 <i class="fa fa-times"></i>
-               </button>
-               <strong>Oops!</strong> Feature name already in use, Try another Feature name!
-             </div>';
-                return $msg;
-            } else {
-
-                $insertQry = "INSERT INTO hall_feature_tbl (feature_name,feature_description, feature_rate,discount, price_paid, created_date, created_by)
-			VALUES('$featureName','$hallDescription','$rate', '$discount','$pricePaid','".date("Y-m-d H:i:s")."', '$userInAttendance')";
-
-                $res = $this->db->executeQuery($insertQry);
-
-                if ($res) {
-                    $this->audit->audit_log("User " . $_SESSION['username'] . " added a new room feature - " . $featureName);
-                    //return '<font color="#006600" size="-2">You have successfully register a staff!</font>';
-                    $msg = '<div class="alert alert-success alert-block fade in">
-                                  <button data-dismiss="alert" class="close close-sm" type="button">
-                                      <i class="fa fa-times"></i>
-                                  </button>
-                                  <h4>
-                                      <i class="fa fa-ok-sign"></i>
-                                    Gracias!
-                                  </h4>
-                                  <p>You have successfully registered a hall feature!</p>
-                              </div>';
-                    return $msg;
-                }
-            }
-        }
-
-    }
-    public function addRoomSetup()
-    {
-        $roomNumber = $this->fm->processfield($_POST['roomNumber']);
-        $roomName = $this->fm->processfield($_POST['roomName']);
-        $featureId = $this->fm->processfield($_POST['featureId']);
-        $availability = $this->fm->processfield($_POST['availability']);
-
-        $userInAttendance=$_SESSION['username'];
-
-
-
-        //validate
-        if(empty($roomNumber)||empty($featureId)||empty($availability))
-        {
-            //return '<div style="color: #FF0000; font-size: small">Please make sure all fields are filled!</div>';
-            $msg = '<div class="alert alert-block alert-danger fade in">
-               <button data-dismiss="alert" class="close close-sm" type="button">
-                 <i class="fa fa-times"></i>
-               </button>
-               <strong>Oops!</strong> Please make sure all fields are filled!
-             </div>';
-            return $msg;
-        }
-        else {
-
-            $qry = "SELECT * FROM room_setup_tbl WHERE room_number = $roomNumber";
-
-            $row = $this->db->getNumOfRows($qry);
-            if ($row > 0) {
-
-                $msg = '<div class="alert alert-block alert-danger fade in">
-               <button data-dismiss="alert" class="close close-sm" type="button">
-                 <i class="fa fa-times"></i>
-               </button>
-               <strong>Oops!</strong> The room has already been setup, Try another room details!
-             </div>';
-                return $msg;
-            } else {
-
-                $insertQry = "INSERT INTO room_setup_tbl (room_number,room_name, feature_id, availability, created_date, maker)
-			VALUES('$roomNumber','$roomName','$featureId','$availability','".date("Y-m-d H:i:s")."', '$userInAttendance')";
-
-                $res = $this->db->executeQuery($insertQry);
-
-                if ($res) {
-                    $this->audit->audit_log("User " . $_SESSION['username'] . " added a new room feature - " . $roomNumber);
-                    //return '<font color="#006600" size="-2">You have successfully register a staff!</font>';
-                    $msg = '<div class="alert alert-success alert-block fade in">
-                                  <button data-dismiss="alert" class="close close-sm" type="button">
-                                      <i class="fa fa-times"></i>
-                                  </button>
-                                  <h4>
-                                      <i class="fa fa-ok-sign"></i>
-                                    Gracias!
-                                  </h4>
-                                  <p>You have successfully setup room!</p>
-                              </div>';
-                    return $msg;
-                }
-            }
-        }
-
-    }
-    public function addHallSetup()
-    {
-        $hallName = $this->fm->processfield($_POST['hallName']);
-        if(isset($_POST['hallNumber']))$hallNumber = $this->fm->processfield($_POST['hallNumber']);
-        //$hallNumber = $this->fm->processfield($_POST['hallNumber']);
-        $featureId = $this->fm->processfield($_POST['featureId']);
-        $availability = $this->fm->processfield($_POST['availability']);
-
-        $userInAttendance=$_SESSION['username'];
-
-
-
-        //validate
-        if(empty($hallName)||empty($featureId)||empty($availability))
-        {
-            //return '<div style="color: #FF0000; font-size: small">Please make sure all fields are filled!</div>';
-            $msg = '<div class="alert alert-block alert-danger fade in">
-               <button data-dismiss="alert" class="close close-sm" type="button">
-                 <i class="fa fa-times"></i>
-               </button>
-               <strong>Oops!</strong> Please make sure all fields are filled!
-             </div>';
-            return $msg;
-        }
-        else {
-
-            $qry = "SELECT * FROM hall_setup_tbl WHERE hall_name = '$hallName'";
-
-            $row = $this->db->getNumOfRows($qry);
-            if ($row > 0) {
-
-                $msg = '<div class="alert alert-block alert-danger fade in">
-               <button data-dismiss="alert" class="close close-sm" type="button">
-                 <i class="fa fa-times"></i>
-               </button>
-               <strong>Oops!</strong> The hall has already been setup, Try another Hall name!
-             </div>';
-                return $msg;
-            } else {
-
-                $insertQry = "INSERT INTO hall_setup_tbl (hall_name,hall_feature_id,availability, created_date, maker)
-			VALUES('$hallName','$featureId','$availability','".date("Y-m-d H:i:s")."', '$userInAttendance')";
-//'$hallNumber',
-                $res = $this->db->executeQuery($insertQry);
-
-                if ($res) {
-                    $this->audit->audit_log("User " . $_SESSION['username'] . " added a new hall information - " . $hallName);
-                    //return '<font color="#006600" size="-2">You have successfully register a staff!</font>';
-                    $msg = '<div class="alert alert-success alert-block fade in">
-                                  <button data-dismiss="alert" class="close close-sm" type="button">
-                                      <i class="fa fa-times"></i>
-                                  </button>
-                                  <h4>
-                                      <i class="fa fa-ok-sign"></i>
-                                    Gracias!
-                                  </h4>
-                                  <p>You have successfully completed hall setup!</p>
-                              </div>';
-                    return $msg;
-                }
-            }
-        }
-
-    }
-    public function addBarSetup()
-    {
-        //$delimiter=',';
-        $itemType = $this->fm->processfield($_POST['itemType']);
-        //if(isset($_POST['hallNumber']))$hallNumber = $this->fm->processfield($_POST['hallNumber']);
-        $itemName = $this->fm->processfield($_POST['itemName']);
-        $itemRate = $this->fm->processfield($_POST['rate']);
-        //$itemRate = str_replace($delimiter, '', $this->fm->processfield($_POST['rate']));
-        $quantity = $this->fm->processfield($_POST['quantity']);
-        $threshold = $this->fm->processfield($_POST['threshold']);
-
-
-        $userInAttendance=$_SESSION['username'];
-        $delimiter=',';
-        $itemRate=str_replace($delimiter, '', $itemRate);
-        $quantity=str_replace($delimiter, '', $quantity);
-        $threshold=str_replace($delimiter, '', $threshold);
-
-        $itemRate=floatval($itemRate);
-        $quantity=floatval($quantity);
-        $threshold=floatval($threshold);
-        /*$rate=number_format($rate,2);
-        $discount=number_format($discount,2);
-        $pricePaid=number_format($pricePaid,2);
-        */
-
-
-
-        //validate
-        if(empty($itemType)||empty($itemName)||empty($itemRate)||empty($quantity)||empty($threshold))
-        {
-            //return '<div style="color: #FF0000; font-size: small">Please make sure all fields are filled!</div>';
-            $msg = '<div class="alert alert-block alert-danger fade in">
-               <button data-dismiss="alert" class="close close-sm" type="button">
-                 <i class="fa fa-times"></i>
-               </button>
-               <strong>Oops!</strong> Please make sure all fields are filled!
-             </div>';
-            return $msg;
-        }
-        else if($threshold >= $quantity )
-        {
-            $msg = '<div class="alert alert-block alert-danger fade in">
-               <button data-dismiss="alert" class="close close-sm" type="button">
-                 <i class="fa fa-times"></i>
-               </button>
-               <strong>Oops!</strong> Please threshold cannot be greater than or equal to quantity!
-             </div>';
-            return $msg;
-        }
-        else if(!is_numeric($threshold)||!is_numeric($quantity))
-        {
-            $msg = '<div class="alert alert-block alert-danger fade in">
-               <button data-dismiss="alert" class="close close-sm" type="button">
-                 <i class="fa fa-times"></i>
-               </button>
-               <strong>Oops!</strong> Please only numbers are allowed!
-             </div>';
-            return $msg;
-        }/*
-        else if(!preg_match('/^[0-9,]+$/', $itemRate))
-        {
-            $msg = '<div class="alert alert-block alert-danger fade in">
-               <button data-dismiss="alert" class="close close-sm" type="button">
-                 <i class="fa fa-times"></i>
-               </button>
-               <strong>Oops!</strong> Please only numbers is allowed!
-             </div>';
-            return $msg;
-        }*/
-         else
-        {
-
-            $qry = "SELECT * FROM bar_setup_tbl WHERE item_name = '$itemName'";
-
-            $row = $this->db->getNumOfRows($qry);
-            if ($row > 0) {
-
-                $msg = '<div class="alert alert-block alert-danger fade in">
-               <button data-dismiss="alert" class="close close-sm" type="button">
-                 <i class="fa fa-times"></i>
-               </button>
-               <strong>Oops!</strong> The Bar items has already been setup, Try another Hall name!
-             </div>';
-                return $msg;
-            }
-
-            else
-
-            {
-
-                $insertQry = "INSERT INTO bar_setup_tbl (item_type, item_name,item_rate,quantity,quantity_available,threshold,created_by, created_date)
-			VALUES('$itemType','$itemName','$itemRate','$quantity','$quantity','$threshold','$userInAttendance','".date("Y-m-d H:i:s")."')";
-
-                $insertHstQry = "INSERT INTO bar_setup_history_tbl (item_type, item_name,item_rate,quantity,quantity_available,threshold,created_by, created_date)
-			VALUES('$itemType','$itemName','$itemRate','$quantity','$quantity','$threshold','$userInAttendance','".date("Y-m-d H:i:s")."')";
-
-                $res = $this->db->executeQuery($insertQry);
-                $resHist = $this->db->executeQuery($insertHstQry);
-
-                if ($res && $resHist) {
-                    $this->audit->audit_log("User " . $_SESSION['username'] . " added a new Bar Item information - " . $itemName);
-                    //return '<font color="#006600" size="-2">You have successfully register a staff!</font>';
-                    $msg = '<div class="alert alert-success alert-block fade in">
-                                  <button data-dismiss="alert" class="close close-sm" type="button">
-                                      <i class="fa fa-times"></i>
-                                  </button>
-                                  <h4>
-                                      <i class="fa fa-ok-sign"></i>
-                                    Gracias!
-                                  </h4>
-                                  <p>You have successfully completed Bar item setup!</p>
-                              </div>';
-                    return $msg;
-                }
-            }
-        }
-
-    }
-    public function addUserSetup()
+    public function addCarer()
     {
         $firstname = $this->fm->processfield($_POST['firstname']);
         $lastname = $this->fm->processfield($_POST['lastname']);
-        $address = $this->fm->processfield($_POST['address']);
-        $email = $this->fm->processfield($_POST['email']);
-        $city_town = $this->fm->processfield($_POST['city_town']);
-        $phone_number = $this->fm->processfield($_POST['phone_number']);
-        $dob = $this->fm->processfield($_POST['dob']);
-        $sex = $this->fm->processfield($_POST['sex']);
         $username = $this->fm->processfield($_POST['username']);
+        $email = $this->fm->processfield($_POST['email']);
+        $email2 = $this->fm->processfield($_POST['email2']);
         $password = $this->fm->processfield($_POST['password']);
-        $cpassword = $this->fm->processfield($_POST['cpassword']);
-        $acclevel = $this->fm->processfield($_POST['acclevel']);
-        $about_me = $this->fm->processfield($_POST['about_me']);
-
-        //echo date_diff(date("Y-m-d"),$dob);
-
-
+        $password2 = $this->fm->processfield($_POST['password2']);
+        $sex = $this->fm->processfield($_POST['sex']);
+        $address = $this->fm->processfield($_POST['address']);
+        $phone = $this->fm->processfield($_POST['phone']);
+        $county = $this->fm->processfield($_POST['county']);
+        $dob = $this->fm->processfield($_POST['birthday']);
+        $pps = $this->fm->processfield($_POST['pps']);
         //validate
-        if(empty($username)||empty($firstname)||empty($lastname)||empty($email)||empty($phone_number) ||empty($password)||empty($cpassword)
-            ||empty($dob)||empty($acclevel) ||empty($sex)||empty($about_me)
-        )
+        if(empty($firstname)||empty($lastname)||empty($pps) || empty($sex) || empty($password) || empty($email)
+        || empty($dob))
         {
-            $msg = '<div class="alert alert-block alert-danger fade in">
+            //return '<div style="color: #FF0000; font-size: small">Please make sure all fields are filled!</div>';
+            $msgC = '<div class="alert alert-block alert-danger fade in">
                <button data-dismiss="alert" class="close close-sm" type="button">
                  <i class="fa fa-times"></i>
                </button>
-               <strong>Oops!</strong> Please make sure all required fields are completed!
+               <strong>Oops!</strong> Please make sure all the required fields are filled!
              </div>';
-            return $msg;
+            return $msgC;
         }
-         if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $msg = '<div class="alert alert-block alert-danger fade in">
+        if($password != $password2)
+        {
+            $msgC = '<div class="alert alert-block alert-danger fade in">
+                 <button data-dismiss="alert" class="close close-sm" type="button">
+                   <i class="fa fa-times"></i>
+                 </button>
+                 <strong>Nah!</strong> Please both password and password confirmation must be the same!
+               </div>';
+            return $msgC;
+
+
+        }if($email != $email2)
+        {
+            $msgC = '<div class="alert alert-block alert-danger fade in">
+                 <button data-dismiss="alert" class="close close-sm" type="button">
+                   <i class="fa fa-times"></i>
+                 </button>
+                 <strong>Nah!</strong> Please both email and email confirmation must be the same!
+               </div>';
+            return $msgC;
+
+
+        }
+        else if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $msgC = '<div class="alert alert-block alert-danger fade in">
                <button data-dismiss="alert" class="close close-sm" type="button">
                  <i class="fa fa-times"></i>
                </button>
                <strong>Oops!</strong> Please Specify a valid email!
              </div>';
-            return $msg;
+            return $msgC;
         }
 
-        //if(strtotime("now")-strtotime($dob) < 15)
-        //date("Y-m-d")
-           // if(date_diff(strtotime(date("d-m-Y")),strtotime($dob)) < 15)
-  /*
-   *       if(strtotime("now")-strtotime($dob) < 15)
-        {
-            $msg = '<div class="alert alert-block alert-danger fade in">
+        else {
+
+            $qry = "SELECT * FROM tblcarer WHERE UserName = '$username' or emailaddress = '$email'";
+
+            $row = $this->db->getNumOfRows($qry);
+            if ($row > 0) {
+                //username in use
+                //return '<font color="#FF0000" size="-2">Username already in use, Try another username</font>';
+                $msgC = '<div class="alert alert-block alert-danger fade in">
                <button data-dismiss="alert" class="close close-sm" type="button">
                  <i class="fa fa-times"></i>
                </button>
-               <strong>Nah!</strong> You cannot create user who is less than 15 years!
+               <strong>Oops!</strong> Username or Email already exist!
              </div>';
-            return $msg;
-        }
-*/
-      /* if(!empty($dob)) {
-           $ageResult = $this->validateAge($dob);
-           return $ageResult;
-       }
-        */
-        //, $min
-        // $then will first be a string-date
-        $then = strtotime($dob);
-        //The age to be over, over +18
-        $min = strtotime('+15 years', $then);
-        //echo $min;
-        if(time() < $min) {
-            //die('Not 18');
-            $msg = '<div class="alert alert-block alert-danger fade in">
-               <button data-dismiss="alert" class="close close-sm" type="button">
-                 <i class="fa fa-times"></i>
-               </button>
-               <strong>Nah!</strong> You cannot create user who is less than 15 years!
-             </div>';
-            return $msg;
-        }
+                return $msgC;
+            } else {
 
 
-        if(!empty($password) && strcmp($password, $cpassword) !=0 )
-        {
-            $msg = '<div class="alert alert-block alert-danger fade in">
-               <button data-dismiss="alert" class="close close-sm" type="button">
-                 <i class="fa fa-times"></i>
-               </button>
-               <strong>Oh oh!</strong> The password specified does not match!
-             </div>';
-            return $msg;
+                $serial = rand(100,999).substr(str_shuffle("0123456789"),0,1);
 
-        }
+                $minshr = "HCP";
+                $curDate=date('ymdHis');
+                $carerid = $minshr.$curDate.$serial;//generate
 
-        //check if the username has not beeen registered before
 
-        $qry = "SELECT * FROM users_tbl WHERE lower(username) = '".strtolower($username)."' or lower(email)='".strtolower($email)."'";
 
-        $row = $this->db->getNumOfRows($qry);
-        if($row >0 )
-        {
-            //username in use
-            $msg = '<div class="alert alert-block alert-danger fade in">
-               <button data-dismiss="alert" class="close close-sm" type="button">
-                 <i class="fa fa-times"></i>
-               </button>
-               <strong>Oh oh!</strong> Username or Email already in use, Please try another username or Email!
-             </div>';
-            return $msg;
-
-        }
-        else
-        {
-            //generate 4digit random number
-            $serial = rand(100,999).substr(str_shuffle("0123456789"),0,1);
-
-            $minshr = "VHM";
-            $curDate=date('YmdHis');
-            $userid = $minshr.$curDate.$serial;//generate
-
-            //prepare to insert
-            $insertQry = "INSERT INTO users_tbl (username, user_id,fname,lname,password,sex,dob,acclevel,email,address,city_town, phone,datereg, about_me)
-			VALUES('$username','$userid','$firstname','$lastname','".sha1($password)."', '$sex','$dob', '$acclevel', '$email','$address','$city_town','$phone_number',
-			'".date("Y-m-d H:i:s")."','$about_me')";
-
-            $res = $this->db->executeQuery($insertQry);
-
-            if($res)
-            {
-                $this->audit->audit_log("User ".$_SESSION['username']." added a new user - ".$username);
-
-                $msg = '<div class="alert alert-success alert-block fade in">
+               $insertQry = "INSERT INTO tblcarer
+                        (CarerID, FirstName, LastName, Sex, Address, County, Phone, Username, Password, PPSNumber, EmailAddress, dateofbirth)
+                VALUES ('$carerid', '$firstname', '$lastname', '$sex', '$address', '$county', '$phone', '$username', '".sha1($password)."', '$pps', '$email', '$dob')";
+                 $res = $this->db->executeQuery($insertQry);
+                if ($res) {
+                    $this->audit->audit_log("new Carer added");
+                    //return '<font color="#006600" size="-2">You have successfully register a staff!</font>';
+                    $msgC = '<div class="alert alert-success alert-block fade in">
                                   <button data-dismiss="alert" class="close close-sm" type="button">
                                       <i class="fa fa-times"></i>
                                   </button>
@@ -630,527 +190,24 @@ class AdminClassController
                                       <i class="fa fa-ok-sign"></i>
                                     Gracias!
                                   </h4>
-                                  <p>You have successfully registered one user more!</p>
+                                  <p>You have successfully registered, Admin will get back to you soon.</p>
                               </div>';
-                return $msg;
+                    return $msgC;
+                }//end if res
+            }// end else row
+        }//end else
 
+    }
 
-            }
-        }
 
-    }//end reg staff
-//setup ends here
 
-    public function addRoomReservation()
-    {
-        $client_name = $this->fm->processfield($_POST['client_name']);
-        $client_address = $this->fm->processfield($_POST['client_address']);
-        $client_phone = $this->fm->processfield($_POST['client_phone']);
-        $client_email = $this->fm->processfield($_POST['client_email']);
-        $room_number = $this->fm->processfield($_POST['room_number']);
-        $room_rate = $this->fm->processfield($_POST['room_rate']);
-        $number_of_nights = $this->fm->processfield($_POST['number_of_nights']);
-        $number_of_people = $this->fm->processfield($_POST['number_of_people']);
-        $dateIn = $this->fm->processfield($_POST['dateIn']);
-        $timeIn = $this->fm->processfield($_POST['timeIn']);
-        $dateOut = $this->fm->processfield($_POST['dateOut']);
-        //$timeOut = $this->fm->processfield($_POST['timeOut']);
-        $visit_purpose = $this->fm->processfield($_POST['visit_purpose']);
-        $reg_number = $this->fm->processfield($_POST['reg_number']);
-        $model = $this->fm->processfield($_POST['model']);
-        $color = $this->fm->processfield($_POST['color']);
 
 
-        //echo date_diff(date("Y-m-d"),$dob);
 
 
-        //validate
-        if(empty($client_name)||empty($client_address)||empty($client_phone)||empty($room_number)||empty($room_rate) ||empty($number_of_nights)||empty($number_of_people)
-            ||empty($dateIn)||empty($timeIn) ||empty($visit_purpose) ||empty($dateOut)
-        )
-        {
-            $msg = '<div class="alert alert-block alert-danger fade in">
-               <button data-dismiss="alert" class="close close-sm" type="button">
-                 <i class="fa fa-times"></i>
-               </button>
-               <strong>Oops!</strong> Please make sure all required fields are completed!
-             </div>';
-            return $msg;
-        }
 
-        if(!filter_var($client_email, FILTER_VALIDATE_EMAIL)) {
-            $msg = '<div class="alert alert-block alert-danger fade in">
-               <button data-dismiss="alert" class="close close-sm" type="button">
-                 <i class="fa fa-times"></i>
-               </button>
-               <strong>Oops!</strong> Please Specify a valid email!
-             </div>';
-            return $msg;
-        }
-        //, $min
-        // $then will first be a string-date
-        $inDate = strtotime($dateIn);
-        $outDate=strtotime($dateOut);
-        $inTime=strtotime($timeIn);
 
-        if($outDate < $inDate)
-        {
-            $msg = '<div class="alert alert-block alert-danger fade in">
-                 <button data-dismiss="alert" class="close close-sm" type="button">
-                   <i class="fa fa-times"></i>
-                 </button>
-                 <strong>Nah!</strong> Date Check out cannot come first!
-               </div>';
-            return $msg;
 
-
-        }
-
-        /* $then = strtotime($dateTimeIn);
-         //The age to be over, over +18
-       /* $min = strtotime('+15 years', $then);
-          //echo $min;
-       /* if(time() < $min) {
-              //die('Not 18');
-              $msg = '<div class="alert alert-block alert-danger fade in">
-                 <button data-dismiss="alert" class="close close-sm" type="button">
-                   <i class="fa fa-times"></i>
-                 </button>
-                 <strong>Nah!</strong> You cannot create user who is less than 15 years!
-               </div>';
-              return $msg;
-          }*/
-
-
-
-        //check if the username has not beeen registered before
-
-        $qry = "SELECT * FROM room_reservation_tbl WHERE lower(client_name) = '". strtolower($client_name)."' and date_in='$dateIn'";
-
-        $row = $this->db->getNumOfRows($qry);
-        if($row >0 )
-        {
-            //username in use
-            $msg = '<div class="alert alert-block alert-danger fade in">
-               <button data-dismiss="alert" class="close close-sm" type="button">
-                 <i class="fa fa-times"></i>
-               </button>
-               <strong>Oh oh!</strong> The client \'s accommodation has already in been reserved, Please try another Client!
-             </div>';
-            return $msg;
-
-        }
-        else
-        {
-            /*//generate 4digit random number
-            $serial = rand(100,999).substr(str_shuffle("0123456789"),0,1);
-
-            $minshr = "VHM";
-            $curDate=date('YmdHis');
-            $userid = $minshr.$curDate.$serial;//generate*/
-            $userInAttendance=$_SESSION['username'];
-            $delimiter=',';
-            //Note: the room_rate here is equal to the rate minus the discount in the room_feature
-            $room_rate=str_replace($delimiter, '', $room_rate);
-            $totalPrice= floatval($room_rate)*floatval($number_of_nights);
-            $room_rate=floatval($room_rate);
-            $totalPrice=floatval($totalPrice);
-            //$room_rate=number_format($room_rate,2);
-            //$totalPrice=number_format($totalPrice,2);
-
-
-
-
-
-            //$twelveTime=strtotime("12:00:00");
-
-            //date_out, time_out
-            //prepare to insert
-            $insertQry = "INSERT INTO room_reservation_tbl
-                  (client_name, client_address,client_phone,client_email,room_number,rate,number_of_people,date_in,time_in,number_of_days,date_out, visit_purpose, car_reg_number,car_model,car_color,price_paid, attended_to_by, date_created, status)
-			VALUES('$client_name','$client_address','$client_phone','$client_email','$room_number', '$room_rate','$number_of_people', '$dateIn', '$timeIn','$number_of_nights','$dateOut','$visit_purpose','$reg_number','$model', '$color','$totalPrice','$userInAttendance', '".date("Y-m-d H:i:s")."', 'Checked In')";
-
-            $updateQryAvail="UPDATE room_setup_tbl SET availability='Not Available', updated_date='".date("Y-m-d H:i:s")."' where room_number = '$room_number'";
-
-            $res = $this->db->executeQuery($insertQry);
-            $resUpd = $this->db->executeQuery($updateQryAvail);
-
-            if($res && $resUpd)
-            {
-                $this->audit->audit_log("User ".$_SESSION['username']." added a new user - ".$userInAttendance);
-
-                $msg = '<div class="alert alert-success alert-block fade in">
-                                  <button data-dismiss="alert" class="close close-sm" type="button">
-                                      <i class="fa fa-times"></i>
-                                  </button>
-                                  <h4>
-                                      <i class="fa fa-ok-sign"></i>
-                                    Thanks!
-                                  </h4>
-                                  <p>You have successfully booked an accommodation for a client!</p>
-                              </div>';
-                return $msg;
-
-
-            }
-        }
-
-    }//end addRoomReservation
-    public function addHallReservation()
-    {
-        $client_name = $this->fm->processfield($_POST['client_name']);
-        $client_address = $this->fm->processfield($_POST['client_address']);
-        $client_phone = $this->fm->processfield($_POST['client_phone']);
-        $client_email = $this->fm->processfield($_POST['client_email']);
-        $hall_number = $this->fm->processfield($_POST['hall_number']);
-        $hall_feature_rate = $this->fm->processfield($_POST['hall_feature_rate']);
-        $purpose = $this->fm->processfield($_POST['purpose']);
-        $number_of_days = $this->fm->processfield($_POST['number_of_days']);
-        $startDate = $this->fm->processfield($_POST['startDate']);
-        $startTime = $this->fm->processfield($_POST['startTime']);
-        $endDate = $this->fm->processfield($_POST['endDate']);
-        $endTime = $this->fm->processfield($_POST['endTime']);
-        //echo date_diff(date("Y-m-d"),$dob);
-
-
-        //validate
-        if(empty($client_name)||empty($client_address)||empty($client_phone)||empty($hall_number)||empty($hall_feature_rate) ||empty($number_of_days)||empty($startDate)
-            ||empty($startTime)||empty($endDate) ||empty($purpose) ||empty($endTime)
-        )
-        {
-            $msg = '<div class="alert alert-block alert-danger fade in">
-               <button data-dismiss="alert" class="close close-sm" type="button">
-                 <i class="fa fa-times"></i>
-               </button>
-               <strong>Oops!</strong> Please make sure all required fields are completed!
-             </div>';
-            return $msg;
-        }
-
-        if(!filter_var($client_email, FILTER_VALIDATE_EMAIL)) {
-            $msg = '<div class="alert alert-block alert-danger fade in">
-               <button data-dismiss="alert" class="close close-sm" type="button">
-                 <i class="fa fa-times"></i>
-               </button>
-               <strong>Oops!</strong> Please Specify a valid email!
-             </div>';
-            return $msg;
-        }
-        //, $min
-        // $then will first be a string-date
-        $inDate = strtotime($startDate);
-        $outDate=strtotime($endDate);
-        //$inTime=strtotime($startTime);
-
-        if($outDate < $inDate)
-        {
-            $msg = '<div class="alert alert-block alert-danger fade in">
-                 <button data-dismiss="alert" class="close close-sm" type="button">
-                   <i class="fa fa-times"></i>
-                 </button>
-                 <strong>Nah!</strong> Check out date cannot come first!
-               </div>';
-            return $msg;
-
-
-        }
-
-        //check if the username has not beeen registered before
-
-        $qry = "SELECT * FROM hall_reservation_tbl WHERE lower(client_name) = '". strtolower($client_name)."' and start_date='$startDate'";
-
-        $row = $this->db->getNumOfRows($qry);
-        if($row >0 )
-        {
-            //username in use
-            $msg = '<div class="alert alert-block alert-danger fade in">
-               <button data-dismiss="alert" class="close close-sm" type="button">
-                 <i class="fa fa-times"></i>
-               </button>
-               <strong>Oh oh!</strong> The hall has already in been reserved, Please try another Hall!
-             </div>';
-            return $msg;
-
-        }
-        else
-        {
-            /*//generate 4digit random number
-            $serial = rand(100,999).substr(str_shuffle("0123456789"),0,1);
-            //call a method that returns school's shorth form
-            $minshr = "VHM";
-            $curDate=date('YmdHis');
-            $userid = $minshr.$curDate.$serial;//generate*/
-            $userInAttendance=$_SESSION['username'];
-            $delimiter=',';
-            $hall_feature_rate=str_replace($delimiter, '', $hall_feature_rate);
-            $totalPrice= floatval($hall_feature_rate)*floatval($number_of_days);
-            //This is acctually rate minus discount setup in the hall features.
-            $hall_feature_rate=floatval($hall_feature_rate);
-            $totalPrice=floatval($totalPrice);
-            //$room_rate=number_format($hall_feature_rate,2);
-            //$totalPrice=number_format($totalPrice,2);
-
-
-            //$twelveTime=strtotime("12:00:00");
-
-            //date_out, time_out
-            //prepare to insert
-
-            $insertQry = "INSERT INTO hall_reservation_tbl
-                  (client_name, client_address,client_email,client_phone,purpose_of_use,start_date,startTime,no_of_days,end_date,end_time, rate, hall_number,price_paid, attended_to_by, created_date)
-			VALUES('$client_name','$client_address','$client_email','$client_phone','$purpose','$startDate','$startTime','$number_of_days','$endDate', '$endTime','$hall_feature_rate','$hall_number','$totalPrice','$userInAttendance', '".date("Y-m-d H:i:s")."')";
-
-            $res = $this->db->executeQuery($insertQry);
-
-            if($res)
-            {
-                $this->audit->audit_log("User ".$_SESSION['username']." added a new hall client - ".$client_name);
-
-                $msg = '<div class="alert alert-success alert-block fade in">
-                                  <button data-dismiss="alert" class="close close-sm" type="button">
-                                      <i class="fa fa-times"></i>
-                                  </button>
-                                  <h4>
-                                      <i class="fa fa-ok-sign"></i>
-                                    Thanks!
-                                  </h4>
-                                  <p>You have successfully booked an hall for a client!</p>
-                              </div>';
-                return $msg;
-
-
-            }
-        }
-
-    }//end addHallReservation
-    public function addBarItem()
-    {
-        $delimiter=',';
-        $itemId = $this->fm->processfield($_POST['item_id']);
-        $itemRate=str_replace($delimiter, '', $this->fm->processfield($_POST['item_rate']));
-        //echo "Item Rate:".$itemRate;
-        $quantity= $this->fm->processfield($_POST['quantity']);
-
-
-
-        //validate
-        if(empty($itemId)||empty($itemRate)||empty($quantity)
-        )
-        {
-            $msg = '<div class="alert alert-block alert-danger fade in">
-               <button data-dismiss="alert" class="close close-sm" type="button">
-                 <i class="fa fa-times"></i>
-               </button>
-               <strong>Oops!</strong> Please make sure all required fields are completed!
-             </div>';
-            return $msg;
-        }
-
-
-
-       /* if($outDate < $inDate)
-        {
-            $msg = '<div class="alert alert-block alert-danger fade in">
-                 <button data-dismiss="alert" class="close close-sm" type="button">
-                   <i class="fa fa-times"></i>
-                 </button>
-                 <strong>Nah!</strong> Check out date cannot come first!
-               </div>';
-            return $msg;
-
-
-        }*/
-
-        //check if the username has not beeen registered before
-
-        /*$qry = "SELECT * FROM hall_reservation_tbl WHERE lower(client_name) = '". strtolower($client_name)."' and start_date='$startDate'";
-
-        $row = $this->db->getNumOfRows($qry);
-        if
-        ($row >0 )
-        {
-            //username in use
-            $msg = '<div class="alert alert-block alert-danger fade in">
-               <button data-dismiss="alert" class="close close-sm" type="button">
-                 <i class="fa fa-times"></i>
-               </button>
-               <strong>Oh oh!</strong> The hall has already in been reserved, Please try another Hall!
-             </div>';
-            return $msg;
-
-        }
-        else
-        {*/
-
-            /*//generate 4digit random number
-            $serial = rand(100,999).substr(str_shuffle("0123456789"),0,1);
-            //call a method that returns school's shorth form
-            $minshr = "VHM";
-            $curDate=date('YmdHis');
-            $userid = $minshr.$curDate.$serial;//generate*/
-
-
-            $userInAttendance=$_SESSION['username'];
-            //$delimiter=',';
-            //$itemRate=str_replace($delimiter, '', $itemRate);
-            // echo "Item Rate".$itemRate;
-            // echo "Quantity". $quantity;
-            $totalPrice= floatval($itemRate)*floatval($quantity);
-
-            $itemRate=floatval($itemRate);
-            $quantity=floatval($quantity);
-            $totalPrice=floatval($totalPrice);
-            //echo "Total Price".$totalPrice;
-            //$itemRate=number_format($itemRate,2);
-            //$totalPrice=number_format($totalPrice,2);
-            //echo "Total Price after format".$totalPrice;
-
-            //$twelveTime=strtotime("12:00:00");
-
-            //date_out, time_out
-            //prepare to insert
-
-            $insertQry = "INSERT INTO bar_tbl
-                  (item_id, quantity_sold,rate,total,attended_to_by, date_created)
-			VALUES('$itemId','$quantity','$itemRate','$totalPrice','$userInAttendance', '".date("Y-m-d H:i:s")."')";
-
-            $res = $this->db->executeQuery($insertQry);
-
-            if($res)
-            {
-
-                $qtyQuery = "SELECT quantity_available qtyAvailable FROM `bar_setup_tbl` where quantity_available > 0 and item_id=$itemId";
-                //echo "I got here after string qtyQuery and item_id:".$itemId;
-                $qtyRow = $this->db->fetchData($qtyQuery);
-                $qtyCounted=$qtyRow['qtyAvailable'];
-
-                $newQtyAvail=floatval($qtyCounted) - floatval($quantity);
-                //echo "<br>I got here after counted qtyCounted=".$qtyCounted.", quantity= ".$quantity." newQtyAvail =".$newQtyAvail;
-                $updQuery = "UPDATE bar_setup_tbl SET quantity_available = '$newQtyAvail', updated_date ='".date("Y-m-d H:i:s")."'  WHERE item_id=$itemId";
-                $upRes = $this->db->executeQuery($updQuery);
-                //echo "<br>I got here after counted qtyCounted=".$qtyCounted.", quantity= ".$quantity." newQtyAvail =".$newQtyAvail;
-
-               // echo "I got here after update";
-                $this->audit->audit_log("User ".$_SESSION['username']." added a new user - ".$userInAttendance);
-
-               /* $itemId=empty($itemId);
-                    //= $this->fm->processfield($_POST['item_id']);
-                $itemRate=empty($itemRate);
-                //echo "Item Rate:".$itemRate;
-                $quantity= empty($quantity);
-                    //$this->fm->processfield($_POST['quantity']);*/
-                $msg = '<div class="alert alert-success alert-block fade in">
-                                  <button data-dismiss="alert" class="close close-sm" type="button">
-                                      <i class="fa fa-times"></i>
-                                  </button>
-                                  <h4>
-                                      <i class="fa fa-ok-sign"></i>
-                                    Thanks!
-                                  </h4>
-                                  <p>You have successfully saved item information!</p>
-
-                              </div>';
-                return $msg;
-
-
-            }
-        //}
-
-    }//end addBarItem
-    public function addCompanyInfo()
-    {
-        $coyName = $this->fm->processfield($_POST['coyName']);
-        $coyAddress = $this->fm->processfield($_POST['coyAddress']);
-        $coyPhone = $this->fm->processfield($_POST['coyPhone']);
-        $coyEmail = $this->fm->processfield($_POST['coyEmail']);
-        $webAddress = $this->fm->processfield($_POST['webAddress']);
-        //validate
-
-        $serial = rand(100, 999) . substr(str_shuffle("0123456789"), 0, 1);
-        $minshr = "VHM";
-        $curDate = date('YmdHis');
-        $coyid = $minshr . $curDate . $serial;
-        $userInAttendance = $_SESSION['username'];
-
-
-        if(empty($coyName)||empty($coyAddress)||empty($coyPhone)
-        )
-        {
-            $msg = '<div class="alert alert-block alert-danger fade in">
-               <button data-dismiss="alert" class="close close-sm" type="button">
-                 <i class="fa fa-times"></i>
-               </button>
-               <strong>Oops!</strong> Please make sure all required fields are completed! Name, Address and Phone Number must be specified!
-             </div>';
-            return $msg;
-        }
-
-        if(!filter_var($coyEmail, FILTER_VALIDATE_EMAIL)) {
-            $msg = '<div class="alert alert-block alert-danger fade in">
-               <button data-dismiss="alert" class="close close-sm" type="button">
-                 <i class="fa fa-times"></i>
-               </button>
-               <strong>Oops!</strong> Please Specify a valid email!
-             </div>';
-            return $msg;
-        }
-
-
-        $qry = "SELECT * FROM company_info_tbl";
-        $ftQry=$this->db->fetchArrayData($qry);
-        $coyFrmDB=$ftQry['coy_id'];
-
-        $row = $this->db->getNumOfRows($qry);
-        if($row >0 )
-        {
-            $updateCoyQry="UPDATE company_info_tbl SET coy_name='$coyName', coy_address='$coyAddress', coy_phone='$coyPhone', coy_email='$coyEmail',web_address='$webAddress', maker='$userInAttendance', date_updated='" . date("Y-m-d H:i:s") . "'";
-            $res = $this->db->executeQuery($updateCoyQry);
-            if ($res) {
-                $this->audit->audit_log("User " . $_SESSION['username'] . " Updated company information - " . $coyFrmDB);
-
-                $msg = '<div class="alert alert-success alert-block fade in">
-                                  <button data-dismiss="alert" class="close close-sm" type="button">
-                                      <i class="fa fa-times"></i>
-                                  </button>
-                                  <h4>
-                                      <i class="fa fa-ok-sign"></i>
-                                    Thanks!
-                                  </h4>
-                                  <p>You have successfully updated company\'s information!</p>
-                              </div>';
-                return $msg;
-
-
-            }
-
-
-        }
-        else {
-            $insertQry = "INSERT INTO company_info_tbl
-                  (coy_id, coy_name, coy_address,coy_phone,coy_email,web_address, maker, date_created)
-			VALUES('$coyid', '$coyName','$coyAddress','$coyPhone','$coyEmail','$webAddress', '$userInAttendance', '" . date("Y-m-d H:i:s") . "')";
-            $res = $this->db->executeQuery($insertQry);
-            if ($res) {
-                $this->audit->audit_log("User " . $_SESSION['username'] . " added a company information - " . $coyName);
-
-                $msg = '<div class="alert alert-success alert-block fade in">
-                                  <button data-dismiss="alert" class="close close-sm" type="button">
-                                      <i class="fa fa-times"></i>
-                                  </button>
-                                  <h4>
-                                      <i class="fa fa-ok-sign"></i>
-                                    Thanks!
-                                  </h4>
-                                  <p>You have successfully created company\'s information!</p>
-                              </div>';
-                return $msg;
-
-
-            }
-
-        }//else if not exists before
-
-    }//addCompanyInfo
      public function addPermissionSetup()
     {
         $pageName = $this->fm->processfield($_POST['pageName']);
@@ -1326,30 +383,24 @@ class AdminClassController
     }//end ValidateAge
 
    //Update Starts here
-    public function updateUserSetup()
+    public function updateCarer()
     {
-        $username = $this->fm->processfield($_POST['username']);
+        $carerid = $this->fm->processfield($_POST['carerid']);
+        //$username = $this->fm->processfield($_POST['username']);
         $firstname = $this->fm->processfield($_POST['firstname']);
         $lastname = $this->fm->processfield($_POST['lastname']);
         $address = $this->fm->processfield($_POST['address']);
-        $email = $this->fm->processfield($_POST['email']);
-        $city_town = $this->fm->processfield($_POST['city_town']);
-        $phone_number = $this->fm->processfield($_POST['phone']);
-        $dob = $this->fm->processfield($_POST['dob']);
+        $emailaddress = $this->fm->processfield($_POST['emailaddress']);
+        $county = $this->fm->processfield($_POST['county']);
+        $phone = $this->fm->processfield($_POST['phone']);
+        $ppsnumber = $this->fm->processfield($_POST['ppsnumber']);
+        $active = $this->fm->processfield($_POST['active']);
+        $dob = $this->fm->processfield($_POST['birthday']);
         $sex = $this->fm->processfield($_POST['sex']);
-        $about_me = $this->fm->processfield($_POST['about_me']);
+        $adminnote  = $this->fm->processfield($_POST['adminnote']);
 
-        /*
-         * $username = $this->fm->processfield($_POST['username']);
-        $password = $this->fm->processfield($_POST['password']);
-        $cpassword = $this->fm->processfield($_POST['cpassword']);
-        $acclevel = $this->fm->processfield($_POST['acclevel']);
-         *
-         */
-
-
-
-        if(empty($username)|| empty($firstname)||empty($lastname)||empty($email)||empty($phone_number) ||empty($dob)||empty($sex)||empty($about_me)||empty($city_town)
+       if(empty($active)|| empty($firstname)||empty($lastname)||empty($emailaddress)||empty($phone) ||empty($dob)||empty($sex)
+           ||empty($county)||empty($ppsnumber) || empty($adminnote) || empty($address)
         )
         {
             $msg = '<div class="alert alert-block alert-danger fade in">
@@ -1360,7 +411,7 @@ class AdminClassController
              </div>';
             return $msg;
         }
-        if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if(!filter_var($emailaddress, FILTER_VALIDATE_EMAIL)) {
             $msg = '<div class="alert alert-block alert-danger fade in">
                <button data-dismiss="alert" class="close close-sm" type="button">
                  <i class="fa fa-times"></i>
@@ -1380,42 +431,23 @@ class AdminClassController
                <button data-dismiss="alert" class="close close-sm" type="button">
                  <i class="fa fa-times"></i>
                </button>
-               <strong>Nah!</strong> You cannot create user who is less than 15 years!
+               <strong>Nah!</strong> Wrong Age, carer must be more than 15 years!
              </div>';
             return $msg;
         }
 
         //update
-        //username, user_id,fname,password,sex,dob,acclevel,email,address,city_town, phone,datereg, about_me)
-		//	VALUES('$username','$userid','$fullname','".sha1($password)."', '$sex','$dob', '$acclevel', '$email','$address','$city_town','$phone_number',
-        //        '".date("Y-m-d H:i:s")."','$about_me')";
+         $upquery = "UPDATE 	tblcarer SET FirstName = '$firstname', LastName='$lastname',sex ='$sex', Address = '$address', County = '$county',
+        Phone = '$phone', PPSNumber ='$ppsnumber', AdminNote = '$adminnote', Active = '$active', EmailAddress = '$emailaddress',
+        DateOfBirth ='$dob',updated_date ='".date("Y-m-d H:i:s")."'  WHERE CarerID = '$carerid'";
 
-
-        //check if the username has not beeen registered before
-
-        $qryUsername = "SELECT username FROM users_tbl WHERE username='$username' and user_id != '$_SESSION[user_id]'";
-
-        $row = $this->db->getNumOfRows($qryUsername);
-        if($row > 0 )
-        {
-            //username in use
-            $msg = '<div class="alert alert-block alert-danger fade in">
-               <button data-dismiss="alert" class="close close-sm" type="button">
-                 <i class="fa fa-times"></i>
-               </button>
-               <strong>Sorry!</strong> The username is not available, please choose another username!
-             </div>';
-            return $msg;
-
-        }
-
-        $upquery = "UPDATE users_tbl SET username='$username', fname = '$firstname', lname='$lastname',sex ='$sex',dob ='$dob',email = '$email',	address = '$address',city_town = '$city_town',phone = '$phone_number',about_me='$about_me', updated_date ='".date("Y-m-d H:i:s")."'  WHERE user_id = '".$_SESSION['user_id']."'";
+       // $upquery = "UPDATE 	tblcarer SET FirstName = '$firstname'  WHERE CarerID = '$carerid'";
 
         $res = $this->db->executeQuery($upquery);
 
         if($res)
         {
-            $this->audit->audit_log("User ".$_SESSION['username']." updated own profile information. ");
+            $this->audit->audit_log("User ".$_SESSION['username']." updated a ".$firstname." ". $lastname."'s information ");
 
             $msg = '<div class="alert alert-success alert-block fade in">
                                   <button data-dismiss="alert" class="close close-sm" type="button">
@@ -1425,7 +457,7 @@ class AdminClassController
                                       <i class="fa fa-ok-sign"></i>
                                     Thank you!
                                   </h4>
-                                  <p>You have successfully updated your information! Please log out and login back to effect the new username</p>
+                                  <p>You have successfully updated the Carer\'s information!</p>
                               </div>';
             return $msg;
 

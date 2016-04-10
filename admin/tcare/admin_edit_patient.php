@@ -47,7 +47,7 @@ background:green; margin-left:30px;color: #D4E6F4; clear :both; height: margin-r
     // First we execute our CommonClass code to connection to the database and start the session
     require("common.php"); 
      
-    // At the top of the page we check to see whether the user is logged in or not 
+    /*// At the top of the page we check to see whether the user is logged in or not
     if(empty($_SESSION['user'])) 
     { 
         // If they are not, we redirect them to the login page. 
@@ -56,7 +56,7 @@ background:green; margin-left:30px;color: #D4E6F4; clear :both; height: margin-r
         // Remember that this die statement is absolutely critical.  Without it, 
         // people can view your members-only content without logging in. 
         die("Redirecting to login1_homecare.php"); 
-    } 
+    } */
      
     // This if statement checks to determine whether the edit form has been submitted 
     // If it has, then the account updating code is run, otherwise the form is displayed 
