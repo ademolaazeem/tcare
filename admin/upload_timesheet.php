@@ -83,104 +83,39 @@
                     </li>
                   </ul>
                 </li>
-                <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
+                <li><a><i class="fa fa-edit"></i> Roster <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
-                    <li><a href="form.html">General Form</a>
+                    <li><a href="view_roster.php">View My Schedule</a>
+                  </ul>
+                </li>
+                <li><a><i class="fa fa-desktop"></i> Book Holiday <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu" style="display: none">
+                   <li><a href="past_holiday.php">Past Holiday</a>
                     </li>
-                    <li><a href="form_advanced.html">Advanced Components</a>
+                     <li><a href="current_holiday.php">Current Holiday</a>
                     </li>
-                    <li><a href="form_validation.html">Form Validation</a>
-                    </li>
-                    <li><a href="form_wizards.html">Form Wizard</a>
-                    </li>
-                     <li><a href="annual_leaverequestform.php">Upload Request form</a>
-                    </li>
-                    <li><a href="form_buttons.html">Form Buttons</a>
+					<li><a href="future_holiday.php">Future Holiday</a>
+					<li><a href="book_holiday.php">Book Holiday</a>
                     </li>
                   </ul>
                 </li>
-                <li><a><i class="fa fa-desktop"></i> UI Elements <span class="fa fa-chevron-down"></span></a>
+                <li><a><i class="fa fa-table"></i> Time sheet <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
-                    <li><a href="general_elements.html">General Elements</a>
-                    </li>
-                    <li><a href="media_gallery.html">Media Gallery</a>
-                    </li>
-                    <li><a href="typography.html">Typography</a>
-                    </li>
-                    <li><a href="icons.html">Icons</a>
-                    </li>
-                    <li><a href="glyphicons.html">Glyphicons</a>
-                    </li>
-                    <li><a href="widgets.html">Widgets</a>
-                    </li>
-                    <li><a href="submit_timesheet.php">Timesheet</a>
-                    </li>
-                    <li><a href="inbox.html">Inbox</a>
-                    </li>
-                    <li><a href="book_holiday.php">Book Holiday</a>
+                    
+                         <li><a href="upload_timesheet.php">Upload Time sheet  </a></li>
                     </li>
                   </ul>
                 </li>
-                <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
+                <li><a><i class="fa fa-bar-chart-o"></i> Cancel Shift <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
-                    <li><a href="tables.html">Tables</a>
-                    </li>
-                    <li><a href="manage_patientlist.php">Manage Patient </a></li>
-                    </li>
-                  </ul>
-                </li>
-                <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>
-                  <ul class="nav child_menu" style="display: none">
-                    <li><a href="chartjs.html">Chart JS</a>
-                    </li>
-                    <li><a href="chartjs2.html">Chart JS2</a>
-                    </li>
-                    <li><a href="morisjs.html">Moris JS</a>
-                    </li>
-                    <li><a href="echarts.html">ECharts </a>
-                    </li>
-                    <li><a href="other_charts.html">Other Charts </a>
+                   
+                    <li><a href="cancel.html">Cancellation </a>
                     </li>
                   </ul>
                 </li>
               </ul>
             </div>
-            <div class="menu_section">
-              <h3>Live On</h3>
-              <ul class="nav side-menu">
-                <li><a><i class="fa fa-bug"></i> Additional Pages <span class="fa fa-chevron-down"></span></a>
-                  <ul class="nav child_menu" style="display: none">
-                    <li><a href="e_commerce.html">E-commerce</a>
-                    </li>
-                    <li><a href="projects.html">Projects</a>
-                    </li>
-                    <li><a href="project_detail.html">Project Detail</a>
-                    </li>
-                    <li><a href="contacts.html">Contacts</a>
-                    </li>
-                    <li><a href="admin_profile.php">Profile</a>
-                    </li>
-                  </ul>
-                </li>
-                <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
-                  <ul class="nav child_menu" style="display: none">
-                    <li><a href="page_404.html">404 Error</a>
-                    </li>
-                    <li><a href="page_500.html">500 Error</a>
-                    </li>
-                    <li><a href="plain_page.html">Plain Page</a>
-                    </li>
-                    <li><a href="login.php">Login Page</a>
-                    </li>
-                    <li><a href="pricing_tables.html">Pricing Tables</a>
-                    </li>
-
-                  </ul>
-                </li>
-                <li><a><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a>
-                </li>
-              </ul>
-            </div>
+            
 
           </div>
           <!-- /sidebar menu -->
@@ -322,7 +257,7 @@
         <div class="">
           <div class="page-title">
             <div class="title_left">
-              <h3>E-commerce :: Product Page</h3>
+              <h3>Form Upload </h3>
             </div>
 
             <div class="title_right">
@@ -342,9 +277,9 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="x_panel">
                 <div class="x_title">
-                  <h2>E-commerce page design</h2>
+                  <h2>Dropzone multiple file uploader</h2>
                   <ul class="nav navbar-right panel_toolbox">
-                    <li><a href="#"><i class="fa fa-chevron-up"></i></a>
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                     </li>
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
@@ -355,140 +290,20 @@
                         </li>
                       </ul>
                     </li>
-                    <li><a href="#"><i class="fa fa-close"></i></a>
+                    <li><a class="close-link"><i class="fa fa-close"></i></a>
                     </li>
                   </ul>
                   <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
 
-                  <div class="col-md-7 col-sm-7 col-xs-12">
-                    <div class="product-image">
-                      <img src="images/prod1.jpg" alt="..." />
-                    </div>
-                    <div class="product_gallery">
-                      <a>
-                        <img src="images/prod2.jpg" alt="..." />
-                      </a>
-                      <a>
-                        <img src="images/prod3.jpg" alt="..." />
-                      </a>
-                      <a>
-                        <img src="images/prod4.jpg" alt="..." />
-                      </a>
-                      <a>
-                        <img src="images/prod5.jpg" alt="..." />
-                      </a>
-                    </div>
-                  </div>
+                  <p>Drag multiple files to the box below for multi upload or click to select files. This is for demonstration purposes only, the files are not uploaded to any server.</p>
+                  <form action="choices/form_upload.html" class="dropzone" style="border: 1px solid #e5e5e5; height: 300px; "></form>
 
-                  <div class="col-md-5 col-sm-5 col-xs-12" style="border:0px solid #e5e5e5;">
-
-                    <h3 class="prod_title">LOWA Men’s Renegade GTX Mid Hiking Boots Review</h3>
-
-                    <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terr.</p>
-                    <br />
-
-                    <div class="">
-                      <h2>Available Colors</h2>
-                      <ul class="list-inline prod_color">
-                        <li>
-                          <p>Green</p>
-                          <div class="color bg-green"></div>
-                        </li>
-                        <li>
-                          <p>Blue</p>
-                          <div class="color bg-blue"></div>
-                        </li>
-                        <li>
-                          <p>Red</p>
-                          <div class="color bg-red"></div>
-                        </li>
-                        <li>
-                          <p>Orange</p>
-                          <div class="color bg-orange"></div>
-                        </li>
-
-                      </ul>
-                    </div>
-                    <br />
-
-                    <div class="">
-                      <h2>Size <small>Please select one</small></h2>
-                      <ul class="list-inline prod_size">
-                        <li>
-                          <button type="button" class="btn btn-default btn-xs">Small</button>
-                        </li>
-                        <li>
-                          <button type="button" class="btn btn-default btn-xs">Medium</button>
-                        </li>
-                        <li>
-                          <button type="button" class="btn btn-default btn-xs">Large</button>
-                        </li>
-                        <li>
-                          <button type="button" class="btn btn-default btn-xs">Xtra-Large</button>
-                        </li>
-                      </ul>
-                    </div>
-                    <br />
-
-                    <div class="">
-                      <div class="product_price">
-                        <h1 class="price">Ksh80.00</h1>
-                        <span class="price-tax">Ex Tax: Ksh80.00</span>
-                        <br>
-                      </div>
-                    </div>
-
-                    <div class="">
-                      <button type="button" class="btn btn-default btn-lg">Add to Cart</button>
-                      <button type="button" class="btn btn-default btn-lg">Add to Wishlist</button>
-                    </div>
-
-                    <div class="product_social">
-                      <ul class="list-inline">
-                        <li><a href="#"><i class="fa fa-facebook-square"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-twitter-square"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-envelope-square"></i></a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-rss-square"></i></a>
-                        </li>
-                      </ul>
-                    </div>
-
-                  </div>
-
-
-                  <div class="col-md-12">
-
-                    <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                      <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Home</a>
-                        </li>
-                        <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Profile</a>
-                        </li>
-                        <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Profile</a>
-                        </li>
-                      </ul>
-                      <div id="myTabContent" class="tab-content">
-                        <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-                          <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
-                            synth. Cosby sweater eu banh mi, qui irure terr.</p>
-                        </div>
-                        <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-                          <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
-                            booth letterpress, commodo enim craft beer mlkshk aliquip</p>
-                        </div>
-                        <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
-                          <p>xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui
-                            photo booth letterpress, commodo enim craft beer mlkshk </p>
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
+                  <br />
+                  <br />
+                  <br />
+                  <br />
                 </div>
               </div>
             </div>
@@ -498,7 +313,7 @@
         <!-- footer content -->
         <footer>
           <div class="copyright-info">
-            <p class="pull-right">Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+            <p class="pull-right">Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>      
             </p>
           </div>
           <div class="clearfix"></div>
@@ -519,16 +334,18 @@
   </div>
 
   <script src="js/bootstrap.min.js"></script>
-  
+
   <!-- bootstrap progress js -->
   <script src="js/progressbar/bootstrap-progressbar.min.js"></script>
   <script src="js/nicescroll/jquery.nicescroll.min.js"></script>
   <!-- icheck -->
   <script src="js/icheck/icheck.min.js"></script>
+
+  <script src="js/custom.js"></script>
+  <!-- dropzone -->
+  <script src="js/dropzone/dropzone.js"></script>
   <!-- pace -->
   <script src="js/pace/pace.min.js"></script>
-  <script src="js/custom.js"></script>
-
 </body>
 
 </html>
