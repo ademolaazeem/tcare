@@ -45,7 +45,7 @@ class Connection
 
     function getNumOfRows($qry)
     {
-        $res=mysqli_query($this->conn, $qry);
+        $res=mysqli_query($this->conn, $qry) or  die(mysql_error());
         $num=mysqli_num_rows($res);
         return $num;
     }

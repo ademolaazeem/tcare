@@ -60,7 +60,7 @@ background:green; margin-left:30px;color: #D4E6F4; clear :both; height: margin-r
     require("common.php"); 
      
     // At the top of the page we check to see whether the user is logged in or not 
-    if(empty($_SESSION['user'])) 
+   /* if(empty($_SESSION['user']))
     { 
         // If they are not, we redirect them to the login page. 
         header("Location: home4_care.php"); 
@@ -69,7 +69,7 @@ background:green; margin-left:30px;color: #D4E6F4; clear :both; height: margin-r
         // people can view your members-only content without logging in. 
         die("Redirecting to home4_care.php"); 
     } 
-     
+     */
     // Everything below this point in the file is secured by the login system 
      
     // We can retrieve a list of members from the database using a SELECT query. 

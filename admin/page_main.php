@@ -54,7 +54,7 @@
 </div>
 <!-- /top tiles -->
 
-<div class="row">
+<!--<div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="dashboard_graph">
 
@@ -125,10 +125,10 @@
         </div>
     </div>
 
-</div>
+</div>-->
 <br />
 
-<div class="row">
+<!--<div class="row">
 
 
 <div class="col-md-4 col-sm-4 col-xs-12">
@@ -374,10 +374,10 @@
     </div>
 </div>
 
-</div>
+</div>-->
 
 
-<div class="row">
+<!--<div class="row">
 <div class="col-md-4 col-sm-4 col-xs-12">
     <div class="x_panel">
         <div class="x_title">
@@ -534,7 +534,7 @@
 
 
 <!-- Start to do list -->
-<div class="col-md-6 col-sm-6 col-xs-12">
+<!--<div class="col-md-6 col-sm-6 col-xs-12">
     <div class="x_panel">
         <div class="x_title">
             <h2>To Do List <small>Sample tasks</small></h2>
@@ -599,12 +599,12 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
 <!-- End to do list -->
 
 
 <!-- start of weather widget -->
-<div class="col-md-6 col-sm-6 col-xs-12">
+<!--<div class="col-md-6 col-sm-6 col-xs-12">
     <div class="x_panel">
         <div class="x_title">
             <h2>Daily active users <small>Sessions</small></h2>
@@ -730,9 +730,10 @@
         </div>
     </div>
 
-</div>
+</div>-->
 <!-- end of weather widget -->
-</div>
+
+<!--</div>
 
 
 
@@ -745,7 +746,7 @@
 </div>
 
 </div>
-
+-->
 <!-- footer content -->
 
 <?php require_once('footer.php') ?>
