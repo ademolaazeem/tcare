@@ -11,15 +11,16 @@
                 </button>
                 <a class="navbar-brand logo" href="#">
                     <span><i class="fa fa-stethoscope"></i></span>
-                    T-Care HomeCare
+                    Tosins Careplus
                 </a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="">Services</a></li>
+                   
+					<li><a href="index.php">Home</a></li>
+                    <li><a href="services.php">Services</a></li>
                     <li><a href="../admin/login.php">Login</a></li>
                     <li><a href="aboutus.php">About Us</a></li>
                     <li><a href="contact.php">Contact Us</a></li>
