@@ -34,15 +34,13 @@ if(!empty($_GET))
         // Define our SQL query
         $query = "
                 SELECT
-                    carerid, firstname,lastname,sex,
-		    address,emailaddress,county,phone,ppsnumber,
-			dateofbirth,adminnote, active FROM tblcarer
+                    * FROM tblcarerroster
             ";
 
-        $query .= " WHERE carerid = :carerid";
+        $query .= " WHERE CarerRosterID = :CarerRosterID";
 
         $query_params = array(
-            ':carerid' =>  $_GET["carerid"]);
+            ':CarerRosterID' =>  $_GET["CarerRosterID"]);
 
         try
         {
@@ -61,18 +59,12 @@ if(!empty($_GET))
         $row = $stmt->fetch();
         if($row)
         {
-            $carerid = $row["carerid"];
-            $firstname = $row["firstname"];
-            $lastname = $row["lastname"];
-            $sex = $row["sex"];
-            $address = $row["address"];
-            $emailaddress = $row["emailaddress"];
-            $county = $row["county"];
-            $phone = $row["phone"];
-            $dateofbirth = $row["dateofbirth"];
-            $ppsnumber = $row["ppsnumber"];
-            $active = $row["active"];
-            $adminnote = $row["adminnote"];
+            $CarerID = $row["CarerID"];
+            $PatientID = $row["PatientID"];
+            $DateFrom = $row["DateFrom"];
+            $DateTo = $row["DateTo"];
+            $NoOfHours = $row["NoOfHours"];
+
         }
     }
 }

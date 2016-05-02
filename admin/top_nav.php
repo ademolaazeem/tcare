@@ -9,7 +9,28 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="">
                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        <img src="images/img.jpg" alt="">John Doe
+
+                        <?php
+                        if(isset($_SESSION['imagepath'])){
+                            if($_SESSION['imagepath'] != "")
+                                $pix = $_SESSION['imagepath'];
+                            else
+                                $pix = "images/avatars/user.png";
+                        }
+                        else
+                            $pix = "images/avatars/user.png";
+                        ?>
+
+                        <img src="<?php echo $pix; ?>" alt="">
+
+                        <?php
+                        if(isset($_SESSION['userfullname']))
+                            echo $_SESSION['userfullname'];
+                        else
+                            echo 'Not Logged in';
+                        ?>
+
+
                         <span class=" fa fa-angle-down"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
@@ -24,7 +45,7 @@
                         <li>
                             <a href="javascript:;">Help</a>
                         </li>
-                        <li><a href="login.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                        <li><a href="logout.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -93,7 +114,8 @@
                         </li>
                         <li>
                             <div class="text-center">
-                                <a href="inbox.html">
+                                <!--inbox.html-->
+                                <a href="#">
                                     <strong>See All Alerts</strong>
                                     <i class="fa fa-angle-right"></i>
                                 </a>

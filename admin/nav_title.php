@@ -1,4 +1,4 @@
 <div class="navbar nav_title" style="border: 0;">
-    <a href="index.php" class="site_title"><i class="fa fa-paw"></i> <span>Gentellela Alela!</span></a>
+    <a href="carer_dashboard.php" class="site_title"><i class="fa fa-paw"></i> <span>Carer Home</span></a>
 </div>
 <div class="clearfix"></div>

@@ -4,88 +4,95 @@ require_once('CommonClass/ClassManager.php');
 $db = new DBConnections();
 $adm = new AdminClassController();
 
-if(isset($_POST['update']))
+if(isset($_POST['addClient']))
 {
-    $msg = $adm->updateCarer();
+    $msg = $adm->addClient();
 }
 ?>
 <?php
 
 // First we execute our CommonClass code to connection to the database and start the session
-require("common.php");
 
-/* // At the top of the page we check to see whether the user is logged in or not
- if(empty($_SESSION['user']))
- {
-     // If they are not, we redirect them to the login page.
-     header("Location: login1_homecare.php");
 
-     // Remember that this die statement is absolutely critical.  Without it,
-     // people can view your members-only content without logging in.
-     die("Redirecting to login1_homecare.php");
- }
-  */
-// This if statement checks to determine whether the edit form has been submitted
-// If it has, then the account updating code is run, otherwise the form is displayed
-if(!empty($_GET))
-{
-    //$carerid = $_GET["carerid"];
-    {
-        // Define our SQL query
-        $query = "
-                SELECT
-                    carerid, firstname,lastname,sex,
-		    address,emailaddress,county,phone,ppsnumber,
-			dateofbirth,adminnote, active FROM tblcarer
-            ";
-
-        $query .= " WHERE carerid = :carerid";
-
-        $query_params = array(
-            ':carerid' =>  $_GET["carerid"]);
-
-        try
-        {
-            // Execute the query
-            $stmt = $db->prepare($query);
-            $result = $stmt->execute($query_params);
-        }
-        catch(PDOException $ex)
-        {
-            // Note: On a production website, you should not output $ex->getMessage().
-            // It may provide an attacker with helpful information about your code.
-            die("Failed to run query: " . $ex->getMessage());
-        }
-
-        // Retrieve results (if any)
-        $row = $stmt->fetch();
-        if($row)
-        {
-            $carerid = $row["carerid"];
-            $firstname = $row["firstname"];
-            $lastname = $row["lastname"];
-            $sex = $row["sex"];
-            $address = $row["address"];
-            $emailaddress = $row["emailaddress"];
-            $county = $row["county"];
-            $phone = $row["phone"];
-            $dateofbirth = $row["dateofbirth"];
-            $ppsnumber = $row["ppsnumber"];
-            $active = $row["active"];
-            $adminnote = $row["adminnote"];
-        }
-    }
-}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link type="text/css" href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link type="text/css" href="css/theme.css" rel="stylesheet">
+    <link type="text/css" href="images/icons/css/font-awesome.css" rel="stylesheet">
+    <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600' rel='stylesheet'>
+
+    <title>TCare Plus HomeCare | Dublin </title>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <!-- Bootstrap core CSS -->
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="fonts/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+
+    <!-- Custom styling plus plugins -->
+    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/icheck/flat/green.css" rel="stylesheet">
+    <link href="css/datatables/tools/css/dataTables.tableTools.css" rel="stylesheet">
+
+
+    <!-- editor -->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+    <link href="css/editor/external/google-code-prettify/prettify.css" rel="stylesheet">
+    <link href="css/editor/index.css" rel="stylesheet">
+
+    <!-- select2 -->
+    <link href="css/select/select2.min.css" rel="stylesheet">
+    <!-- switchery -->
+    <link rel="stylesheet" href="css/switchery/switchery.min.css" />
+
+    <script src="js/jquery.min.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="../assets/js/ie8-responsive-file-warning.js"></script>
+    <![endif]-->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+    <!--time from new bootstrap-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />-->
+    <link rel="stylesheet" href="https://rawgit.com/FezVrasta/bootstrap-material-design/master/dist/css/material.min.css" />
+    <link rel="stylesheet" href="bootstrap-material/css/bootstrap-material-datetimepicker.css" />
+    <!--<link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>-->
+    <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://rawgit.com/FezVrasta/bootstrap-material-design/master/dist/js/material.min.js"></script>
+    <script type="text/javascript" src="http://momentjs.com/downloads/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="bootstrap-material/js/bootstrap-material-datetimepicker.js"></script>
+    <!--end time from new bootstrap-->
 
 
 
-<?php require_once('head.php');?>
+</head>
+
+
+
+
+
 
 <body class="nav-md">
 
@@ -124,7 +131,7 @@ if(!empty($_GET))
 
           <div class="page-title">
             <div class="title_left">
-              <h3>Edit Carer</h3>
+              <h3>Assign Shift</h3>
             </div>
 
           </div>
@@ -152,139 +159,50 @@ if(!empty($_GET))
                   <div class="clearfix"></div>
                 </div>-->
                 <div class="x_content">
-
-
-
-
-
-
-
-
-
-
-
-
-                    <br />
+ <br />
 
                     <?php if(isset($msg)) echo $msg; ?>
                   <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post">
 
-                      <input type="hidden" id="carerid" name="carerid" value="<?php echo $carerid ?>" maxlength="50" />
+                     <!-- <input type="hidden" id="carerid" name="carerid"  maxlength="50" />
+                      </p>-->
+
+
+                      <label for="fullname">First Name * :</label>
+                      <input type="text" id="firstname" class="form-control" name="firstname" required />
+
+                      <label for="lname">Last Name * :</label>
+                      <input type="lastname" id="lastname" class="form-control" name="lastname" data-parsley-trigger="change" required />
+
+
+                      <label for="emailaddress">Email Address * :</label>
+                      <input type="text" id="email" class="form-control" name="email" required />
+
+                      <label for="houseaddress">House Address * :</label>
+                      <input type="text" id="address" class="form-control" name="address" required />
+
+                      <label for="county">County * :</label>
+                      <input type="text" id="county" class="form-control" name="county" required />
+
+                      <label for="county">Phone * :</label>
+                      <input type="text" id="phone" class="form-control" name="phone" required />
+
+                      <label for="houseaddress">Date of Birth * :</label>
+                      <input id="dateofbirth" name="dateofbirth" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                      <label>Gender *:</label>
+                      <p>
+                          M:
+                          <input type="radio" class="flat" name="sex" id="genderM" value="Male" checked="" required /> F:
+                          <input type="radio" class="flat" name="sex" id="genderF" value="Female" />
                       </p>
-
-                    <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">First Name <span class="required">*</span>
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="firstname" name="firstname" required="required" value="<?php echo $firstname ?>" class="form-control col-md-7 col-xs-12">
-
-
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Last Name <span class="required">*</span>
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text"  id="lastname" name="lastname" value="<?php echo $lastname ?>" required="required" class="form-control col-md-7 col-xs-12">
-
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
-                         <div class="col-md-6 col-sm-6 col-xs-12">
-                              <select class="form-control" name="sex" id="sex">
-                                  <option>Choose option</option>
-                                  <option <?php if($sex == 'Male'){echo("selected");}?>>Male</option>
-                                  <option <?php if($sex == 'Female'){echo("selected");}?>>Female</option>
-                              </select>
-                              </select>
-                          </div>
-
-                    </div>
-
-
-                      <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Status</label>
-                          <div class="col-md-6 col-sm-6 col-xs-12">
-                              <select class="form-control" name="active" id="active">
-                                  <option>Choose option</option>
-                                  <option <?php if($active =='Yes'){echo("selected");}?>>Yes</option>
-                                  <option <?php if($active =='No'){echo("selected");}?>>No</option>
-                              </select>
-                              </select>
-                          </div>
-                     </div>
-
-                      <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Email Address <span class="required">*</span>
-                          </label>
-                          <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text"  id="emailaddress" name="emailaddress" value="<?php echo $emailaddress ?>" required="required" class="form-control col-md-7 col-xs-12">
-
-                          </div>
-                      </div>
-
-                      <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Address <span class="required">*</span>
-                          </label>
-                          <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text"  name="address" id="content" value="<?php echo $address ?>" required="required" class="form-control col-md-7 col-xs-12">
-
-                          </div>
-                      </div>
-
-                      <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">County <span class="required">*</span>
-                          </label>
-                          <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text"  id="county" name="county" value="<?php echo $county ?>" required="required" class="form-control col-md-7 col-xs-12">
-
-                          </div>
-                      </div>
-
-                      <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Phone <span class="required">*</span>
-                          </label>
-                          <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text"  id="phone" name="phone" value="<?php echo $phone ?>" required="required" class="form-control col-md-7 col-xs-12">
-
-                          </div>
-                      </div>
-
-                      <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">PPS Number <span class="required">*</span>
-                          </label>
-                          <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text"  id="ppsnumber" name="ppsnumber" value="<?php echo $ppsnumber ?>" required="required" class="form-control col-md-7 col-xs-12">
-
-                          </div>
-                      </div>
-
-                    <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Birth <span class="required">*</span>
-                      </label>
-                      <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="birthday" name="birthday" value="<?php echo $dateofbirth ?>" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
-                      </div>
-                    </div>
-
-
-                      <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Admin Note <span class="required">*</span>
-                          </label>
-                          <div class="col-md-6 col-sm-6 col-xs-12">
-                              <textarea class="form-control" rows="2" id="adminnote" name="adminnote"><?php echo $adminnote ?></textarea>
-                          </div>
-                      </div>
-
-
-
-                    <div class="ln_solid"></div>
+                      <label for="message">Medical Comments  :</label>
+                      <textarea id="comment" required="required" class="form-control" name="comment" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Medical History.."
+                                data-parsley-validation-threshold="10"></textarea>
+                      <div class="ln_solid"></div>
                     <div class="form-group">
                       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                         <button type="submit" class="btn btn-primary">Cancel</button>
-                        <button type="submit" name="update" class="btn btn-success">Update Carer Details</button>
+                        <button type="submit" name="addClient" class="btn btn-success">Add Client</button>
 
                       </div>
                     </div>
@@ -297,7 +215,7 @@ if(!empty($_GET))
 
           <script type="text/javascript">
             $(document).ready(function() {
-              $('#birthday').daterangepicker({
+              $('#dateofbirth').daterangepicker({
                 singleDatePicker: true,
                 calender_style: "picker_4"
               }, function(start, end, label) {
@@ -528,6 +446,83 @@ if(!empty($_GET))
     });
   </script>
   <!-- /editor -->
+
+<!--Wickedpicker-->
+  <!-- jquery-1.11.3.min.js-->
+
+
+
+  <script type="text/javascript">
+      $(document).ready(function()
+      {
+          $('#date').bootstrapMaterialDatePicker
+          ({
+              time: false,
+              clearButton: true
+          });
+
+          $('#fromtime').bootstrapMaterialDatePicker
+          ({
+              date: false,
+              shortTime: false,
+              format: 'HH:mm'
+          });
+
+          $('#totime').bootstrapMaterialDatePicker
+          ({
+              date: false,
+              shortTime: false,
+              format: 'HH:mm'
+          });
+
+          $('#date-format').bootstrapMaterialDatePicker
+          ({
+              format: 'dddd DD MMMM YYYY - HH:mm'
+          });
+          $('#date-fr').bootstrapMaterialDatePicker
+          ({
+              format: 'DD/MM/YYYY HH:mm',
+              lang: 'fr',
+              weekStart: 1,
+              cancelText : 'ANNULER',
+              nowButton : true,
+              switchOnClick : true
+          });
+
+          $('#date-end').bootstrapMaterialDatePicker
+          ({
+              weekStart: 0, format: 'DD/MM/YYYY HH:mm'
+          });
+          $('#date-start').bootstrapMaterialDatePicker
+          ({
+              weekStart: 0, format: 'DD/MM/YYYY HH:mm', shortTime : true
+          }).on('change', function(e, date)
+          {
+              $('#date-end').bootstrapMaterialDatePicker('setMinDate', date);
+          });
+
+          $('#min-date').bootstrapMaterialDatePicker({ format : 'DD/MM/YYYY HH:mm', minDate : new Date() });
+
+          $.material.init()
+      });
+  </script>
+<!--Wickedpicker-->
+<script type="application/javascript">
+   function shiftDateDiff(){
+       var shiftD = document.getElementById("shiftDate").value;
+       var ftime = document.getElementById("fromtime").value;
+       var ttime = document.getElementById("totime").value;
+       var dFromTime = new Date(shiftDate + " " + ftime);
+       var dToTime =  new Date(shiftDate + " " + ttime);
+       var fHours = dFromTime.getHours();
+       var tHours = dToTime.getHours();
+       var hours = Math.abs(fHours - tHours) / 36e5;
+       document.alert(dFromTime);
+       document.getElementById("NoOfHours").value = hours
+
+   }
+</script>
+
 </body>
 
 </html>

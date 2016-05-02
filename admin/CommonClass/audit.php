@@ -1,21 +1,21 @@
 <?php
-	require_once('Common.php');
+require_once('Common.php');
 
 //class definitions
 class AuditLog
 {
-
 	private $db;
 	function __construct()
 	{
-		$this->db = new Connection();
+        //$db = new DBConnections();
+		$this->db = new DBConnections();
 	}
 
 	function audit_log($operation)
 	{
 		$cmpname = php_uname('n');
 		$userFullname = $_SESSION['userfullname'];
-        $user_id = $_SESSION['user_id'];
+        $user_id = $_SESSION['username'];
         $ip = $this ->getRealIpAddr();
 		$host = $_SERVER['HTTP_HOST'];
 		$referer = $_SERVER['HTTP_REFERER'];
@@ -24,6 +24,7 @@ class AuditLog
 				'".date("Y-m-d H:i:s")."', '$ip', '$operation', '$host', '$referer')";
         //time();
         $conn=$this->db->getConnection();
+        //$conn=$this->db->getConnection();
         $query=mysqli_query($conn,$sql);
        	}
 	

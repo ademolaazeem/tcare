@@ -1,6 +1,6 @@
 <?php
-//session_start();
-class Connection
+session_start();
+class DBConnections
 {
 
     private $db;

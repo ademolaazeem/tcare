@@ -5,7 +5,7 @@
         <ul class="nav side-menu">
             <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu" style="display: none">
-                    <li><a href="dashboard.php">Dashboard</a>
+                    <li><a href="index.php">Dashboard</a>
                     </li>
 
                 </ul>
@@ -16,9 +16,7 @@
                     </li>-->
                     <li><a href="show_manage_carer.php">Edit Carer</a>
                     </li>
-                    <li><a href="assign_carer_to_client.php">Assign Carer</a>
-                    </li>
-                    <li><a href="show_manage_all_roster.php">View Roster List</a>
+                    <li><a href="form_validation.html">Assign Carer</a>
                     </li>
                     <li><a href="form_validation.html">Manage Carer Holiday</a>
                     </li>
@@ -28,9 +26,9 @@
 
             <li><a><i class="fa fa-edit"></i> Patient <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu" style="display: none">
-                    <li><a href="new_client.php">Add New Patient</a>
+                    <li><a href="form.html">Add New Patient</a>
                     </li>
-                    <li><a href="show_manage_client.php">Edit Patient</a>
+                    <li><a href="form_advanced.html">Edit Patient</a>
                     </li>
                 </ul>
             </li>

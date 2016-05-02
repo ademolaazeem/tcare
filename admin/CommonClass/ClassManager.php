@@ -9,7 +9,7 @@ class AdminClassController
 	
 	function __construct()
 	{
-		$this->db = new Connection();
+		$this->db = new DBConnections();
 		$this->audit = new AuditLog();
 		$this->fm = new Format();
 	}
@@ -42,6 +42,7 @@ class AdminClassController
                     //create session here
                     $_SESSION['username'] = $username;
                     $_SESSION['adlogged'] = "true";
+                    $_SESSION['usertype'] = "admin";
                     $_SESSION['AdminID'] = $getUserData['AdminID'];
                     $_SESSION['userfullname'] = $getUserData['FirstName']." ".$getUserData['LastName'];
                     $_SESSION['imagepath'] = $getUserData['imagepath'];
@@ -70,14 +71,15 @@ class AdminClassController
                     //create session here
                     $_SESSION['username'] = $username;
                     $_SESSION['adlogged'] = "true";
-                    $_SESSION['CarerID'] = $getUserData['CarerID'];
+                    $_SESSION['usertype'] = "carer";
+                    $_SESSION['userid'] = $getUserData['CarerID'];
                     $_SESSION['userfullname'] = $getUserData['FirstName']." ".$getUserData['LastName'];
                     $_SESSION['imagepath'] = $getUserData['imagepath'];
 
                     $this->audit->audit_log("User ".$_SESSION['username']." Successfully logged in");
                     //header("location:../admin/admin_content/index.php");
 
-                    header("location:index.php");
+                    header("location:carer_dashboard.php");
                 }
                 else
                 {
@@ -169,15 +171,15 @@ class AdminClassController
 
                 $serial = rand(100,999).substr(str_shuffle("0123456789"),0,1);
 
-                $minshr = "HCP";
-                $curDate=date('ymdHis');
-                $carerid = $minshr.$curDate.$serial;//generate
+                //$minshr = "HCP";
+                //$curDate=date('ymdHis');
+                //$carerid = $minshr.$curDate.$serial;//generate
 
 
 
                $insertQry = "INSERT INTO tblcarer
-                        (CarerID, FirstName, LastName, Sex, Address, County, Phone, Username, Password, PPSNumber, EmailAddress, dateofbirth)
-                VALUES ('$carerid', '$firstname', '$lastname', '$sex', '$address', '$county', '$phone', '$username', '".sha1($password)."', '$pps', '$email', '$dob')";
+                        (FirstName, LastName, Sex, Address, County, Phone, Username, Password, PPSNumber, EmailAddress, dateofbirth)
+                VALUES ('$firstname', '$lastname', '$sex', '$address', '$county', '$phone', '$username', '".sha1($password)."', '$pps', '$email', '$dob')";
                  $res = $this->db->executeQuery($insertQry);
                 if ($res) {
                     $this->audit->audit_log("new Carer added");
@@ -199,6 +201,268 @@ class AdminClassController
 
     }
 
+    public function addClient()
+    {
+        $firstname = $this->fm->processfield($_POST['firstname']);
+        $lastname = $this->fm->processfield($_POST['lastname']);
+        $email = $this->fm->processfield($_POST['email']);
+        $address = $this->fm->processfield($_POST['address']);
+        $phone = $this->fm->processfield($_POST['phone']);
+        $dob = $this->fm->processfield($_POST['dateofbirth']);
+        $county = $this->fm->processfield($_POST['county']);
+        $sex = $this->fm->processfield($_POST['sex']);
+        $comment = $this->fm->processfield($_POST['comment']);
+        //validate
+        if(empty($firstname)||empty($lastname)||empty($address) || empty($sex) || empty($phone) || empty($comment)
+            || empty($dob))
+        {
+            //return '<div style="color: #FF0000; font-size: small">Please make sure all fields are filled!</div>';
+            $msg = '<div class="alert alert-block alert-danger fade in">
+               <button data-dismiss="alert" class="close close-sm" type="button">
+                 <i class="fa fa-times"></i>
+               </button>
+               <strong>Oops!</strong> Please make sure all the required fields are filled!
+             </div>';
+            return $msg;
+        }
+
+    else {
+
+        $qry = "SELECT * FROM tblpatient WHERE FirstName like '%$firstname%' and Lastname like '%$lastname%' and DateOfBirth = '$dob'";
+
+        $row = $this->db->getNumOfRows($qry);
+        if ($row > 0) {
+            //username in use
+            //return '<font color="#FF0000" size="-2">Username already in use, Try another username</font>';
+            $msg = '<div class="alert alert-block alert-danger fade in">
+               <button data-dismiss="alert" class="close close-sm" type="button">
+                 <i class="fa fa-times"></i>
+               </button>
+               <strong>Oops!</strong> The Client has already been added!
+             </div>';
+            return $msg;
+
+        } else {
+            $insertQry = "INSERT INTO tblpatient
+                        (FirstName, LastName, Sex, Address, EmailAddress, County, Phone, comments, DateOfBirth)
+                VALUES ('$firstname', '$lastname', '$sex', '$address', '$email', '$county', '$phone', '$comment', '$dob')";
+            $res = $this->db->executeQuery($insertQry);
+            if ($res) {
+                $this->audit->audit_log("New Patient added");
+                //return '<font color="#006600" size="-2">You have successfully register a staff!</font>';
+                $msg = '<div class="alert alert-success alert-block fade in">
+                                  <button data-dismiss="alert" class="close close-sm" type="button">
+                                      <i class="fa fa-times"></i>
+                                  </button>
+                                  <h4>
+                                      <i class="fa fa-ok-sign"></i>
+                                    Gracias!
+                                  </h4>
+                                  <p>New Client has been successfully registered.</p>
+                              </div>';
+                return $msg;
+            }//end if res
+        }// end else row
+    }//end else
+
+    }//
+     public function assignShift()
+    {
+        $shiftDate = $this->fm->processfield($_POST['shiftDate']);
+        $fromtime = $this->fm->processfield($_POST['fromtime']);
+        $totime = $this->fm->processfield($_POST['totime']);
+        $patientId = $this->fm->processfield($_POST['PatientID']);
+        $carerId = $this->fm->processfield($_POST['CarerID']);
+        $NoOfHours = $this->fm->processfield($_POST['NoOfHours']);
+
+        //validate
+        if(empty($shiftDate)||empty($fromtime)||empty($totime) || empty($patientId) || empty($carerId) || empty($NoOfHours))
+        {
+            //return '<div style="color: #FF0000; font-size: small">Please make sure all fields are filled!</div>';
+            $msg = '<div class="alert alert-block alert-danger fade in">
+               <button data-dismiss="alert" class="close close-sm" type="button">
+                 <i class="fa fa-times"></i>
+               </button>
+               <strong>Oops!</strong> Please make sure all the required fields are filled!
+             </div>';
+            return $msg;
+        }
+
+    else {
+
+        $dateFrom = $shiftDate. " " .$fromtime;
+        $dateTo = $shiftDate. " ".$totime;
+        echo $dateFrom;
+        echo $dateTo;
+
+        $qry = "SELECT * FROM tblcarerroster WHERE PatientID = '$patientId' and DateFrom <= '$dateFrom' and DateTo >= '$dateTo'";
+        $qry1 = "SELECT * FROM tblcarerroster WHERE CarerID = '$carerId' and PatientID = '$patientId' and DateFrom <= '$dateFrom' and DateTo >= '$dateTo'";
+        $row = $this->db->getNumOfRows($qry);
+        $row1 = $this->db->getNumOfRows($qry1);
+        if ($row > 0) {
+            //username in use
+            //return '<font color="#FF0000" size="-2">Username already in use, Try another username</font>';
+            $msg = '<div class="alert alert-block alert-danger fade in">
+               <button data-dismiss="alert" class="close close-sm" type="button">
+                 <i class="fa fa-times"></i>
+               </button>
+               <strong>Oops!</strong> This patient has been assigned carer for this period!
+             </div>';
+            return $msg;
+        }
+        elseif($row1 > 0) {
+            //username in use
+            //return '<font color="#FF0000" size="-2">Username already in use, Try another username</font>';
+            $msg = '<div class="alert alert-block alert-danger fade in">
+               <button data-dismiss="alert" class="close close-sm" type="button">
+                 <i class="fa fa-times"></i>
+               </button>
+               <strong>Oops!</strong> This patient has been assigned to the same carer for this period!
+             </div>';
+            return $msg;
+        }
+        else {
+             $insertQry = "INSERT INTO tblcarerroster
+                        (CarerID, PatientID, DateFrom, DateTo, NoOfHours)
+                VALUES ('$carerId', '$patientId', '$dateFrom', '$$dateTo', '$NoOfHours')";
+            $res = $this->db->executeQuery($insertQry);
+            if ($res) {
+                $this->audit->audit_log("new Carer added");
+                //return '<font color="#006600" size="-2">You have successfully register a staff!</font>';
+                $msg = '<div class="alert alert-success alert-block fade in">
+                                  <button data-dismiss="alert" class="close close-sm" type="button">
+                                      <i class="fa fa-times"></i>
+                                  </button>
+                                  <h4>
+                                      <i class="fa fa-ok-sign"></i>
+                                    Gracias!
+                                  </h4>
+                                  <p>You have successfully Assigned a carer to a client/patient.</p>
+                              </div>';
+                return $msg;
+            }//end if res
+        }// end else row
+    }//end else
+
+    }//end assignShift
+    public function cancelShift()
+    {
+        $carerId = $_SESSION['CarerID'];
+        $reason = $this->fm->processfield($_POST['reason']);
+        $message = $this->fm->processfield($_POST['message']);
+        $patientId0 = $this->fm->processfield($_POST['patientId0']);
+        $patientId1 = $this->fm->processfield($_POST['patientId1']);
+        $patientId2 = $this->fm->processfield($_POST['patientId2']);
+        $patientId3 = $this->fm->processfield($_POST['patientId3']);
+        
+        if(isset($reason) && !isset($message)){
+          $cancelReason = $reason;
+        }
+        else if(!isset($reason) && isset($message)){
+          $cancelReason = $message;
+        }
+        else if(isset($reason) && isset($message)){
+          $cancelReason = $reason;
+        }
+
+        //validate
+        if($reason == "" && empty(trim($message)) || $reason == "")
+        {
+            //return '<div style="color: #FF0000; font-size: small">Please make sure all fields are filled!</div>';
+            $msgC = '<div class="alert alert-block alert-danger fade in">
+               <button data-dismiss="alert" class="close close-sm" type="button">
+                 <i class="fa fa-times"></i>
+               </button>
+               <strong>Oops!</strong> Please make sure reason OR other message is filled!
+             </div>';
+            return $msgC;
+        }
+        if($patientId0 == "" && $patientId1 == "" && $patientId2 == "" && $patientId3 == "")
+            {
+            $msgC = '<div class="alert alert-block alert-danger fade in">
+                 <button data-dismiss="alert" class="close close-sm" type="button">
+                   <i class="fa fa-times"></i>
+                 </button>
+                 <strong>Nah!</strong> You must select at least one client!
+               </div>';
+            return $msgC;
+
+
+        }
+        if(($patientId0==$patientId1 && $patientId1 != "")  || ($patientId0 == $patientId2 && $patientId2 != "") || ($patientId0 == $patientId3 && $patientId3 != "") ||
+          ($patientId1==$patientId2 && $patientId1 != "") || ($patientId1 == $patientId3 && $patientId1 != "") || ($patientId2 == $patientId3 && $patientId3 != "") 
+         ){
+            $msgC = '<div class="alert alert-block alert-danger fade in">
+                 <button data-dismiss="alert" class="close close-sm" type="button">
+                   <i class="fa fa-times"></i>
+                 </button>
+                 <strong>Nah!</strong> You cannot select a patient more than once!
+               </div>';
+            return $msgC;
+
+        }
+
+        else {
+              
+
+
+            $qry = "SELECT * FROM tblcarerroster WHERE CarerID = ".$_SESSION['CarerID']." and PatientID in ('$patientId0', '$patientId1', '$patientId2', '$patientId3')";
+
+            $row = $this->db->getNumOfRows($qry);
+            if ($row > 0) {
+
+              $conn=$this->db->getConnection();
+              $result = mysqli_query($conn, $qry);
+              while($row=mysqli_fetch_assoc($result)){
+                $patId = $row['PatientID'];
+                $crID = $row['CarerID'];
+                $cr = $cancelReason;
+                $cId = $carerId;
+                    $updQry = "UPDATE tblcarerroster SET CancelledOn ='".date("Y-m-d H:i:s")."', Cancelled = 1, cancelreason='$cr' WHERE  CarerID = $crID and PatientID = $patId";
+                   $res = $this->db->executeQuery($updQry);
+                
+                //echo "CancelledOn:". date("Y-m-d H:i:s")." CANCELLED: 1". " cancelreason:". $cr. " carerid: ".$cId. " PatientID: ". $patId;
+               //echo "<br/>";
+                     
+                 }
+                 $res = $this->db->executeQuery($updQry);
+                if ($res) {
+                    $this->audit->audit_log("patient(s) shift cancelled");
+                    //return '<font color="#006600" size="-2">You have successfully register a staff!</font>';
+                    $msgC = '<div class="alert alert-success alert-block fade in">
+                                  <button data-dismiss="alert" class="close close-sm" type="button">
+                                      <i class="fa fa-times"></i>
+                                  </button>
+                                  <h4>
+                                      <i class="fa fa-ok-sign"></i>
+                                    Gracias!
+                                  </h4>
+                                  <p>You have successfully cancelled some patient(s).</p>
+                              </div>';
+                    return $msgC;
+                }//end if res
+            }
+            else {
+
+                //username in use
+                //return '<font color="#FF0000" size="-2">Username already in use, Try another username</font>';
+                $msgC = '<div class="alert alert-block alert-danger fade in">
+               <button data-dismiss="alert" class="close close-sm" type="button">
+                 <i class="fa fa-times"></i>
+               </button>
+               <strong>Oops!</strong> You are not assigned to any of the clients selected!
+             </div>';
+                return $msgC;
+                
+
+            }// end else row
+        }//end else
+
+    }
+
+
+
+
 
 
 
@@ -212,7 +476,7 @@ class AdminClassController
     {
         $pageName = $this->fm->processfield($_POST['pageName']);
         $pageUrlName = $this->fm->processfield($_POST['pageUrlName']);
-        $parentId = $this->fm->processfield($_POST['parentId']);
+        $patientid = $this->fm->processfield($_POST['patientid']);
         $logoName = $this->fm->processfield($_POST['logoName']);
         //validate
         if(empty($pageName)
@@ -238,7 +502,7 @@ class AdminClassController
             return $msg;
         }
   /*
-        if((strlen($parentId)<1)
+        if((strlen($patientid)<1)
         )
         {
             $msg = '<div class="alert alert-block alert-danger fade in">
@@ -276,7 +540,7 @@ class AdminClassController
 
             $insertQry = "INSERT INTO permissions_tbl
                   (page_name, page_url, parent_id, logo_name, created_date, maker)
-			VALUES('$pageName','$pageUrlName', '$parentId', '$logoName', '".date("Y-m-d H:i:s")."','$userInAttendance')";
+			VALUES('$pageName','$pageUrlName', '$patientid', '$logoName', '".date("Y-m-d H:i:s")."','$userInAttendance')";
 
             $res = $this->db->executeQuery($insertQry);
 
@@ -466,7 +730,92 @@ class AdminClassController
 
 
 
-    }//end updateUserSetup
+    }//end updateCarer
+    public function updateClient()
+    {
+        $patientid = $this->fm->processfield($_POST['patientid']);
+        $firstname = $this->fm->processfield($_POST['firstname']);
+        $lastname = $this->fm->processfield($_POST['lastname']);
+        $address = $this->fm->processfield($_POST['address']);
+        $emailaddress = $this->fm->processfield($_POST['emailaddress']);
+        $county = $this->fm->processfield($_POST['county']);
+        $phone = $this->fm->processfield($_POST['phone']);
+        $dob = $this->fm->processfield($_POST['birthday']);
+        $sex = $this->fm->processfield($_POST['sex']);
+        $comments  = $this->fm->processfield($_POST['comments']);
+
+        if( empty($firstname)||empty($lastname)||empty($emailaddress)||empty($phone) ||empty($dob)||empty($sex)
+            ||empty($county)||empty($comments) || empty($address)
+        )
+        {
+            $msg = '<div class="alert alert-block alert-danger fade in">
+               <button data-dismiss="alert" class="close close-sm" type="button">
+                 <i class="fa fa-times"></i>
+               </button>
+               <strong>Oops!</strong> Please make sure all required fields are completed!
+             </div>';
+            return $msg;
+        }
+        if(!filter_var($emailaddress, FILTER_VALIDATE_EMAIL)) {
+            $msg = '<div class="alert alert-block alert-danger fade in">
+               <button data-dismiss="alert" class="close close-sm" type="button">
+                 <i class="fa fa-times"></i>
+               </button>
+               <strong>Oops!</strong> Please Specify a valid email!
+             </div>';
+            return $msg;
+        }
+
+        $then = strtotime($dob);
+        //The age to be over, over +18
+        $min = strtotime('+15 years', $then);
+        //echo $min;
+        if(time() < $min) {
+            //die('Not 18');
+            $msg = '<div class="alert alert-block alert-danger fade in">
+               <button data-dismiss="alert" class="close close-sm" type="button">
+                 <i class="fa fa-times"></i>
+               </button>
+               <strong>Nah!</strong> Wrong Age, carer must be more than 15 years!
+             </div>';
+            return $msg;
+        }
+
+        //update
+        $upquery = "UPDATE 	tblpatient SET FirstName = '$firstname', LastName='$lastname', Sex ='$sex', Address = '$address', County = '$county',
+        Phone = '$phone', Comments = '$comments', EmailAddress = '$emailaddress',
+        DateOfBirth = '$dob' WHERE PatientID = '$patientid'";
+        //,updated_date ='".date("Y-m-d H:i:s")."'
+        // $upquery = "UPDATE 	tblcarer SET FirstName = '$firstname'  WHERE CarerID = '$carerid'";
+
+        $res = $this->db->executeQuery($upquery);
+
+        if($res)
+        {
+            $this->audit->audit_log("User ".$_SESSION['username']." updated a ".$firstname." ". $lastname."'s information ");
+
+            $msg = '<div class="alert alert-success alert-block fade in">
+                                  <button data-dismiss="alert" class="close close-sm" type="button">
+                                      <i class="fa fa-times"></i>
+                                  </button>
+                                  <h4>
+                                      <i class="fa fa-ok-sign"></i>
+                                    Thank you!
+                                  </h4>
+                                  <p>You have successfully updated the Patient\'s information!</p>
+                              </div>';
+            return $msg;
+
+
+        }
+
+
+
+    }//end updateClient
+
+
+
+
     public function updateUserPassword()
     {
         $currentPassword = $this->fm->processfield($_POST['current_password']);
@@ -1537,7 +1886,7 @@ price_paid='$totalPrice', attended_to_by='$userInAttendance', updated_date='".da
         $permId = $this->fm->processfield($_POST['permId']);
         $pageName = $this->fm->processfield($_POST['pageName']);
         $pageUrlName = $this->fm->processfield($_POST['pageUrlName']);
-        $parentId = $this->fm->processfield($_POST['parentId']);
+        $patientid = $this->fm->processfield($_POST['patientid']);
         $logoName = $this->fm->processfield($_POST['logoName']);
         //validate
         if(empty($pageName)
@@ -1562,7 +1911,7 @@ price_paid='$totalPrice', attended_to_by='$userInAttendance', updated_date='".da
              </div>';
             return $msg;
         }
-        /*if((strlen($parentId)<1)
+        /*if((strlen($patientid)<1)
         )
         {
             $msg = '<div class="alert alert-block alert-danger fade in">
@@ -1599,7 +1948,7 @@ price_paid='$totalPrice', attended_to_by='$userInAttendance', updated_date='".da
             //prepare to insert
 
             $updateQry = "UPDATE permissions_tbl
-                  SET page_name='$pageName', page_url='$pageUrlName', parent_id='$parentId', logo_name='$logoName', updated_date= '".date("Y-m-d H:i:s")."', maker='$userInAttendance' where perm_id=$permId";
+                  SET page_name='$pageName', page_url='$pageUrlName', parent_id='$patientid', logo_name='$logoName', updated_date= '".date("Y-m-d H:i:s")."', maker='$userInAttendance' where perm_id=$permId";
 
             $res = $this->db->executeQuery($updateQry);
 
@@ -2322,8 +2671,8 @@ $arrayCount = count($allDataInSheet);  // Here get total count of row in that Ex
     public function asideMenu(){
 
 //select all rows from the main_menu table
-//$queryResult = "select id,title,parentid,link from main_menu order by id asc";
-        $queryResult = "select perm_id id,page_name title, parent_id parentid,page_url link, logo_name from permissions_tbl order by perm_id asc";
+//$queryResult = "select id,title,patientid,link from main_menu order by id asc";
+        $queryResult = "select perm_id id,page_name title, parent_id patientid,page_url link, logo_name from permissions_tbl order by perm_id asc";
         $result =$this->db->executeQuery($queryResult);
         //create a multidimensional array to hold a list of menu and parent menu
         $menu = array(
@@ -2337,7 +2686,7 @@ $arrayCount = count($allDataInSheet);  // Here get total count of row in that Ex
             //creates entry into menus array with current menu id ie. $menus['menus'][1]
             $menu['menus'][$row['id']] = $row;
             //creates entry into parent_menus array. parent_menus array contains a list of all menus with children
-            $menu['parent_menus'][$row['parentid']][] = $row['id'];
+            $menu['parent_menus'][$row['patientid']][] = $row['id'];
         }
        return $this->buildMenu(0, $menu);
 

@@ -3,7 +3,7 @@
 require_once("CommonClass/Common.php");
 require_once("CommonClass/ClassManager.php");
 
-$db = new Connection();
+$db = new DBConnections();
 $adm = new AdminClassController();
 
 if(isset($_POST['btnSignIn']))

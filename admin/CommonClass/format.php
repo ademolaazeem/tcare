@@ -6,7 +6,7 @@ class Format
     private $db;
     function __construct()
     {
-        $this->db = new Connection();
+        $this->db = new DBConnections();
     }
 	
 	public function processfield($field)

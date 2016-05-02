@@ -6,7 +6,7 @@ $adm = new AdminClassController();
 
 if(isset($_POST['update']))
 {
-    $msg = $adm->updateCarer();
+    $msg = $adm->updateClient();
 }
 ?>
 <?php
@@ -32,17 +32,12 @@ if(!empty($_GET))
     //$carerid = $_GET["carerid"];
     {
         // Define our SQL query
-        $query = "
-                SELECT
-                    carerid, firstname,lastname,sex,
-		    address,emailaddress,county,phone,ppsnumber,
-			dateofbirth,adminnote, active FROM tblcarer
-            ";
+        $query = "SELECT * FROM tblpatient ";
 
-        $query .= " WHERE carerid = :carerid";
+        $query .= " WHERE PatientID = :patientid";
 
         $query_params = array(
-            ':carerid' =>  $_GET["carerid"]);
+            ':patientid' =>  $_GET["patientid"]);
 
         try
         {
@@ -61,18 +56,17 @@ if(!empty($_GET))
         $row = $stmt->fetch();
         if($row)
         {
-            $carerid = $row["carerid"];
-            $firstname = $row["firstname"];
-            $lastname = $row["lastname"];
-            $sex = $row["sex"];
-            $address = $row["address"];
-            $emailaddress = $row["emailaddress"];
-            $county = $row["county"];
-            $phone = $row["phone"];
-            $dateofbirth = $row["dateofbirth"];
-            $ppsnumber = $row["ppsnumber"];
-            $active = $row["active"];
-            $adminnote = $row["adminnote"];
+            $patientid = $row["PatientID"];
+            $firstname = $row["FirstName"];
+            $lastname = $row["LastName"];
+            $sex = $row["Sex"];
+            $address = $row["Address"];
+            $emailaddress = $row["EmailAddress"];
+            $county = $row["County"];
+            $phone = $row["Phone"];
+            $dateofbirth = $row["DateOfBirth"];
+            $comments = $row["Comments"];
+
         }
     }
 }
@@ -169,7 +163,7 @@ if(!empty($_GET))
                     <?php if(isset($msg)) echo $msg; ?>
                   <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post">
 
-                      <input type="hidden" id="carerid" name="carerid" value="<?php echo $carerid ?>" maxlength="50" />
+                      <input type="hidden" id="patientid" name="patientid" value="<?php echo $patientid ?>" maxlength="50" />
                       </p>
 
                     <div class="form-group">
@@ -204,17 +198,7 @@ if(!empty($_GET))
                     </div>
 
 
-                      <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Status</label>
-                          <div class="col-md-6 col-sm-6 col-xs-12">
-                              <select class="form-control" name="active" id="active">
-                                  <option>Choose option</option>
-                                  <option <?php if($active =='Yes'){echo("selected");}?>>Yes</option>
-                                  <option <?php if($active =='No'){echo("selected");}?>>No</option>
-                              </select>
-                              </select>
-                          </div>
-                     </div>
+
 
                       <div class="form-group">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Email Address <span class="required">*</span>
@@ -253,15 +237,6 @@ if(!empty($_GET))
                       </div>
 
                       <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">PPS Number <span class="required">*</span>
-                          </label>
-                          <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text"  id="ppsnumber" name="ppsnumber" value="<?php echo $ppsnumber ?>" required="required" class="form-control col-md-7 col-xs-12">
-
-                          </div>
-                      </div>
-
-                    <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Birth <span class="required">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
@@ -270,13 +245,20 @@ if(!empty($_GET))
                     </div>
 
 
+
                       <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Admin Note <span class="required">*</span>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Comments <span class="required">*</span>
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                              <textarea class="form-control" rows="2" id="adminnote" name="adminnote"><?php echo $adminnote ?></textarea>
+                              <textarea id="comments" required="required" class="form-control" name="comments" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Medical History.."
+                                        data-parsley-validation-threshold="10">
+
+                                  <?php echo $comments ?>
+                                        </textarea>
                           </div>
                       </div>
+
+
 
 
 
@@ -284,7 +266,7 @@ if(!empty($_GET))
                     <div class="form-group">
                       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                         <button type="submit" class="btn btn-primary">Cancel</button>
-                        <button type="submit" name="update" class="btn btn-success">Update Carer Details</button>
+                        <button type="submit" name="update" class="btn btn-success">Update Client Details</button>
 
                       </div>
                     </div>

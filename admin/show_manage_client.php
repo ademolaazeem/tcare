@@ -4,14 +4,7 @@ require_once('CommonClass/ClassManager.php');
 $db = new DBConnections();
 $adm = new AdminClassController();
 
-$query = "
-        SELECT
-            carerid,
-            username,
-		firstname, lastname, address,phone,
-            emailaddress, active
-        FROM tblcarer ";
-
+$query = "SELECT * FROM  tblpatient";
 $res=mysqli_query($db->getConnection(), $query) or die(mysql_error());
 
 ?>
@@ -65,7 +58,7 @@ $res=mysqli_query($db->getConnection(), $query) or die(mysql_error());
               <h3>
                   Carers
                   <small>
-                      List of Carers to manage
+                      List of Patients to manage
                   </small>
               </h3>
           </div>
@@ -121,13 +114,13 @@ $res=mysqli_query($db->getConnection(), $query) or die(mysql_error());
           <th>
               <input type="checkbox" class="tableflat">
           </th>
-          <th>Username </th>
           <th>Firstname </th>
           <th>Lastname </th>
           <th>Address </th>
           <th>Phone </th>
-          <th>Email </th>
-          <th>Status </th>
+          <th>Date Of Birth </th>
+          <th>Comment </th>
+          <th>Sex </th>
           <th class=" no-link last"><span class="nobr">Action</span>
           </th>
       </tr>
@@ -144,29 +137,29 @@ $res=mysqli_query($db->getConnection(), $query) or die(mysql_error());
           ?>
           <tr class="even pointer">
               <td class="a-center "><input type="checkbox" class="tableflat"></td>
-              <td class=" "><?php echo htmlentities($row['username'], ENT_QUOTES, 'UTF-8'); ?></td>
-              <td class=" "><?php echo htmlentities($row['firstname'], ENT_QUOTES, 'UTF-8'); ?></td>
-              <td class=" "><?php echo htmlentities($row['lastname'], ENT_QUOTES, 'UTF-8'); ?></td>
-              <td class=" "><?php echo htmlentities($row['address'], ENT_QUOTES, 'UTF-8'); ?></td>
-              <td class=" "><?php echo htmlentities($row['phone'], ENT_QUOTES, 'UTF-8'); ?></td>
-              <td class=" "><?php echo htmlentities($row['emailaddress'], ENT_QUOTES, 'UTF-8'); ?></td>
-              <td class=" "><?php echo htmlentities($row['active'], ENT_QUOTES, 'UTF-8'); ?></td>
-              <td><a href=manage_existing_carer.php?carerid=<?php echo $row['carerid']; ?>> Edit</a></td>
+              <td class=" "><?php echo htmlentities($row['FirstName'], ENT_QUOTES, 'UTF-8'); ?></td>
+              <td class=" "><?php echo htmlentities($row['LastName'], ENT_QUOTES, 'UTF-8'); ?></td>
+              <td class=" "><?php echo htmlentities($row['Address'], ENT_QUOTES, 'UTF-8'); ?></td>
+              <td class=" "><?php echo htmlentities($row['Phone'], ENT_QUOTES, 'UTF-8'); ?></td>
+              <td class=" "><?php echo htmlentities($row['DateOfBirth'], ENT_QUOTES, 'UTF-8'); ?></td>
+              <td class=" "><?php echo htmlentities($row['Comments'], ENT_QUOTES, 'UTF-8'); ?></td>
+              <td class=" "><?php echo htmlentities($row['Sex'], ENT_QUOTES, 'UTF-8'); ?></td>
+              <td><a href=manage_existing_client.php?patientid=<?php echo $row['PatientID']; ?>> Edit</a></td>
           </tr>
           <?php }
           else{
               ?>
-    <tr class="odd pointer">
-        <td class="a-center "><input type="checkbox" class="tableflat"></td>
-        <td class=" "><?php echo htmlentities($row['username'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td class=" "><?php echo htmlentities($row['firstname'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td class=" "><?php echo htmlentities($row['lastname'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td class=" "><?php echo htmlentities($row['address'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td class=" "><?php echo htmlentities($row['phone'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td class=" "><?php echo htmlentities($row['emailaddress'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td class=" "><?php echo htmlentities($row['active'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td><a href=manage_existing_carer.php?carerid=<?php echo $row['carerid']; ?>> Edit</a></td>
-    </tr>
+              <tr class="odd pointer">
+                  <td class="a-center "><input type="checkbox" class="tableflat"></td>
+                  <td class=" "><?php echo htmlentities($row['FirstName'], ENT_QUOTES, 'UTF-8'); ?></td>
+                  <td class=" "><?php echo htmlentities($row['LastName'], ENT_QUOTES, 'UTF-8'); ?></td>
+                  <td class=" "><?php echo htmlentities($row['Address'], ENT_QUOTES, 'UTF-8'); ?></td>
+                  <td class=" "><?php echo htmlentities($row['Phone'], ENT_QUOTES, 'UTF-8'); ?></td>
+                  <td class=" "><?php echo htmlentities($row['DateOfBirth'], ENT_QUOTES, 'UTF-8'); ?></td>
+                  <td class=" "><?php echo htmlentities($row['Comments'], ENT_QUOTES, 'UTF-8'); ?></td>
+                  <td class=" "><?php echo htmlentities($row['Sex'], ENT_QUOTES, 'UTF-8'); ?></td>
+                  <td><a href=manage_existing_client.php?patientid=<?php echo $row['PatientID']; ?>> Edit</a></td>
+              </tr>
           <?php
 
           }
