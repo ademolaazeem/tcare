@@ -18,8 +18,8 @@
             <?php
             if(isset($_SESSION['userfullname']))
              echo $_SESSION['userfullname'];
-            else
-             echo 'Not Logged in';
+            //else
+            //header("location:login.php?r=".base64_encode('uac'));
             ?>
         </h2>
     </div>

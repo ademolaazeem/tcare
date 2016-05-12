@@ -8,9 +8,9 @@ if(!isset($_SESSION['AdminID'])){
     header("location:login.php?r=".base64_encode('uas'));
 }
 
-if(isset($_POST['assignShift']))
+if(isset($_POST['assignCover']))
 {
-    $msg = $adm->assignShift();
+    $msg = $adm->assignCover();
 }
 ?>
 <?php
@@ -70,7 +70,7 @@ include_once('head.php');
 
           <div class="page-title">
             <div class="title_left">
-              <h3>Assign Shift</h3>
+              <h3>Assign Cover</h3>
             </div>
 
           </div>
@@ -114,90 +114,49 @@ include_once('head.php');
 
                     <?php if(isset($msg)) echo $msg; ?>
                   <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post">
-
-                     <!-- <input type="hidden" id="carerid" name="carerid"  maxlength="50" />
-                      </p>-->
-
-                      <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Shift Date <span class="required">*</span>
-                          </label>
-                          <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input id="shiftDate" name="shiftDate" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
-                          </div>
-                      </div>
-
-                      <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">From time <span class="required">*</span>
-                          </label>
-                          <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="fromtime" name="fromtime"  class="date-picker form-control col-md-7 col-xs-12" required="required" placeholder="">
-                             <!-- class="form-control floating-label" <input id="birthday" name="birthday" value="<?php /*echo $dateofbirth */?>" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">placeholder="Time"-->
-                          </div>
-                      </div>
-
-                      <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">To time <span class="required">*</span>
-                          </label>
-                          <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input onchange="shiftDateDiff();" type="text" id="totime" name="totime"  class="date-picker form-control col-md-7 col-xs-12" required="required" placeholder="">
-                              <!-- class="form-control floating-label" <input id="birthday" name="birthday" value="<?php /*echo $dateofbirth */?>" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">placeholder="Time"-->
-                          </div>
-                      </div>
-
-                      <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Number of Hours <span class="required">*</span>
-                          </label>
-                          <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input readonly id="NoOfHours"  name="NoOfHours" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
-                          </div>
-                      </div>
-
-
                       <div class="form-group ">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Client <span class="required">*</span></label>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Schedule<span class="required">*</span></label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
                               <!--<div class="col-md-6 col-xs-11">-->
 
-                              <select name="PatientID" id="PatientID" class="form-control m-bot15" onchange="reload(this.form)">
-                                 <!-- <select class="form-control" name="active" id="active">-->
+                              <select name="CarerRosterID" id="CarerRosterID" class="form-control m-bot15">
+                                  <!-- <select class="form-control" name="active" id="active">-->
                                   <option value="">-- Select --</option>
-
                                   <?php
-
-                                  $query = "SELECT PatientID, FirstName, LastName FROM `tblpatient`";
+                                  $query = "SELECT distinct cr.CarerRosterID CarerRosterID, c.CarerID carerid, concat(c.firstname,' ', c.lastname) as carername, concat(pt.FirstName, ' ', pt.LastName) as patientname,
+cr.DateFrom DateFrom, cr.DateTo DateTo FROM tblcarer c, tblpatient pt, tblcarerroster cr, tblemail em where c.CarerID= cr.CarerID and cr.PatientID=pt.PatientID and
+Cancelled=0 and SubmittedOn is null and  cr.CarerRosterID = em.CarerRosterID and em.status is null";
                                   $conn=$db->getConnection();
-                                  //$this->db->getConnection();
                                   $result = mysqli_query($conn, $query);
-                                  //, MYSQL_ASSOC
-                                  //_fetch_array($result,MYSQL_BOTH))
                                   while($row=mysqli_fetch_assoc($result))
 
                                   {
-                                      if($row['PatientID']==@$PatientID){echo "<option selected value='$row[PatientID]'>$row[FirstName]. ' '.$row[LastName] </option>"."<BR>";}
-                                      else{echo  "<option value='$row[PatientID]'>$row[FirstName]  $row[LastName]</option>";}
+                                      if($row['CarerRosterID']==@CarerRosterID){echo "<option selected value='$row[CarerRosterID]'>[ $row[carername]] Assigned to  [ $row[patientname] ] between [ $row[DateFrom] ] and  [ $row[DateTo] ] </option>"."<BR>";}
+                                      else{echo  "<option selected value='$row[CarerRosterID]'>[ $row[carername] ] Assigned to  [ $row[patientname] ] between [ $row[DateFrom] ] and [ $row[DateTo] ] </option>";}
 
                                       //echo "<option value='".$row['role_id']."'>".$row['name']."</option>";
                                   }
 
                                   ?>
-                         </select>
+                              </select>
                           </div>
 
                       </div>
 
 
                       <div class="form-group ">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Carer <span class="required">*</span></label>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Cover<span class="required">*</span></label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
                               <!--<div class="col-md-6 col-xs-11">-->
-
-                              <select name="CarerID" id="CarerID" class="form-control m-bot15" onchange="reload(this.form)">
+                                <em>The carers are listed in the order in which they responded, so the ideal person for the cover is the first person on the list</em>
+                              <select name="coverid" id="coverid" class="form-control m-bot15">
                                   <!-- <select class="form-control" name="active" id="active">-->
                                   <option value="">-- Select --</option>
 
                                   <?php
 
-                                  $query = "SELECT CarerID, FirstName, LastName FROM `tblcarer`";
+                                  $query = "SELECT c.CarerID CarerID, c.FirstName FirstName, c.LastName LastName FROM tblcarer c, tblemail em  where
+                                  c.CarerID = em.CarerID and em.status='ICAN' order by em.replieddate asc";
                                   $conn=$db->getConnection();
                                   $result = mysqli_query($conn, $query);
                                   while($row=mysqli_fetch_assoc($result))
@@ -215,6 +174,14 @@ include_once('head.php');
 
                       </div>
 
+                      <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Message <span class="required">*</span>
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                              <!-- <input onclick="getroster();" type="text" id="comments" class="form-control" name="comments" required />-->
+                              <textarea id="reason" required="required" rows="6" class="form-control" name="reason" text-align="left"></textarea>
+                          </div>
+                      </div>
 
 
 
@@ -223,7 +190,7 @@ include_once('head.php');
                     <div class="form-group">
                       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                         <button type="submit" class="btn btn-primary">Cancel</button>
-                        <button type="submit" name="assignShift" class="btn btn-success">Assign Shift</button>
+                        <button type="submit" name="assignCover" class="btn btn-success">Assign Cover</button>
 
                       </div>
                     </div>

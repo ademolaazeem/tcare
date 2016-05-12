@@ -5,12 +5,7 @@ $db = new DBConnections();
 $adm = new AdminClassController();
 
 $query = "
-        SELECT
-            carerid,
-            username,
-		firstname, lastname, address,phone,
-            emailaddress, active
-        FROM tblcarer ";
+        SELECT b.CarerHolidayID CarerHolidayID, a.CarerID carerid, a.Firstname firstname, a.LastName lastname, b.DateFrom DateFrom, b.DateTo DateTo, b.NoOfDays NoOfDays     FROM tblcarer a, tblcarerholiday b where a.CarerID = b.CarerID and status != 'Approved'";
 
 $res=mysqli_query($db->getConnection(), $query) or die(mysql_error());
 
@@ -34,10 +29,10 @@ $res=mysqli_query($db->getConnection(), $query) or die(mysql_error());
 
       <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
-            <?php require_once('nav_title.php'); ?>
+            <?php require_once('nav_title.php') ?>
 
             <!-- menu prile quick info -->
-            <?php require_once('menu_prile.php'); ?>
+            <?php require_once('menu_prile.php') ?>
             <!-- /menu prile quick info -->
 
           <br />
@@ -65,7 +60,7 @@ $res=mysqli_query($db->getConnection(), $query) or die(mysql_error());
               <h3>
                   Carers
                   <small>
-                      List of Carers to manage
+                      List of Holiday to manage
                   </small>
               </h3>
           </div>
@@ -121,60 +116,64 @@ $res=mysqli_query($db->getConnection(), $query) or die(mysql_error());
           <th>
               <input type="checkbox" class="tableflat">
           </th>
-          <th>Username </th>
           <th>Firstname </th>
           <th>Lastname </th>
-          <th>Address </th>
-          <th>Phone </th>
-          <th>Email </th>
-          <th>Status </th>
+          <th>Date From </th>
+          <th>Date To </th>
+          <th>Number of Days </th>
           <th class=" no-link last"><span class="nobr">Action</span>
           </th>
       </tr>
       </thead>
-
       <tbody>
     <?php $count = 1;?>
       <?php
 
+      $rowCount = mysqli_num_rows($res);
+      if($rowCount > 0) {
       while($row =mysqli_fetch_array($res, MYSQLI_ASSOC))
       {
-       if($count%2 == 0)
-          {
-          ?>
-          <tr class="even pointer">
-              <td class="a-center "><input type="checkbox" class="tableflat"></td>
-              <td class=" "><?php echo htmlentities($row['username'], ENT_QUOTES, 'UTF-8'); ?></td>
-              <td class=" "><?php echo htmlentities($row['firstname'], ENT_QUOTES, 'UTF-8'); ?></td>
-              <td class=" "><?php echo htmlentities($row['lastname'], ENT_QUOTES, 'UTF-8'); ?></td>
-              <td class=" "><?php echo htmlentities($row['address'], ENT_QUOTES, 'UTF-8'); ?></td>
-              <td class=" "><?php echo htmlentities($row['phone'], ENT_QUOTES, 'UTF-8'); ?></td>
-              <td class=" "><?php echo htmlentities($row['emailaddress'], ENT_QUOTES, 'UTF-8'); ?></td>
-              <td class=" "><?php echo htmlentities($row['active'], ENT_QUOTES, 'UTF-8'); ?></td>
-              <td><a href=manage_existing_carer.php?carerid=<?php echo $row['carerid']; ?>> Edit</a></td>
-          </tr>
-          <?php }
-          else{
-              ?>
-    <tr class="odd pointer">
-        <td class="a-center "><input type="checkbox" class="tableflat"></td>
-        <td class=" "><?php echo htmlentities($row['username'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td class=" "><?php echo htmlentities($row['firstname'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td class=" "><?php echo htmlentities($row['lastname'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td class=" "><?php echo htmlentities($row['address'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td class=" "><?php echo htmlentities($row['phone'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td class=" "><?php echo htmlentities($row['emailaddress'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td class=" "><?php echo htmlentities($row['active'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td><a href=manage_existing_carer.php?carerid=<?php echo $row['carerid']; ?>> Edit</a></td>
-    </tr>
-          <?php
+
+              if ($count % 2 == 0) {
+                  ?>
+                  <tr class="even pointer">
+                      <td class="a-center "><input type="checkbox" class="tableflat"></td>
+                      <td class=" "><?php echo htmlentities($row['firstname'], ENT_QUOTES, 'UTF-8'); ?></td>
+                      <td class=" "><?php echo htmlentities($row['lastname'], ENT_QUOTES, 'UTF-8'); ?></td>
+                      <td class=" "><?php echo htmlentities($row['DateFrom'], ENT_QUOTES, 'UTF-8'); ?></td>
+                      <td class=" "><?php echo htmlentities($row['DateTo'], ENT_QUOTES, 'UTF-8'); ?></td>
+                      <td class=" "><?php echo htmlentities($row['NoOfDays'], ENT_QUOTES, 'UTF-8'); ?></td>
+                      <td><a href=manage_existing_holiday.php?holidayid=<?php echo $row['CarerHolidayID']; ?>> Edit</a>
+                      </td>
+                  </tr>
+              <?php
+              } else {
+                  ?>
+                  <tr class="odd pointer">
+                      <td class="a-center "><input type="checkbox" class="tableflat"></td>
+                      <td class=" "><?php echo htmlentities($row['firstname'], ENT_QUOTES, 'UTF-8'); ?></td>
+                      <td class=" "><?php echo htmlentities($row['lastname'], ENT_QUOTES, 'UTF-8'); ?></td>
+                      <td class=" "><?php echo htmlentities($row['DateFrom'], ENT_QUOTES, 'UTF-8'); ?></td>
+                      <td class=" "><?php echo htmlentities($row['DateTo'], ENT_QUOTES, 'UTF-8'); ?></td>
+                      <td class=" "><?php echo htmlentities($row['NoOfDays'], ENT_QUOTES, 'UTF-8'); ?></td>
+                      <td><a href=manage_existing_holiday.php?holidayid=<?php echo $row['CarerHolidayID']; ?>> Edit</a>
+                      </td>
+                  </tr>
+              <?php
+
+              }
+              $count++;
+          }
 
           }
-       $count++;
+      else {
+          ?>
+            <tr class="odd pointer">
+                <td align="center" colspan="7" class=" "><?php echo "Sorry! no data found!"; ?></td>
+            </tr>
+      <?php
       }
-      //endforeach;
-      ?>
-
+    ?>
     </tbody>
 
       </table>

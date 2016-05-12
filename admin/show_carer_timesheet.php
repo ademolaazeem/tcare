@@ -5,12 +5,8 @@ $db = new DBConnections();
 $adm = new AdminClassController();
 
 $query = "
-        SELECT
-            carerid,
-            username,
-		firstname, lastname, address,phone,
-            emailaddress, active
-        FROM tblcarer ";
+        SELECT a.carerid, a.firstname firstname, a.lastname lastname, b.sheetdate sheetdate, b.title title, b.document
+        FROM tblcarer a, tbltimesheet b where a.CarerID=b.carerid";
 
 $res=mysqli_query($db->getConnection(), $query) or die(mysql_error());
 
@@ -18,9 +14,6 @@ $res=mysqli_query($db->getConnection(), $query) or die(mysql_error());
 
 <!DOCTYPE html>
 <html lang="en">
-
-
-
 
 
 <?php require_once('head.php');?>
@@ -34,10 +27,10 @@ $res=mysqli_query($db->getConnection(), $query) or die(mysql_error());
 
       <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
-            <?php require_once('nav_title.php'); ?>
+            <?php require_once('nav_title.php') ?>
 
             <!-- menu prile quick info -->
-            <?php require_once('menu_prile.php'); ?>
+            <?php require_once('menu_prile.php') ?>
             <!-- /menu prile quick info -->
 
           <br />
@@ -121,13 +114,10 @@ $res=mysqli_query($db->getConnection(), $query) or die(mysql_error());
           <th>
               <input type="checkbox" class="tableflat">
           </th>
-          <th>Username </th>
           <th>Firstname </th>
           <th>Lastname </th>
-          <th>Address </th>
-          <th>Phone </th>
-          <th>Email </th>
-          <th>Status </th>
+          <th>SheetDate </th>
+          <th>Title </th>
           <th class=" no-link last"><span class="nobr">Action</span>
           </th>
       </tr>
@@ -143,29 +133,23 @@ $res=mysqli_query($db->getConnection(), $query) or die(mysql_error());
           {
           ?>
           <tr class="even pointer">
-              <td class="a-center "><input type="checkbox" class="tableflat"></td>
-              <td class=" "><?php echo htmlentities($row['username'], ENT_QUOTES, 'UTF-8'); ?></td>
+              <td class="a-center"><input type="checkbox" class="tableflat"></td>
               <td class=" "><?php echo htmlentities($row['firstname'], ENT_QUOTES, 'UTF-8'); ?></td>
               <td class=" "><?php echo htmlentities($row['lastname'], ENT_QUOTES, 'UTF-8'); ?></td>
-              <td class=" "><?php echo htmlentities($row['address'], ENT_QUOTES, 'UTF-8'); ?></td>
-              <td class=" "><?php echo htmlentities($row['phone'], ENT_QUOTES, 'UTF-8'); ?></td>
-              <td class=" "><?php echo htmlentities($row['emailaddress'], ENT_QUOTES, 'UTF-8'); ?></td>
-              <td class=" "><?php echo htmlentities($row['active'], ENT_QUOTES, 'UTF-8'); ?></td>
-              <td><a href=manage_existing_carer.php?carerid=<?php echo $row['carerid']; ?>> Edit</a></td>
+              <td class=" "><?php echo htmlentities($row['sheetdate'], ENT_QUOTES, 'UTF-8'); ?></td>
+              <td class=" "><?php echo htmlentities($row['title'], ENT_QUOTES, 'UTF-8'); ?></td>
+              <td><a href="<?php echo htmlentities($row['document'], ENT_QUOTES, 'UTF-8'); ?>" target="_blank"> View</a></td>
           </tr>
           <?php }
           else{
               ?>
     <tr class="odd pointer">
-        <td class="a-center "><input type="checkbox" class="tableflat"></td>
-        <td class=" "><?php echo htmlentities($row['username'], ENT_QUOTES, 'UTF-8'); ?></td>
+        <td class="a-center"><input type="checkbox" class="tableflat"></td>
         <td class=" "><?php echo htmlentities($row['firstname'], ENT_QUOTES, 'UTF-8'); ?></td>
         <td class=" "><?php echo htmlentities($row['lastname'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td class=" "><?php echo htmlentities($row['address'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td class=" "><?php echo htmlentities($row['phone'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td class=" "><?php echo htmlentities($row['emailaddress'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td class=" "><?php echo htmlentities($row['active'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td><a href=manage_existing_carer.php?carerid=<?php echo $row['carerid']; ?>> Edit</a></td>
+        <td class=" "><?php echo htmlentities($row['sheetdate'], ENT_QUOTES, 'UTF-8'); ?></td>
+        <td class=" "><?php echo htmlentities($row['title'], ENT_QUOTES, 'UTF-8'); ?></td>
+        <td><a href="<?php echo htmlentities($row['document'], ENT_QUOTES, 'UTF-8'); ?>" target="_blank"> View</a></td>
     </tr>
           <?php
 

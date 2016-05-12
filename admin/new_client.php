@@ -3,6 +3,9 @@ require_once('CommonClass/common.php');
 require_once('CommonClass/ClassManager.php');
 $db = new DBConnections();
 $adm = new AdminClassController();
+if(!isset($_SESSION['AdminID'])){
+    header("location:login.php?r=".base64_encode('uas'));
+}
 
 if(isset($_POST['addClient']))
 {

@@ -9,7 +9,9 @@ $db = new DBConnections();
 <!DOCTYPE html>
 <html lang="en">
 
-<?php require_once('head.php');?>
+<?php
+
+require_once('head.php');?>
 
 
 <body class="nav-md">
@@ -50,60 +52,9 @@ $db = new DBConnections();
       <!-- /top navigation -->
 
       <!-- page content -->
-      <div class="right_col" role="main">
-        <div class="">
-
-          <div class="page-title">
-            <div class="title_left">
-              <h3>
-                    Future Holidays
-                   
-                </h3>
-            </div>
-
-            
-          </div>
-          <div class="clearfix"></div>
-
-
-          <div class="row">
-
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <div class="x_panel">
-                
-                <div class="x_content">
-
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th>#</th>
-                        <th>Date From</th>
-                        <th>Date To</th>
-                        <th>No of Days</th>
-						<th>Approved By</th>
-						<th>Approved On</th>
-                      </tr>
-                    </thead>
-
-                  </table>
-
-                </div>
-              </div>
-            </div>
-
-
-            
-
-           
-          </div>
-
-        </div>
-
-        <!-- footer content -->
-          <?php require_once('footer.php'); ?>
-        <!-- /footer content -->
-
-      </div>
+      <?php
+      require_once('carer_page_main.php');
+      ?>
       <!-- /page content -->
     </div>
 

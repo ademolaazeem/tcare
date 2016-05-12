@@ -4,28 +4,80 @@ require_once('CommonClass/ClassManager.php');
 $db = new DBConnections();
 $adm = new AdminClassController();
 
-if(!isset($_SESSION['AdminID'])){
-    header("location:login.php?r=".base64_encode('uas'));
-}
-
-if(isset($_POST['assignShift']))
+if(isset($_POST['update']))
 {
-    $msg = $adm->assignShift();
+    $msg = $adm->updateHoliday();
 }
 ?>
 <?php
 
 // First we execute our CommonClass code to connection to the database and start the session
+require("common.php");
+
+/* // At the top of the page we check to see whether the user is logged in or not
+ if(empty($_SESSION['user']))
+ {
+     // If they are not, we redirect them to the login page.
+     header("Location: login1_homecare.php");
+
+     // Remember that this die statement is absolutely critical.  Without it,
+     // people can view your members-only content without logging in.
+     die("Redirecting to login1_homecare.php");
+ }
+  */
+// This if statement checks to determine whether the edit form has been submitted
+// If it has, then the account updating code is run, otherwise the form is displayed
+if(!empty($_GET))
+{
+    //$carerid = $_GET["carerid"];
+    {
+        // Define our SQL query
+        $query = "
+                SELECT
+                    CarerHolidayID, CarerID,DateFrom, DateTo, NoOfDays,status, reason FROM tblcarerholiday
+            ";
+
+        $query .= " WHERE CarerHolidayID = :holidayid";
+
+        $query_params = array(
+            ':holidayid' =>  $_GET["holidayid"]);
+
+        try
+        {
+            // Execute the query
+            $stmt = $db->prepare($query);
+            $result = $stmt->execute($query_params);
+        }
+        catch(PDOException $ex)
+        {
+            // Note: On a production website, you should not output $ex->getMessage().
+            // It may provide an attacker with helpful information about your code.
+            die("Failed to run query: " . $ex->getMessage());
+        }
+
+        // Retrieve results (if any)
+        $row = $stmt->fetch();
+        if($row)
+        {
+            $carerHolidayId = $row["CarerHolidayID"];
+            $carerid = $row["CarerID"];
+            $datefrom = $row["DateFrom"];
+            $dateto = $row["DateTo"];
+            $noOfDays = $row["NoOfDays"];
 
 
+        }
+    }
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
 
 
 <?php
-include_once('head.php');
+require_once('head.php');
 ?>
 
 
@@ -70,7 +122,7 @@ include_once('head.php');
 
           <div class="page-title">
             <div class="title_left">
-              <h3>Assign Shift</h3>
+              <h3>Book Holiday</h3>
             </div>
 
           </div>
@@ -78,152 +130,92 @@ include_once('head.php');
           <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="x_panel">
-               <!-- <div class="x_title">
-                  <h2>Form Design <small>different form elements</small></h2>
-                  <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Settings 1</a>
-                        </li>
-                        <li><a href="#">Settings 2</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                  </ul>
-                  <div class="clearfix"></div>
-                </div>-->
+
                 <div class="x_content">
 
+     <br />
 
+                    <?php
+                    if(isset($msg))
+                        echo $msg;
+                    else
+                    //echo 'not here';
 
-
-
-
-
-
-
-
-
-
-                    <br />
-
-                    <?php if(isset($msg)) echo $msg; ?>
+                    ?>
                   <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post">
 
-                     <!-- <input type="hidden" id="carerid" name="carerid"  maxlength="50" />
-                      </p>-->
+                      <?php
+                      $adminid = $_SESSION['AdminID'];
+                      ?>
+                      <input type="hidden" id="adminid" name="adminid" value="<?php echo $adminid ?>" maxlength="50" />
+                      <input type="hidden" id="carerHolidayId" name="carerHolidayId" value="<?php echo $carerHolidayId ?>" maxlength="50" />
+                      <input type="hidden" id="carerid" name="carerid" value="<?php echo $carerid; ?>"  maxlength="50" />
+                      </p>
 
                       <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Shift Date <span class="required">*</span>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">From Date <span class="required">*</span>
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input id="shiftDate" name="shiftDate" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
-                          </div>
-                      </div>
-
-                      <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">From time <span class="required">*</span>
-                          </label>
-                          <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="fromtime" name="fromtime"  class="date-picker form-control col-md-7 col-xs-12" required="required" placeholder="">
-                             <!-- class="form-control floating-label" <input id="birthday" name="birthday" value="<?php /*echo $dateofbirth */?>" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">placeholder="Time"-->
+                              <?php
+                                 echo $datefrom;
+                             ?>
                           </div>
                       </div>
 
                       <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">To time <span class="required">*</span>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">To Date <span class="required">*</span>
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input onchange="shiftDateDiff();" type="text" id="totime" name="totime"  class="date-picker form-control col-md-7 col-xs-12" required="required" placeholder="">
-                              <!-- class="form-control floating-label" <input id="birthday" name="birthday" value="<?php /*echo $dateofbirth */?>" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">placeholder="Time"-->
+
+                              <?php echo $dateto;?>
+
+                          </div>
+                      </div>
+
+
+                      <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Number of Days <span class="required">*</span>
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                                <?php echo $noOfDays; ?>
                           </div>
                       </div>
 
                       <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Number of Hours <span class="required">*</span>
-                          </label>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Status</label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input readonly id="NoOfHours"  name="NoOfHours" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
-                          </div>
-                      </div>
+                              <select class="form-control" name="status" id="status">
+                                  <option value = ''>Choose option</option>
+                                  <option value="Approved">APPROVED</option>
+                                  <option value="Pending">PENDING</option>
+                                  <option value="Disapproved">DISAPPROVED</option>
 
-
-                      <div class="form-group ">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Client <span class="required">*</span></label>
-                          <div class="col-md-6 col-sm-6 col-xs-12">
-                              <!--<div class="col-md-6 col-xs-11">-->
-
-                              <select name="PatientID" id="PatientID" class="form-control m-bot15" onchange="reload(this.form)">
-                                 <!-- <select class="form-control" name="active" id="active">-->
-                                  <option value="">-- Select --</option>
-
-                                  <?php
-
-                                  $query = "SELECT PatientID, FirstName, LastName FROM `tblpatient`";
-                                  $conn=$db->getConnection();
-                                  //$this->db->getConnection();
-                                  $result = mysqli_query($conn, $query);
-                                  //, MYSQL_ASSOC
-                                  //_fetch_array($result,MYSQL_BOTH))
-                                  while($row=mysqli_fetch_assoc($result))
-
-                                  {
-                                      if($row['PatientID']==@$PatientID){echo "<option selected value='$row[PatientID]'>$row[FirstName]. ' '.$row[LastName] </option>"."<BR>";}
-                                      else{echo  "<option value='$row[PatientID]'>$row[FirstName]  $row[LastName]</option>";}
-
-                                      //echo "<option value='".$row['role_id']."'>".$row['name']."</option>";
-                                  }
-
-                                  ?>
-                         </select>
-                          </div>
-
-                      </div>
-
-
-                      <div class="form-group ">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Carer <span class="required">*</span></label>
-                          <div class="col-md-6 col-sm-6 col-xs-12">
-                              <!--<div class="col-md-6 col-xs-11">-->
-
-                              <select name="CarerID" id="CarerID" class="form-control m-bot15" onchange="reload(this.form)">
-                                  <!-- <select class="form-control" name="active" id="active">-->
-                                  <option value="">-- Select --</option>
-
-                                  <?php
-
-                                  $query = "SELECT CarerID, FirstName, LastName FROM `tblcarer`";
-                                  $conn=$db->getConnection();
-                                  $result = mysqli_query($conn, $query);
-                                  while($row=mysqli_fetch_assoc($result))
-
-                                  {
-                                      if($row['CarerID']==@$CarerID){echo "<option selected value='$row[CarerID]'>$row[FirstName]  $row[LastName] </option>"."<BR>";}
-                                      else{echo  "<option value='$row[CarerID]'>$row[FirstName]  $row[LastName]</option>";}
-
-                                      //echo "<option value='".$row['role_id']."'>".$row['name']."</option>";
-                                  }
-
-                                  ?>
                               </select>
+
                           </div>
 
+                      </div>
+
+                      <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Reason <em>if any </em>
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                              <textarea id="reason" class="form-control" name="reason" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Reason..."
+                                        data-parsley-validation-threshold="10">
+
+                                  <?php //if(isset($reason)) echo $reason; ?>
+                              </textarea>
+                          </div>
                       </div>
 
 
 
 
-
-                    <div class="ln_solid"></div>
+                      <div class="ln_solid"></div>
                     <div class="form-group">
                       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                         <button type="submit" class="btn btn-primary">Cancel</button>
-                        <button type="submit" name="assignShift" class="btn btn-success">Assign Shift</button>
+                        <button type="submit" name="update" class="btn btn-success">Update Holiday</button>
 
                       </div>
                     </div>
@@ -235,15 +227,25 @@ include_once('head.php');
           </div>
 
           <script type="text/javascript">
-            $(document).ready(function() {
-              $('#shiftDate').daterangepicker({
-                singleDatePicker: true,
-                calender_style: "picker_4"
-              }, function(start, end, label) {
-                console.log(start.toISOString(), end.toISOString(), label);
-              });
-            });
-          </script>
+                $(document).ready(function() {
+                    $('#fromDate').daterangepicker({
+                        singleDatePicker: true,
+                        calender_style: "picker_4"
+                    }, function(start, end, label) {
+                        console.log(start.toISOString(), end.toISOString(), label);
+                    });
+                });
+            </script>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $('#toDate').daterangepicker({
+                        singleDatePicker: true,
+                        calender_style: "picker_4"
+                    }, function(start, end, label) {
+                        console.log(start.toISOString(), end.toISOString(), label);
+                    });
+                });
+            </script>
 
 
 
@@ -473,100 +475,22 @@ include_once('head.php');
 
 
 
-  <script type="text/javascript">
-      $(document).ready(function()
-      {
-          $('#date').bootstrapMaterialDatePicker
-          ({
-              time: false,
-              clearButton: true
-          });
-
-          $('#fromtime').bootstrapMaterialDatePicker
-          ({
-              date: false,
-              shortTime: false,
-              format: 'HH:mm'
-          });
-
-          $('#totime').bootstrapMaterialDatePicker
-          ({
-              date: false,
-              shortTime: false,
-              format: 'HH:mm'
-          });
-//date-format
-          $('#date-format').bootstrapMaterialDatePicker
-          ({
-              format: 'dddd DD MMMM YYYY - HH:mm'
-          });
-          $('#date-format1').bootstrapMaterialDatePicker
-          ({
-              format: 'dddd DD MMMM YYYY - HH:mm'
-          });
-          $('#date-fr').bootstrapMaterialDatePicker
-          ({
-              format: 'DD/MM/YYYY HH:mm',
-              lang: 'fr',
-              weekStart: 1,
-              cancelText : 'ANNULER',
-              nowButton : true,
-              switchOnClick : true
-          });
-
-          $('#date-end').bootstrapMaterialDatePicker
-          ({
-              weekStart: 0, format: 'DD/MM/YYYY HH:mm'
-          });
-          $('#date-start').bootstrapMaterialDatePicker
-          ({
-              weekStart: 0, format: 'DD/MM/YYYY HH:mm', shortTime : true
-          }).on('change', function(e, date)
-          {
-              $('#date-end').bootstrapMaterialDatePicker('setMinDate', date);
-          });
-
-          $('#min-date').bootstrapMaterialDatePicker({ format : 'DD/MM/YYYY HH:mm', minDate : new Date() });
-
-          $.material.init()
-      });
-  </script>
 <!--Wickedpicker-->
 <script type="application/javascript">
-   function shiftDateDiff(){
-       var shiftD = document.getElementById("shiftDate").value;
-       var ftime = document.getElementById("fromtime").value;
-       var ttime = document.getElementById("totime").value;
-       var tFTime = shiftD.concat(" ", ftime);
-       var tTTime = shiftD.concat(" ", ttime);
-       //tFTime = shiftD + " " + ftime;
-       //tTTime = shiftDate + " " + ttime;
-       var dFromTime = new Date(tFTime);
-       var dToTime =  new Date(tTTime);
-       var fHours = dFromTime.getHours();
-       var fMinutes = dFromTime.getMinutes();
-       var tHours = dToTime.getHours();
-       var tMinutes = dToTime.getMinutes();
+   function holidayDiff(){
+       var fromdate = document.getElementById("fromDate").value;
+       var todate = document.getElementById("toDate").value;
+       var fDate = new Date(fromdate);
+       var tDate =  new Date(todate);
+       //var ffDate = fDate.getDate();
+       //var ttDate = tDate.getDate();
 
-       var convFHourToMin = fHours*60;
-       var convTHourToMin = tHours*60;
-
-       var fromHourAndFromMin = convFHourToMin+fMinutes;
-       var toHourAndToMin = convTHourToMin+tMinutes;
-       var allMinutes = Math.abs(fromHourAndFromMin - toHourAndToMin);
-
-       var finalHour = Math.floor(allMinutes/60);
-       var  finalMinutes = allMinutes%60;
-      var finalTime = finalHour.toString().concat(".",finalMinutes.toString());
+       var oneDay = 1000*24*60*60;
+       var days = Math.floor(Math.abs(fDate - tDate) / oneDay);
+       document.getElementById("NoOfHours").value = days;
+       return false;
 
 
-
-       //var oneHour = 1000*60*60;
-       //var vhours = Math.abs(fHours - tHours);
-   // oneHour;
-       //document.alert(dFromTime);
-       document.getElementById("NoOfHours").value = finalTime;
-        return false;
    }
 </script>
 

@@ -1,3 +1,4 @@
+<!-- top navigation -->
 <div class="top_nav">
 
     <div class="nav_menu">
@@ -9,6 +10,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="">
                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+
 
                         <?php
                         if(isset($_SESSION['imagepath'])){
@@ -26,17 +28,32 @@
                         <?php
                         if(isset($_SESSION['userfullname']))
                             echo $_SESSION['userfullname'];
-                        else
-                            echo 'Not Logged in';
+                       // else
+                            //header("location:login.php?r=".base64_encode('uac'));
                         ?>
+
+
+
 
 
                         <span class=" fa fa-angle-down"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
-                        <li><a href="javascript:;">  Profile</a>
-                        </li>
                         <li>
+                            <?php
+                            if($_SESSION['usertype'] == "admin"){
+                                ?>
+                            <a href="upload_photo.php">  Profile</a>
+                            <?php
+                            }
+                            elseif(isset($_SESSION['userid'])){
+                            ?>
+                                <a href="carer_upload_photo.php">Profile</a>
+                            <?php
+                            }
+                            ?>
+                        </li>
+                       <!-- <li>
                             <a href="javascript:;">
                                 <span class="badge bg-red pull-right">50%</span>
                                 <span>Settings</span>
@@ -44,13 +61,13 @@
                         </li>
                         <li>
                             <a href="javascript:;">Help</a>
-                        </li>
+                        </li>-->
                         <li><a href="logout.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
 
-                <li role="presentation" class="dropdown">
+               <!-- <li role="presentation" class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-envelope-o"></i>
                         <span class="badge bg-green">6</span>
@@ -114,8 +131,7 @@
                         </li>
                         <li>
                             <div class="text-center">
-                                <!--inbox.html-->
-                                <a href="#">
+                                <a>
                                     <strong>See All Alerts</strong>
                                     <i class="fa fa-angle-right"></i>
                                 </a>
@@ -123,9 +139,10 @@
                         </li>
                     </ul>
                 </li>
-
+-->
             </ul>
         </nav>
     </div>
 
 </div>
+<!-- /top navigation -->

@@ -8,30 +8,21 @@ if(!isset($_SESSION['AdminID'])){
     header("location:login.php?r=".base64_encode('uas'));
 }
 
-if(isset($_POST['assignShift']))
+if(isset($_POST['sendMailToAskForCover']))
 {
-    $msg = $adm->assignShift();
+    $msg = $adm->sendMailToAskForCover();
 }
 ?>
-<?php
 
-// First we execute our CommonClass code to connection to the database and start the session
-
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 
-<?php
-include_once('head.php');
-?>
 
 
 
-
-
+<?php require_once('head.php');?>
 
 <body class="nav-md">
 
@@ -70,7 +61,7 @@ include_once('head.php');
 
           <div class="page-title">
             <div class="title_left">
-              <h3>Assign Shift</h3>
+              <h3>Edit Carer</h3>
             </div>
 
           </div>
@@ -78,133 +69,33 @@ include_once('head.php');
           <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="x_panel">
-               <!-- <div class="x_title">
-                  <h2>Form Design <small>different form elements</small></h2>
-                  <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Settings 1</a>
-                        </li>
-                        <li><a href="#">Settings 2</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                  </ul>
-                  <div class="clearfix"></div>
-                </div>-->
+
                 <div class="x_content">
-
-
-
-
-
-
-
-
-
-
-
-
-                    <br />
+   <br />
 
                     <?php if(isset($msg)) echo $msg; ?>
-                  <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post">
+                  <form id="demo-form2" name="rostering" data-parsley-validate class="form-horizontal form-label-left" method="post">
 
-                     <!-- <input type="hidden" id="carerid" name="carerid"  maxlength="50" />
-                      </p>-->
-
-                      <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Shift Date <span class="required">*</span>
-                          </label>
-                          <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input id="shiftDate" name="shiftDate" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
-                          </div>
-                      </div>
-
-                      <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">From time <span class="required">*</span>
-                          </label>
-                          <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="fromtime" name="fromtime"  class="date-picker form-control col-md-7 col-xs-12" required="required" placeholder="">
-                             <!-- class="form-control floating-label" <input id="birthday" name="birthday" value="<?php /*echo $dateofbirth */?>" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">placeholder="Time"-->
-                          </div>
-                      </div>
-
-                      <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">To time <span class="required">*</span>
-                          </label>
-                          <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input onchange="shiftDateDiff();" type="text" id="totime" name="totime"  class="date-picker form-control col-md-7 col-xs-12" required="required" placeholder="">
-                              <!-- class="form-control floating-label" <input id="birthday" name="birthday" value="<?php /*echo $dateofbirth */?>" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">placeholder="Time"-->
-                          </div>
-                      </div>
-
-                      <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Number of Hours <span class="required">*</span>
-                          </label>
-                          <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input readonly id="NoOfHours"  name="NoOfHours" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
-                          </div>
-                      </div>
-
-
+                     <!-- <input type="hidden" id="patientid" name="patientid" value="<?php /*echo $patientid */?>" maxlength="50" />-->
                       <div class="form-group ">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Client <span class="required">*</span></label>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Schedule<span class="required">*</span></label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
                               <!--<div class="col-md-6 col-xs-11">-->
 
-                              <select name="PatientID" id="PatientID" class="form-control m-bot15" onchange="reload(this.form)">
-                                 <!-- <select class="form-control" name="active" id="active">-->
-                                  <option value="">-- Select --</option>
-
-                                  <?php
-
-                                  $query = "SELECT PatientID, FirstName, LastName FROM `tblpatient`";
-                                  $conn=$db->getConnection();
-                                  //$this->db->getConnection();
-                                  $result = mysqli_query($conn, $query);
-                                  //, MYSQL_ASSOC
-                                  //_fetch_array($result,MYSQL_BOTH))
-                                  while($row=mysqli_fetch_assoc($result))
-
-                                  {
-                                      if($row['PatientID']==@$PatientID){echo "<option selected value='$row[PatientID]'>$row[FirstName]. ' '.$row[LastName] </option>"."<BR>";}
-                                      else{echo  "<option value='$row[PatientID]'>$row[FirstName]  $row[LastName]</option>";}
-
-                                      //echo "<option value='".$row['role_id']."'>".$row['name']."</option>";
-                                  }
-
-                                  ?>
-                         </select>
-                          </div>
-
-                      </div>
-
-
-                      <div class="form-group ">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Carer <span class="required">*</span></label>
-                          <div class="col-md-6 col-sm-6 col-xs-12">
-                              <!--<div class="col-md-6 col-xs-11">-->
-
-                              <select name="CarerID" id="CarerID" class="form-control m-bot15" onchange="reload(this.form)">
+                              <select name="CarerRosterID" id="CarerRosterID" class="form-control m-bot15" onchange="getroster();">
                                   <!-- <select class="form-control" name="active" id="active">-->
                                   <option value="">-- Select --</option>
-
                                   <?php
-
-                                  $query = "SELECT CarerID, FirstName, LastName FROM `tblcarer`";
+                                  $query = "SELECT cr.CarerRosterID CarerRosterID, c.CarerID carerid, concat(c.firstname,' ', c.lastname) as carername, concat(pt.FirstName, ' ', pt.LastName) as patientname,
+cr.DateFrom DateFrom, cr.DateTo DateTo FROM tblcarer c, tblpatient pt, tblcarerroster cr where c.CarerID= cr.CarerID and cr.PatientID=pt.PatientID and
+Cancelled=0 and SubmittedOn is null";
                                   $conn=$db->getConnection();
                                   $result = mysqli_query($conn, $query);
                                   while($row=mysqli_fetch_assoc($result))
 
                                   {
-                                      if($row['CarerID']==@$CarerID){echo "<option selected value='$row[CarerID]'>$row[FirstName]  $row[LastName] </option>"."<BR>";}
-                                      else{echo  "<option value='$row[CarerID]'>$row[FirstName]  $row[LastName]</option>";}
+                                      if($row['CarerRosterID']==@CarerRosterID){echo "<option selected value='$row[CarerRosterID]'>[ $row[carername]] Assigned to  [ $row[patientname] ] between [ $row[DateFrom] ] and  [ $row[DateTo] ] </option>"."<BR>";}
+                                      else{echo  "<option selected value='$row[CarerRosterID]'>[ $row[carername] ] Assigned to  [ $row[patientname] ] between [ $row[DateFrom] ] and [ $row[DateTo] ] </option>";}
 
                                       //echo "<option value='".$row['role_id']."'>".$row['name']."</option>";
                                   }
@@ -215,6 +106,15 @@ include_once('head.php');
 
                       </div>
 
+                   <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Message <span class="required">*</span>
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                              <!-- <input onclick="getroster();" type="text" id="comments" class="form-control" name="comments" required />-->
+                              <textarea readonly  id="message" required="required" rows="6" class="form-control" name="message" text-align="left"></textarea>
+                          </div>
+                      </div>
+
 
 
 
@@ -223,7 +123,7 @@ include_once('head.php');
                     <div class="form-group">
                       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                         <button type="submit" class="btn btn-primary">Cancel</button>
-                        <button type="submit" name="assignShift" class="btn btn-success">Assign Shift</button>
+                        <button type="submit" name="sendMailToAskForCover" class="btn btn-success">Send mail to ask for cover</button>
 
                       </div>
                     </div>
@@ -236,7 +136,7 @@ include_once('head.php');
 
           <script type="text/javascript">
             $(document).ready(function() {
-              $('#shiftDate').daterangepicker({
+              $('#birthday').daterangepicker({
                 singleDatePicker: true,
                 calender_style: "picker_4"
               }, function(start, end, label) {
@@ -268,6 +168,8 @@ include_once('head.php');
     <div class="clearfix"></div>
     <div id="notif-group" class="tabbed_notifications"></div>
   </div>
+
+
 
   <script src="js/bootstrap.min.js"></script>
 
@@ -466,110 +368,20 @@ include_once('head.php');
       window.prettyPrint && prettyPrint();
     });
   </script>
-  <!-- /editor -->
-
-<!--Wickedpicker-->
-  <!-- jquery-1.11.3.min.js-->
-
-
-
   <script type="text/javascript">
-      $(document).ready(function()
-      {
-          $('#date').bootstrapMaterialDatePicker
-          ({
-              time: false,
-              clearButton: true
-          });
+      function getroster(){
+         var txtResult="";
+         var roster = document.getElementById("CarerRosterID");
+         var rosterValue = roster.options[roster.selectedIndex].text;
+         txtResult = txtResult.concat("We are looking for Cover for ", rosterValue.toString(), ", Please logon to your profile and show interest only if you are not occupied " +
+         " at this time. We will assign to the first person that replies. Thanks.");
+             //document.rostering.comments.value = txtResult;
+          document.getElementById("message").value =txtResult;
+          return false;
 
-          $('#fromtime').bootstrapMaterialDatePicker
-          ({
-              date: false,
-              shortTime: false,
-              format: 'HH:mm'
-          });
-
-          $('#totime').bootstrapMaterialDatePicker
-          ({
-              date: false,
-              shortTime: false,
-              format: 'HH:mm'
-          });
-//date-format
-          $('#date-format').bootstrapMaterialDatePicker
-          ({
-              format: 'dddd DD MMMM YYYY - HH:mm'
-          });
-          $('#date-format1').bootstrapMaterialDatePicker
-          ({
-              format: 'dddd DD MMMM YYYY - HH:mm'
-          });
-          $('#date-fr').bootstrapMaterialDatePicker
-          ({
-              format: 'DD/MM/YYYY HH:mm',
-              lang: 'fr',
-              weekStart: 1,
-              cancelText : 'ANNULER',
-              nowButton : true,
-              switchOnClick : true
-          });
-
-          $('#date-end').bootstrapMaterialDatePicker
-          ({
-              weekStart: 0, format: 'DD/MM/YYYY HH:mm'
-          });
-          $('#date-start').bootstrapMaterialDatePicker
-          ({
-              weekStart: 0, format: 'DD/MM/YYYY HH:mm', shortTime : true
-          }).on('change', function(e, date)
-          {
-              $('#date-end').bootstrapMaterialDatePicker('setMinDate', date);
-          });
-
-          $('#min-date').bootstrapMaterialDatePicker({ format : 'DD/MM/YYYY HH:mm', minDate : new Date() });
-
-          $.material.init()
-      });
-  </script>
-<!--Wickedpicker-->
-<script type="application/javascript">
-   function shiftDateDiff(){
-       var shiftD = document.getElementById("shiftDate").value;
-       var ftime = document.getElementById("fromtime").value;
-       var ttime = document.getElementById("totime").value;
-       var tFTime = shiftD.concat(" ", ftime);
-       var tTTime = shiftD.concat(" ", ttime);
-       //tFTime = shiftD + " " + ftime;
-       //tTTime = shiftDate + " " + ttime;
-       var dFromTime = new Date(tFTime);
-       var dToTime =  new Date(tTTime);
-       var fHours = dFromTime.getHours();
-       var fMinutes = dFromTime.getMinutes();
-       var tHours = dToTime.getHours();
-       var tMinutes = dToTime.getMinutes();
-
-       var convFHourToMin = fHours*60;
-       var convTHourToMin = tHours*60;
-
-       var fromHourAndFromMin = convFHourToMin+fMinutes;
-       var toHourAndToMin = convTHourToMin+tMinutes;
-       var allMinutes = Math.abs(fromHourAndFromMin - toHourAndToMin);
-
-       var finalHour = Math.floor(allMinutes/60);
-       var  finalMinutes = allMinutes%60;
-      var finalTime = finalHour.toString().concat(".",finalMinutes.toString());
-
-
-
-       //var oneHour = 1000*60*60;
-       //var vhours = Math.abs(fHours - tHours);
-   // oneHour;
-       //document.alert(dFromTime);
-       document.getElementById("NoOfHours").value = finalTime;
-        return false;
-   }
-</script>
-
+      }
+      </script>
+  <!-- /editor -->
 </body>
 
 </html>

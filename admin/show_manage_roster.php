@@ -3,14 +3,11 @@ require_once('CommonClass/common.php');
 require_once('CommonClass/ClassManager.php');
 $db = new DBConnections();
 $adm = new AdminClassController();
-
+$carerID = $_SESSION['userid'];
 $query = "
-        SELECT
-            carerid,
-            username,
-		firstname, lastname, address,phone,
-            emailaddress, active
-        FROM tblcarer ";
+        SELECT  c.carerid carerid, concat(c.firstname,' ', c.lastname) as carername, concat(pt.FirstName, ' ', pt.LastName) as patientname,
+        pt.PatientID patientid, cr.CarerRosterID, cr.DateFrom DateFrom, cr.DateTo DateTo FROM tblcarer c,
+        tblcarerroster cr, tblpatient pt where c.CarerID=cr.CarerID and pt.PatientID = cr.PatientID and c.CarerID='$carerID'";
 
 $res=mysqli_query($db->getConnection(), $query) or die(mysql_error());
 
@@ -34,16 +31,16 @@ $res=mysqli_query($db->getConnection(), $query) or die(mysql_error());
 
       <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
-            <?php require_once('nav_title.php'); ?>
+            <?php require_once('nav_title.php') ?>
 
             <!-- menu prile quick info -->
-            <?php require_once('menu_prile.php'); ?>
+            <?php require_once('menu_prile.php') ?>
             <!-- /menu prile quick info -->
 
           <br />
 
             <!-- sidebar menu -->
-            <?php require_once('sidebar_menu.php') ?>
+            <?php require_once('carer_side_menu.php') ?>
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
@@ -63,9 +60,9 @@ $res=mysqli_query($db->getConnection(), $query) or die(mysql_error());
       <div class="page-title">
           <div class="title_left">
               <h3>
-                  Carers
+                  Manager
                   <small>
-                      List of Carers to manage
+                      List of Carers to Roster
                   </small>
               </h3>
           </div>
@@ -107,28 +104,20 @@ $res=mysqli_query($db->getConnection(), $query) or die(mysql_error());
           </ul>
           <div class="clearfix"></div>
       </div>
-      <div class="x_content">
 
 
-
-
-
-
-
-      <table id="example" class="table table-striped responsive-utilities jambo_table">
-      <thead>
+          <div class="x_content">
+         <table id="example" class="table table-striped responsive-utilities jambo_table">
+      <thead><!-- table table-striped responsive-utilities jambo_table -->
       <tr class="headings">
           <th>
               <input type="checkbox" class="tableflat">
           </th>
-          <th>Username </th>
-          <th>Firstname </th>
-          <th>Lastname </th>
-          <th>Address </th>
-          <th>Phone </th>
-          <th>Email </th>
-          <th>Status </th>
-          <th class=" no-link last"><span class="nobr">Action</span>
+          <th>Carer Name </th>
+          <th>Patient Name </th>
+          <th>Date From </th>
+          <th>Date To </th>
+          <!--<th class=" no-link last"><span class="nobr">Action</span>-->
           </th>
       </tr>
       </thead>
@@ -144,28 +133,22 @@ $res=mysqli_query($db->getConnection(), $query) or die(mysql_error());
           ?>
           <tr class="even pointer">
               <td class="a-center "><input type="checkbox" class="tableflat"></td>
-              <td class=" "><?php echo htmlentities($row['username'], ENT_QUOTES, 'UTF-8'); ?></td>
-              <td class=" "><?php echo htmlentities($row['firstname'], ENT_QUOTES, 'UTF-8'); ?></td>
-              <td class=" "><?php echo htmlentities($row['lastname'], ENT_QUOTES, 'UTF-8'); ?></td>
-              <td class=" "><?php echo htmlentities($row['address'], ENT_QUOTES, 'UTF-8'); ?></td>
-              <td class=" "><?php echo htmlentities($row['phone'], ENT_QUOTES, 'UTF-8'); ?></td>
-              <td class=" "><?php echo htmlentities($row['emailaddress'], ENT_QUOTES, 'UTF-8'); ?></td>
-              <td class=" "><?php echo htmlentities($row['active'], ENT_QUOTES, 'UTF-8'); ?></td>
-              <td><a href=manage_existing_carer.php?carerid=<?php echo $row['carerid']; ?>> Edit</a></td>
+              <td class=" "><?php echo htmlentities($row['carername'], ENT_QUOTES, 'UTF-8'); ?></td>
+              <td class=" "><?php echo htmlentities($row['patientname'], ENT_QUOTES, 'UTF-8'); ?></td>
+              <td class=" "><?php echo htmlentities($row['DateFrom'], ENT_QUOTES, 'UTF-8'); ?></td>
+              <td class=" "><?php echo htmlentities($row['DateTo'], ENT_QUOTES, 'UTF-8'); ?></td>
+              <!--<td><a href=manage_existing_roster.php?CarerRosterID=<?php /*echo $row['CarerRosterID']; */?>> Edit</a></td>-->
           </tr>
           <?php }
           else{
               ?>
     <tr class="odd pointer">
         <td class="a-center "><input type="checkbox" class="tableflat"></td>
-        <td class=" "><?php echo htmlentities($row['username'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td class=" "><?php echo htmlentities($row['firstname'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td class=" "><?php echo htmlentities($row['lastname'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td class=" "><?php echo htmlentities($row['address'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td class=" "><?php echo htmlentities($row['phone'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td class=" "><?php echo htmlentities($row['emailaddress'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td class=" "><?php echo htmlentities($row['active'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td><a href=manage_existing_carer.php?carerid=<?php echo $row['carerid']; ?>> Edit</a></td>
+        <td class=" "><?php echo htmlentities($row['carername'], ENT_QUOTES, 'UTF-8'); ?></td>
+        <td class=" "><?php echo htmlentities($row['patientname'], ENT_QUOTES, 'UTF-8'); ?></td>
+        <td class=" "><?php echo htmlentities($row['DateFrom'], ENT_QUOTES, 'UTF-8'); ?></td>
+        <td class=" "><?php echo htmlentities($row['DateTo'], ENT_QUOTES, 'UTF-8'); ?></td>
+        <!--<td><a href=manage_existing_roster.php?CarerRosterID=<?php /*echo $row['CarerRosterID']; */?>> Edit</a></td>-->
     </tr>
           <?php
 

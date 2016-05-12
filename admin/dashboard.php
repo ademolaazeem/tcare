@@ -1,7 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php require_once('head.php'); ?>
+<?php
+require_once('CommonClass/common.php');
+require_once('CommonClass/ClassManager.php');
+$db = new DBConnections();
+$adm = new AdminClassController();
+//session_start();
+if(isset($_SESSION['AdminID']) == ''){
+   header("location:login.php?r=".base64_encode('uas'));
+}
+
+
+require_once('head.php'); ?>
 
 
 <body class="nav-md">
@@ -38,7 +49,7 @@
 
 
       <!-- page content -->
-     <?php require_once('page_main.php'); ?>
+     <?php include('page_main.php'); ?>
       <!-- /page content -->
 
     </div>
@@ -153,7 +164,7 @@
         },
         yaxis: {
           ticks: 8,
-          tickColor: "rgba(51, 51, 51, 0.06)",
+          tickColor: "rgba(51, 51, 51, 0.06)"
         },
         tooltip: false
       });

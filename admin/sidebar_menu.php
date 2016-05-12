@@ -20,7 +20,9 @@
                     </li>
                     <li><a href="show_manage_all_roster.php">View Roster List</a>
                     </li>
-                    <li><a href="form_validation.html">Manage Carer Holiday</a>
+                    <li><a href="show_manage_holiday.php">Manage Carer Holiday</a>
+                    </li>
+                    <li><a href="show_carer_timesheet.php">View Timesheet</a>
                     </li>
 
                 </ul>
@@ -34,23 +36,24 @@
                     </li>
                 </ul>
             </li>
-            <li><a><i class="fa fa-edit"></i> Cover <span class="fa fa-chevron-down"></span></a>
+           <li><a><i class="fa fa-edit"></i> Cover <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu" style="display: none">
-                    <li><a href="form.html">Ask for Cover</a>
+                    <li><a href="ask_for_cover.php">Ask for Cover</a>
                     </li>
-                    <li><a href="form_advanced.html">Assign Cover</a>
+                    <li><a href="assign_cover.php">Assign Cover</a>
                     </li>
                 </ul>
             </li>
 
             <li><a><i class="fa fa-edit"></i> Report <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu" style="display: none">
-                    <li><a href="form.html">Carer Schedule</a>
+                    <li><a href="assigned_carer_report.php">Carer Schedule Report</a>
                     </li>
-                    <li><a href="form_advanced.html">Granted Holidays</a>
-                    </li>
-                    <li><a href="form_advanced.html">Rejected Holidays</a>
-                    </li>
+                    <li><a href="holiday_report.php">Holidays Report</a></li>
+                    <li><a href="manager_report.php">Manager Report</a></li>
+                    <li><a href="carer_report.php">Carer Report</a></li>
+                    <li><a href="client_report.php">Client Report</a></li>
+
 
                 </ul>
             </li>

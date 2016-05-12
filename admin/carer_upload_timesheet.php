@@ -1,29 +1,34 @@
-﻿<?php
+﻿<?php //error_reporting(0);
 require_once('CommonClass/common.php');
 require_once('CommonClass/ClassManager.php');
 $db = new DBConnections();
 $adm = new AdminClassController();
 
-$query = "
-        SELECT
-            carerid,
-            username,
-		firstname, lastname, address,phone,
-            emailaddress, active
-        FROM tblcarer ";
+if(isset($_SESSION['userid'])==''){
+    session_start();
+    header("location:login.php?r=".base64_encode('uas'));
 
-$res=mysqli_query($db->getConnection(), $query) or die(mysql_error());
-
+}
+//echo $_SESSION['userid'];
+if(isset($_POST['uploadTimeSheet']))
+{
+    $msg = $adm->upload("documents",$_POST['carerid'], $_POST['sheetDate']);
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
 
 
+<?php
+require_once('head.php');
+?>
 
 
 
-<?php require_once('head.php');?>
+
+
 
 <body class="nav-md">
 
@@ -34,16 +39,16 @@ $res=mysqli_query($db->getConnection(), $query) or die(mysql_error());
 
       <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
-            <?php require_once('nav_title.php'); ?>
+            <?php require_once('nav_title.php') ?>
 
             <!-- menu prile quick info -->
-            <?php require_once('menu_prile.php'); ?>
+            <?php require_once('menu_prile.php') ?>
             <!-- /menu prile quick info -->
 
           <br />
 
             <!-- sidebar menu -->
-            <?php require_once('sidebar_menu.php') ?>
+            <?php require_once('carer_side_menu.php') ?>
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
@@ -57,144 +62,141 @@ $res=mysqli_query($db->getConnection(), $query) or die(mysql_error());
       <!-- /top navigation -->
 
       <!-- page content -->
-      <!-- page content -->
       <div class="right_col" role="main">
-      <div class="">
-      <div class="page-title">
-          <div class="title_left">
-              <h3>
-                  Carers
-                  <small>
-                      List of Carers to manage
-                  </small>
-              </h3>
+        <div class="">
+
+          <div class="page-title">
+            <div class="title_left">
+              <h3>Upload Document</h3>
+            </div>
+
+          </div>
+          <div class="clearfix"></div>
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="x_panel">
+
+                <div class="x_content">
+
+     <br />
+
+                    <?php if(isset($msg)) echo $msg; ?>
+                  <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="post" enctype="multipart/form-data">
+
+                      <?php
+                      $carerid = $_SESSION['userid'];
+
+                      ?>
+
+                      <input type="hidden" name="carerid" id="carerid" value="<?php echo $carerid; ?>"/>
+
+                      <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Sheet Date <span class="required">*</span>
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input id="sheetDate" name="sheetDate" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                          </div>
+                      </div>
+
+
+                      <div class="form-group last">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Timesheet Upload</label>
+                              <div class="col-md-9">
+                                  <div class="fileupload fileupload-new" data-provides="fileupload">
+                                      <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                                          <?php
+                                          if(isset($_POST['carerid']))
+                                          {
+                                              if(isset($_SESSION['document']))
+                                              {
+                                                  $source=$_SESSION['document'];
+                                              }
+                                              else
+                                                  $source='http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image';
+                                          }
+                                          else
+                                              $source='http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image';
+                                          /*echo isset($_POST['user_id']) ? $_SESSION['image'] : 'http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image';*/
+                                          ?>
+                                          <img src="<?php echo $source; ?>" alt="" />
+                                          <!--src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image"-->
+                                      </div>
+
+
+
+                                      <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                      <div>
+                                                   <span class="btn btn-white btn-file">
+                                                   <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image/document</span>
+                                                   <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>
+                                                   <input type="file" class="default" name="file" id="file" />
+                                                   </span>
+                                          <a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a>
+                                      </div>
+                                  </div>
+                                  <span class="label label-danger">NOTE!</span>
+                                             <span>
+                                             Attached image thumbnail is
+                                             supported in Latest Firefox, Chrome, Opera,
+                                             Safari and Internet Explorer 10 only
+                                             </span>
+                              </div>
+                          </div>
+
+
+
+
+
+
+                          <div class="ln_solid"></div>
+                    <div class="form-group">
+                      <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <button type="submit" class="btn btn-primary">Cancel</button>
+                        <button type="submit" id="uploadTimeSheet" name="uploadTimeSheet" class="btn btn-success">Upload Timesheet</button>
+
+                      </div>
+                    </div>
+
+                  </form>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <!--<div class="title_right">
-              <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Search for...">
-                  <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Go!</button>
-                        </span>
-                  </div>
-              </div>
-          </div>-->
-      </div>
-      <div class="clearfix"></div>
-
-      <div class="row">
-
-
-      <div class="col-md-12 col-sm-12 col-xs-12">
-      <div class="x_panel">
-      <div class="x_title">
-          <h2>Administrator's <small>management page</small></h2>
-          <ul class="nav navbar-right panel_toolbox">
-              <li><a href="#"><i class="fa fa-chevron-up"></i></a>
-              </li>
-              <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                  <ul class="dropdown-menu" role="menu">
-                      <li><a href="#">Settings 1</a>
-                      </li>
-                      <li><a href="#">Settings 2</a>
-                      </li>
-                  </ul>
-              </li>
-              <li><a href="#"><i class="fa fa-close"></i></a>
-              </li>
-          </ul>
-          <div class="clearfix"></div>
-      </div>
-      <div class="x_content">
+          <script type="text/javascript">
+                $(document).ready(function() {
+                    $('#fromDate').daterangepicker({
+                        singleDatePicker: true,
+                        calender_style: "picker_4"
+                    }, function(start, end, label) {
+                        console.log(start.toISOString(), end.toISOString(), label);
+                    });
+                });
+            </script>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $('#toDate').daterangepicker({
+                        singleDatePicker: true,
+                        calender_style: "picker_4"
+                    }, function(start, end, label) {
+                        console.log(start.toISOString(), end.toISOString(), label);
+                    });
+                });
+            </script>
 
 
 
 
 
 
+        </div>
+        <!-- /page content -->
 
-      <table id="example" class="table table-striped responsive-utilities jambo_table">
-      <thead>
-      <tr class="headings">
-          <th>
-              <input type="checkbox" class="tableflat">
-          </th>
-          <th>Username </th>
-          <th>Firstname </th>
-          <th>Lastname </th>
-          <th>Address </th>
-          <th>Phone </th>
-          <th>Email </th>
-          <th>Status </th>
-          <th class=" no-link last"><span class="nobr">Action</span>
-          </th>
-      </tr>
-      </thead>
-
-      <tbody>
-    <?php $count = 1;?>
-      <?php
-
-      while($row =mysqli_fetch_array($res, MYSQLI_ASSOC))
-      {
-       if($count%2 == 0)
-          {
-          ?>
-          <tr class="even pointer">
-              <td class="a-center "><input type="checkbox" class="tableflat"></td>
-              <td class=" "><?php echo htmlentities($row['username'], ENT_QUOTES, 'UTF-8'); ?></td>
-              <td class=" "><?php echo htmlentities($row['firstname'], ENT_QUOTES, 'UTF-8'); ?></td>
-              <td class=" "><?php echo htmlentities($row['lastname'], ENT_QUOTES, 'UTF-8'); ?></td>
-              <td class=" "><?php echo htmlentities($row['address'], ENT_QUOTES, 'UTF-8'); ?></td>
-              <td class=" "><?php echo htmlentities($row['phone'], ENT_QUOTES, 'UTF-8'); ?></td>
-              <td class=" "><?php echo htmlentities($row['emailaddress'], ENT_QUOTES, 'UTF-8'); ?></td>
-              <td class=" "><?php echo htmlentities($row['active'], ENT_QUOTES, 'UTF-8'); ?></td>
-              <td><a href=manage_existing_carer.php?carerid=<?php echo $row['carerid']; ?>> Edit</a></td>
-          </tr>
-          <?php }
-          else{
-              ?>
-    <tr class="odd pointer">
-        <td class="a-center "><input type="checkbox" class="tableflat"></td>
-        <td class=" "><?php echo htmlentities($row['username'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td class=" "><?php echo htmlentities($row['firstname'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td class=" "><?php echo htmlentities($row['lastname'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td class=" "><?php echo htmlentities($row['address'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td class=" "><?php echo htmlentities($row['phone'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td class=" "><?php echo htmlentities($row['emailaddress'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td class=" "><?php echo htmlentities($row['active'], ENT_QUOTES, 'UTF-8'); ?></td>
-        <td><a href=manage_existing_carer.php?carerid=<?php echo $row['carerid']; ?>> Edit</a></td>
-    </tr>
-          <?php
-
-          }
-       $count++;
-      }
-      //endforeach;
-      ?>
-
-    </tbody>
-
-      </table>
-      </div>
-      </div>
-      </div>
-
-      <br />
-      <br />
-      <br />
+        <!-- footer content -->
+      <?php require_once('footer.php'); ?>
+        <!-- /footer content -->
 
       </div>
-      </div>
-      <!-- footer content -->
-       <?php require_once('footer.php'); ?>
-      <!-- /footer content -->
-
-
-      </div>
-      <!-- /page content -->
 
     </div>
   </div>
@@ -404,6 +406,20 @@ $res=mysqli_query($db->getConnection(), $query) or die(mysql_error());
     });
   </script>
   <!-- /editor -->
+
+<!--Wickedpicker-->
+  <script type="text/javascript">
+      $(document).ready(function() {
+          $('#sheetDate').daterangepicker({
+              singleDatePicker: true,
+              calender_style: "picker_4"
+          }, function(start, end, label) {
+              console.log(start.toISOString(), end.toISOString(), label);
+          });
+      });
+  </script>
+
+
 </body>
 
 </html>

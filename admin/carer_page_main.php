@@ -1,20 +1,16 @@
 <?php
-/*require_once('CommonClass/common.php');
-require_once('CommonClass/ClassManager.php');
-$db = new DBConnections();
-$adm = new AdminClassController();*/
-$careQuery = "SELECT  * FROM tblcarer";
-$clientQuery = "SELECT  * FROM tblpatient";
-$holBkQuery = "Select * from tblcarerholiday where status='BOOKED'";
-$holApQuery = "Select * from tblcarerholiday where status='APPROVED'";
-$schedQuery = "Select * from tblcarerroster";
-$admQuery = "Select * from tbladmin";
-$carerCount = $db->getNumOfRows($careQuery);
-$clientCount = $db->getNumOfRows($clientQuery);
+$feQuery = "SELECT  * FROM tblpatient pt, tblcarerroster cr, tblcarer c where UPPER(pt.Sex)='FEMALE' and pt.PatientID=cr.PatientID and cr.CarerID=c.CarerID and c.CarerID=".$_SESSION['userid']."";
+$mQuery = "SELECT  * FROM tblpatient pt, tblcarerroster cr, tblcarer c where UPPER(pt.Sex)='MALE' and pt.PatientID=cr.PatientID and cr.CarerID=c.CarerID and c.CarerID=".$_SESSION['userid']."";
+$holBkQuery = "Select * from tblcarerholiday where CarerID=".$_SESSION['userid']."";
+$holApQuery = "Select * from tblcarerholiday where status='APPROVED' and CarerID=".$_SESSION['userid']."";
+$schedQuery = "Select * from tblcarerroster where CarerID=".$_SESSION['userid']."";
+
+$feCount = $db->getNumOfRows($feQuery);
+$mCount = $db->getNumOfRows($mQuery);
 $holBkCount = $db->getNumOfRows($holBkQuery);
 $holApCount = $db->getNumOfRows($holApQuery);
 $schedCount = $db->getNumOfRows($schedQuery);
-$admCount = $db->getNumOfRows($admQuery);
+
 
 ?>
 <div class="right_col" role="main">
@@ -24,49 +20,41 @@ $admCount = $db->getNumOfRows($admQuery);
     <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
         <div class="left"></div>
         <div class="right">
-            <span class="count_top"><i class="fa fa-user"></i> Total Managers</span>
-            <div class="count"><?php echo $admCount;?></div>
+            <span class="count_top"><i class="fa fa-user"></i>Female Client Served</span>
+            <div class="count"><?php echo $feCount;?></div>
            <!-- <span class="count_bottom"><i class="green">4% </i> From last Week</span>-->
         </div>
     </div>
     <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
         <div class="left"></div>
         <div class="right">
-            <span class="count_top"><i class="fa fa-user"></i>Total Carers    </span>
-            <div class="count"><?php echo  $carerCount; ?></div>
+            <span class="count_top"><i class="fa fa-user"></i>Male Clients Served </span>
+            <div class="count"><?php echo  $mCount; ?></div>
             <!--<span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>-->
         </div>
     </div>
     <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
         <div class="left"></div>
         <div class="right">
-            <span class="count_top"><i class="fa fa-clock-o"></i> Total Clients Served</span>
-            <div class="count"><?php echo $clientCount;?></div>
+            <span class="count_top"><i class="fa fa-clock-o"></i> Holidays involved in</span>
+            <div class="count"><?php echo $holBkCount;?></div>
             <!--<span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>-->
         </div>
     </div>
     <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
         <div class="left"></div>
         <div class="right">
-            <span class="count_top"><i class="fa fa-user"></i> Total Booked Holiday</span>
-            <div class="count green"><?php echo $holBkCount; ?></div>
+            <span class="count_top"><i class="fa fa-user"></i>Clients Assigned to</span>
+            <div class="count green"><?php echo $schedCount; ?></div>
             <!--<span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>-->
         </div>
     </div>
     <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
         <div class="left"></div>
         <div class="right">
-            <span class="count_top"><i class="fa fa-user"></i> Total Approved Holiday</span>
+            <span class="count_top"><i class="fa fa-user"></i> Approved Holiday</span>
             <div class="count"><?php echo $holApCount; ?></div>
             <!--<span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>-->
-        </div>
-    </div>
-    <div class="animated flipInY col-md-2 col-sm-4 col-xs-4 tile_stats_count">
-        <div class="left"></div>
-        <div class="right">
-            <span class="count_top"><i class="fa fa-user"></i>Total Schedules</span>
-            <div class="count"><?php echo  $schedCount; ?></div>
-           <!-- <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>-->
         </div>
     </div>
 
