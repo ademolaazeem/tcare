@@ -1,6 +1,6 @@
 ﻿<?php //error_reporting(0);
-require_once('CommonClass/common.php');
-require_once('CommonClass/ClassManager.php');
+include_once('CommonClass/common.php');
+include_once('CommonClass/ClassManager.php');
 $db = new DBConnections();
 $adm = new AdminClassController();
 
@@ -42,26 +42,26 @@ include_once('head.php');
 
       <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
-            <?php require_once('nav_title.php') ?>
+            <?php include_once('nav_title.php') ?>
 
             <!-- menu prile quick info -->
-            <?php require_once('menu_prile.php') ?>
+            <?php include_once('menu_prile.php') ?>
             <!-- /menu prile quick info -->
 
           <br />
 
             <!-- sidebar menu -->
-            <?php require_once('sidebar_menu.php') ?>
+            <?php include_once('sidebar_menu.php') ?>
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
-            <?php require_once('footer_buttons.php'); ?>
+            <?php include_once('footer_buttons.php'); ?>
             <!-- /menu footer buttons -->
         </div>
       </div>
 
       <!-- top navigation -->
-      <?php require_once('top_nav.php'); ?>
+      <?php include_once('top_nav.php'); ?>
       <!-- /top navigation -->
 
       <!-- page content -->
@@ -119,42 +119,42 @@ include_once('head.php');
                       </p>-->
 
                       <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Shift Date <span class="required">*</span>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Shift Date <span class="included">*</span>
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input id="shiftDate" name="shiftDate" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                              <input id="shiftDate" name="shiftDate" class="date-picker form-control col-md-7 col-xs-12" included="included" type="text">
                           </div>
                       </div>
 
                       <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">From time <span class="required">*</span>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">From time <span class="included">*</span>
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text" id="fromtime" name="fromtime"  class="date-picker form-control col-md-7 col-xs-12" required="required" placeholder="">
-                             <!-- class="form-control floating-label" <input id="birthday" name="birthday" value="<?php /*echo $dateofbirth */?>" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">placeholder="Time"-->
+                              <input type="text" id="fromtime" name="fromtime"  class="date-picker form-control col-md-7 col-xs-12" included="included" placeholder="">
+                             <!-- class="form-control floating-label" <input id="birthday" name="birthday" value="<?php /*echo $dateofbirth */?>" class="date-picker form-control col-md-7 col-xs-12" included="included" type="text">placeholder="Time"-->
                           </div>
                       </div>
 
                       <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">To time <span class="required">*</span>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">To time <span class="included">*</span>
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input onchange="shiftDateDiff();" type="text" id="totime" name="totime"  class="date-picker form-control col-md-7 col-xs-12" required="required" placeholder="">
-                              <!-- class="form-control floating-label" <input id="birthday" name="birthday" value="<?php /*echo $dateofbirth */?>" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">placeholder="Time"-->
+                              <input onchange="shiftDateDiff();" type="text" id="totime" name="totime"  class="date-picker form-control col-md-7 col-xs-12" included="included" placeholder="">
+                              <!-- class="form-control floating-label" <input id="birthday" name="birthday" value="<?php /*echo $dateofbirth */?>" class="date-picker form-control col-md-7 col-xs-12" included="included" type="text">placeholder="Time"-->
                           </div>
                       </div>
 
                       <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Number of Hours <span class="required">*</span>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Number of Hours <span class="included">*</span>
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input readonly id="NoOfHours"  name="NoOfHours" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                              <input readonly id="NoOfHours"  name="NoOfHours" class="date-picker form-control col-md-7 col-xs-12" included="included" type="text">
                           </div>
                       </div>
 
 
                       <div class="form-group ">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Client <span class="required">*</span></label>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Client <span class="included">*</span></label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
                               <!--<div class="col-md-6 col-xs-11">-->
 
@@ -187,7 +187,7 @@ include_once('head.php');
 
 
                       <div class="form-group ">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Carer <span class="required">*</span></label>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Carer <span class="included">*</span></label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
                               <!--<div class="col-md-6 col-xs-11">-->
 
@@ -254,7 +254,7 @@ include_once('head.php');
         <!-- /page content -->
 
         <!-- footer content -->
-      <?php require_once('footer.php'); ?>
+      <?php include_once('footer.php'); ?>
         <!-- /footer content -->
 
       </div>

@@ -287,89 +287,21 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-4">
-						<div class= "appointment">
-							
-		                    <div class="header text-center">
-		                        <h2>Make an Appointment</h2>
-		                       	<a href="#" class="number">
-		                       		<i class="fa fa-phone fa-fw"></i>
-									1-800-123-4567
-		                       	</a>
-		                        <span class="or">OR</span>
-		                    </div>
-
-							<!-- form of appointment -->
-							<div class="row">
-								<form method="post" action="#">
-									<div class= "form">
-										<div class="input-group margin-bottom-sm col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-										 	<input class="form-control" type="text" placeholder="Full Name *" required>
-										</div>
-										<div class="input-group margin-bottom-sm col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-										 	<input class="form-control" type="text" placeholder="Email Address *" required>
-										</div>
-										<div class="input-group margin-bottom-sm col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-										 	<input class="form-control" type="text" placeholder="Appointment Date *" required>
-										</div>
-										<div class="input-group margin-bottom-sm col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-										 	<input class="form-control" type="text" placeholder="Mobile Number *" required>
-										</div>
-									</div>
-									<div class="input-group margin-bottom-sm col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-										<textarea class="form-control" rows="6" placeholder="Your Problem *" required></textarea>
-									</div>
-									<div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
-										<div class="captcha-container">
-		                                    <label>Are you human? </label><br/>
-		                                    <img src="http://inspirythemesdemo.com/healthpress/wp-content/themes/healthpress-theme/captcha/captcha.php" alt="">
-		                                    <input type="text" class="captcha required" name="captcha" maxlength="5" title=" Please enter the code characters displayed in image!">
-		                                </div>
-										<input class="btn btn-primary send" type="submit" value="Send">
-									</div>
-								</form>
-							</div>
-							<!-- end of form -->
-						</div><!-- end of appointment-->
-					</div>
-				</div>
+					
 			</div>
 		</section>
 
 
 		<section id="footer">
 			<div class="container">
-				<div class="row">
-					<div class="col-md-6 col-md-offset-3">
-						<ul class="text-center contact">
-				        	<li class= "socials-icons">
-								<a href="#" data-toggle="tooltip" title="Share in Facebook" class="facebook"><i class="fa fa-facebook"></i></a>
-							</li>
-							<li class= "socials-icons">
-								<a href="#" data-toggle="tooltip" title="Share in Twitter" class="twitter"><i class="fa fa-twitter"></i></a>
-							</li>
-							<li class= "socials-icons">
-								<a href="#" data-toggle="tooltip" title="Share in Google +" class="google-plus"><i class="fa fa-google-plus"></i></a>
-							</li>
-							<li class= "socials-icons">
-								<a href="#" data-toggle="tooltip" title="Share in Instagram" class="instagram"><i class="fa fa-instagram"></i></a>
-							</li>
-							<li class= "socials-icons">
-								<a href="#" data-toggle="tooltip" title="Share in Pinterest" class="pinterest"><i class="fa fa-pinterest"></i></a>
-							</li>
-							<li class= "socials-icons">
-								<a href="#" data-toggle="tooltip" title="Connect with Skype" class="skype"><i class="fa fa-skype"></i></a>
-							</li>
-				      	</ul>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<div class="copy-right-text text-center">
-							&copy; Copyright 2014, Your Website Link. Theme by <a href="https://themewagon.com/">ThemeWagon</a>
-						</div>
-					</div>
-				</div>
+			
+				<section id="footer">
+			<div class="container">
+				
+			
+                <?php include('footer.php'); ?>
+			</div>
+		</section>
 			</div>
 		</section>
 		<script type="text/javascript" src="assets/js/jquery.min.js"></script>

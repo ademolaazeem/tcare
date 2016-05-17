@@ -1,6 +1,6 @@
 <?php
 session_start();
-//require_once('CommonClass/audit.php');
+//include_once('CommonClass/audit.php');
 //$audit = new AuditLog();
 //$audit->audit_log("User ".$_SESSION['userfullname']." Successfully logged out");
 unset($_SESSION['userfullname']);

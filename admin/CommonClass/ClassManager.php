@@ -1,8 +1,8 @@
 <?php
         //error_reporting(0);
-		require_once("Common.php");
-		require_once('audit.php');
-		require_once('format.php');
+		include_once("Common.php");
+		include_once('audit.php');
+		include_once('format.php');
 		
 class AdminClassController
 {
@@ -90,6 +90,112 @@ class AdminClassController
 
 		}
 	}
+public function resetPassword(){
+	$userType	= $this->fm->processfield($_POST['userType']);
+	$email = $this->fm->processfield($_POST['email']);
+	
+	if (empty($email) || empty($userType)) {
+        $msg = '<div class="alert alert-block alert-danger fade in">
+               <button data-dismiss="alert" class="close close-sm" type="button">
+                 <i class="fa fa-times"></i>
+               </button>
+               <strong>Oops!</strong> Please make sure all the included fields are filled!
+             </div>';
+            return $msg;
+	}
+	if($userType == "admin"){
+	$q = "select EmailAddress from tbladmin where EmailAddress='" . $email . "'";	
+	}
+	else if($userType == "carer"){
+		$q = "select EmailAddress from tblcarer where EmailAddress='" . $email . "'";
+	}
+    
+    //$r = mysql_query($q);
+    //$n = mysql_num_rows($r);
+	$n = $this->db->getNumOfRows($q);
+	if ($n == 0) {
+        $msg = '<div class="alert alert-block alert-danger fade in">
+               <button data-dismiss="alert" class="close close-sm" type="button">
+                 <i class="fa fa-times"></i>
+               </button>
+               <strong>Oops!</strong> Please provide a registered email, we do not have a record of this email provided!
+             </div>';
+            return $msg;
+    }//End wrong email
+    else if($n>=1){
+    $token = $this->getRandomString(10);
+      //  echo "I got here and token is:".$token;
+    $q = "insert into tokens (token,email) values ('" . $token . "','" . $email . "')";
+    //mysql_query($q);
+	 $res = $this->db->executeQuery($q);
+     if (isset($email)){ 
+		 $msg=$this->mailresetlink($email, $token, $userType);
+		 return $msg;
+	 }
+    }
+  
+}//end forgotPassword
+
+
+function getRandomString($length)
+    {
+        $validCharacters = "ABCDEFGHIJKLMNPQRSTUXYVWZ1234567890";
+        $validCharNumber = strlen($validCharacters);
+        $result = "";
+
+        for ($i = 0; $i < $length; $i++) {
+            $index = mt_rand(0, $validCharNumber - 1);
+            $result .= $validCharacters[$index];
+        }
+        return $result;
+    }//End getRandomString
+
+    function mailresetlink($to, $token, $userType)
+    {
+
+        $subject = "TCare Plus Password recovery System";
+        $uri = 'http://' . $_SERVER['HTTP_HOST'];
+        $message = '
+<html>
+<head>
+<title>TCare Plus Password recovery System</title>
+</head>
+<body>
+<p><em>Dear '.$to.',</em> <br/>
+Thank you for using TCare Plus Carer Scheduling System.<br/>
+Your email address has being successfully verified. You will now be included to specify your desired password in order for you to complete the password reset exercise.
+<br/><br/>
+Please click on the following link to reset your password <em><a href="' . $uri . '/admin/reset.php?token=' . $token . '&type='.$userType.'">Reset Password</a></em> or copy and paste <em><a href="' . $uri . '/admin/reset.php?token=' . $token . '&type='.$userType.'">'.$uri . '/reset.php?token=' . $token .'&type='.$userType.'</a></em>  into your browser
+<br/><br/>Thank you</p>
+
+</body>
+</html>
+';
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=iso-8859-1" . "\r\n";
+        $headers .= 'From: TCare Plus Homecare  <ccomputingpractical@gmail.com>' . "\r\n";
+        $headers .= 'Cc: diamonddemola@yahoo.co.uk' . "\r\n";
+
+        //ini_set("SMTP","mail.example.com");
+        ini_set("SMTP","localhost");
+        // Please specify an SMTP Number 25 and 8889 are valid SMTP Ports.
+        ini_set("smtp_port","25");
+        // Please specify the return address to use
+        ini_set('sendmail_from', 'ccomputingpractical@gmail.com');
+        if (mail($to, $subject, $message, $headers)) {
+            return '<h1>YOU ARE NOT DONE YET – Email Verification included!</h1>
+<br/>An email has been sent to  <em><strong>' . $to . '</strong></em>.<br/>Ensure you check your spam folder should you not find the email in your inbox.
+ Please click on the link in this e-mail to gain access to your password reset page.
+<br/><br/>
+If after 20 minutes you don’t receive this e-mail, check your spam folder before contacting our support team for assistance.
+<br/><br/>
+
+Thank You';
+        }
+}//End mailresetlink
+
+
+
 
     public function addCarer()
     {
@@ -115,7 +221,7 @@ class AdminClassController
                <button data-dismiss="alert" class="close close-sm" type="button">
                  <i class="fa fa-times"></i>
                </button>
-               <strong>Oops!</strong> Please make sure all the required fields are filled!
+               <strong>Oops!</strong> Please make sure all the included fields are filled!
              </div>';
             return $msgC;
         }
@@ -222,7 +328,7 @@ class AdminClassController
                <button data-dismiss="alert" class="close close-sm" type="button">
                  <i class="fa fa-times"></i>
                </button>
-               <strong>Oops!</strong> Please make sure all the required fields are filled!
+               <strong>Oops!</strong> Please make sure all the included fields are filled!
              </div>';
             return $msg;
         }
@@ -281,7 +387,7 @@ class AdminClassController
                <button data-dismiss="alert" class="close close-sm" type="button">
                  <i class="fa fa-times"></i>
                </button>
-               <strong>Oops!</strong> Please make sure all the required fields are filled!
+               <strong>Oops!</strong> Please make sure all the included fields are filled!
              </div>';
             return $msg;
         }
@@ -344,7 +450,7 @@ class AdminClassController
                <button data-dismiss="alert" class="close close-sm" type="button">
                  <i class="fa fa-times"></i>
                </button>
-               <strong>Oops!</strong> Please make sure all the required fields are filled!
+               <strong>Oops!</strong> Please make sure all the included fields are filled!
              </div>';
             return $msg;
         }
@@ -542,7 +648,7 @@ class AdminClassController
                <button data-dismiss="alert" class="close close-sm" type="button">
                  <i class="fa fa-times"></i>
                </button>
-               <strong>Oops!</strong> Please make sure all the required fields are filled!
+               <strong>Oops!</strong> Please make sure all the included fields are filled!
              </div>';
             return $msg;
         }
@@ -825,7 +931,7 @@ public function addPermissionSetup()
                <button data-dismiss="alert" class="close close-sm" type="button">
                  <i class="fa fa-times"></i>
                </button>
-               <strong>Oops!</strong> Please make sure all required fields are completed!
+               <strong>Oops!</strong> Please make sure all included fields are completed!
              </div>';
             return $msg;
         }
@@ -906,7 +1012,7 @@ public function addPermissionSetup()
                <button data-dismiss="alert" class="close close-sm" type="button">
                  <i class="fa fa-times"></i>
                </button>
-               <strong>Oops!</strong> Please make sure all required fields are completed!
+               <strong>Oops!</strong> Please make sure all included fields are completed!
              </div>';
             return $msg;
         }
@@ -982,7 +1088,7 @@ public function addPermissionSetup()
                <button data-dismiss="alert" class="close close-sm" type="button">
                  <i class="fa fa-times"></i>
                </button>
-               <strong>Oops!</strong> Please make sure all required fields are completed!
+               <strong>Oops!</strong> Please make sure all included fields are completed!
              </div>';
             return $msg;
         }
@@ -1037,7 +1143,7 @@ public function addPermissionSetup()
                <button data-dismiss="alert" class="close close-sm" type="button">
                  <i class="fa fa-times"></i>
                </button>
-               <strong>Oops!</strong> Please make sure all required fields are completed!
+               <strong>Oops!</strong> Please make sure all included fields are completed!
              </div>';
             return $msg;
         }
@@ -1221,7 +1327,7 @@ public function addPermissionSetup()
                <button data-dismiss="alert" class="close close-sm" type="button">
                  <i class="fa fa-times"></i>
                </button>
-               <strong>Oops!</strong> Please make sure all required fields are completed!
+               <strong>Oops!</strong> Please make sure all included fields are completed!
              </div>';
             return $msg;
         }
@@ -1351,7 +1457,7 @@ visit_purpose='$visit_purpose', car_reg_number='$reg_number',car_model='$model',
                <button data-dismiss="alert" class="close close-sm" type="button">
                  <i class="fa fa-times"></i>
                </button>
-               <strong>Oops!</strong> Please make sure all required fields are completed!
+               <strong>Oops!</strong> Please make sure all included fields are completed!
              </div>';
             return $msg;
         }
@@ -1468,7 +1574,7 @@ price_paid='$totalPrice', attended_to_by='$userInAttendance', updated_date='".da
                <button data-dismiss="alert" class="close close-sm" type="button">
                  <i class="fa fa-times"></i>
                </button>
-               <strong>Oops!</strong> Please make sure all required fields are completed!
+               <strong>Oops!</strong> Please make sure all included fields are completed!
              </div>';
             return $msg;
         }
@@ -1583,7 +1689,7 @@ price_paid='$totalPrice', attended_to_by='$userInAttendance', updated_date='".da
                <button data-dismiss="alert" class="close close-sm" type="button">
                  <i class="fa fa-times"></i>
                </button>
-               <strong>Oops!</strong> Please make sure all required fields are completed!
+               <strong>Oops!</strong> Please make sure all included fields are completed!
              </div>';
             return $msg;
         }

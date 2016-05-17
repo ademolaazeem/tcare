@@ -1,6 +1,6 @@
 ﻿<?php //error_reporting(0);
-require_once('CommonClass/common.php');
-require_once('CommonClass/ClassManager.php');
+include_once('CommonClass/common.php');
+include_once('CommonClass/ClassManager.php');
 $db = new DBConnections();
 $adm = new AdminClassController();
 if(!isset($_SESSION['AdminID'])){
@@ -106,26 +106,26 @@ if(isset($_POST['addClient']))
 
       <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
-            <?php require_once('nav_title.php') ?>
+            <?php include_once('nav_title.php') ?>
 
             <!-- menu prile quick info -->
-            <?php require_once('menu_prile.php') ?>
+            <?php include_once('menu_prile.php') ?>
             <!-- /menu prile quick info -->
 
           <br />
 
             <!-- sidebar menu -->
-            <?php require_once('sidebar_menu.php') ?>
+            <?php include_once('sidebar_menu.php') ?>
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
-            <?php require_once('footer_buttons.php'); ?>
+            <?php include_once('footer_buttons.php'); ?>
             <!-- /menu footer buttons -->
         </div>
       </div>
 
       <!-- top navigation -->
-      <?php require_once('top_nav.php'); ?>
+      <?php include_once('top_nav.php'); ?>
       <!-- /top navigation -->
 
       <!-- page content -->
@@ -134,7 +134,7 @@ if(isset($_POST['addClient']))
 
           <div class="page-title">
             <div class="title_left">
-              <h3>Assign Shift</h3>
+              <h3>Create New Client</h3>
             </div>
 
           </div>
@@ -172,34 +172,34 @@ if(isset($_POST['addClient']))
 
 
                       <label for="fullname">First Name * :</label>
-                      <input type="text" id="firstname" class="form-control" name="firstname" required />
+                      <input type="text" id="firstname" class="form-control" name="firstname" included />
 
                       <label for="lname">Last Name * :</label>
-                      <input type="lastname" id="lastname" class="form-control" name="lastname" data-parsley-trigger="change" required />
+                      <input type="lastname" id="lastname" class="form-control" name="lastname" data-parsley-trigger="change" included />
 
 
                       <label for="emailaddress">Email Address * :</label>
-                      <input type="text" id="email" class="form-control" name="email" required />
+                      <input type="text" id="email" class="form-control" name="email" included />
 
                       <label for="houseaddress">House Address * :</label>
-                      <input type="text" id="address" class="form-control" name="address" required />
+                      <input type="text" id="address" class="form-control" name="address" included />
 
                       <label for="county">County * :</label>
-                      <input type="text" id="county" class="form-control" name="county" required />
+                      <input type="text" id="county" class="form-control" name="county" included />
 
                       <label for="county">Phone * :</label>
-                      <input type="text" id="phone" class="form-control" name="phone" required />
+                      <input type="text" id="phone" class="form-control" name="phone" included />
 
                       <label for="houseaddress">Date of Birth * :</label>
-                      <input id="dateofbirth" name="dateofbirth" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                      <input id="dateofbirth" name="dateofbirth" class="date-picker form-control col-md-7 col-xs-12" included="included" type="text">
                       <label>Gender *:</label>
                       <p>
                           M:
-                          <input type="radio" class="flat" name="sex" id="genderM" value="Male" checked="" required /> F:
+                          <input type="radio" class="flat" name="sex" id="genderM" value="Male" checked="" included /> F:
                           <input type="radio" class="flat" name="sex" id="genderF" value="Female" />
                       </p>
                       <label for="message">Medical Comments  :</label>
-                      <textarea id="comment" required="required" class="form-control" name="comment" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Medical History.."
+                      <textarea id="comment" included="included" class="form-control" name="comment" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="100" data-parsley-minlength-message="Medical History.."
                                 data-parsley-validation-threshold="10"></textarea>
                       <div class="ln_solid"></div>
                     <div class="form-group">
@@ -236,7 +236,7 @@ if(isset($_POST['addClient']))
         <!-- /page content -->
 
         <!-- footer content -->
-      <?php require_once('footer.php'); ?>
+      <?php include_once('footer.php'); ?>
         <!-- /footer content -->
 
       </div>

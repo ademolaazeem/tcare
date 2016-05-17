@@ -1,6 +1,6 @@
 <?php
-require_once('CommonClass/Common.php');
-require_once('CommonClass/ClassManager.php');
+include_once('CommonClass/Common.php');
+include_once('CommonClass/ClassManager.php');
 $db = new DBConnections();
 ?>
 
@@ -11,7 +11,7 @@ $db = new DBConnections();
 
 <?php
 
-require_once('head.php');?>
+include_once('head.php');?>
 
 
 <body class="nav-md">
@@ -23,23 +23,23 @@ require_once('head.php');?>
 
       <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
-            <?php require_once('nav_title.php'); ?>
+            <?php include_once('nav_title.php'); ?>
 
           <!-- menu prile quick info -->
-            <?php require_once('menu_prile.php'); ?>
+            <?php include_once('menu_prile.php'); ?>
           <!-- /menu prile quick info -->
 
           <br />
 
           <!-- sidebar menu -->
             <?php
-                require_once('carer_side_menu.php');
+                include_once('carer_side_menu.php');
             ?>
          <!-- /sidebar menu -->
 
           <!-- /menu footer buttons -->
       <?php
-      require_once('carer_menu_footer.php');
+      include_once('carer_menu_footer.php');
       ?>
           <!-- /menu footer buttons -->
         </div>
@@ -47,13 +47,13 @@ require_once('head.php');?>
 
       <!-- top navigation -->
      <?php
-     require_once('top_nav.php');
+     include_once('top_nav.php');
      ?>
       <!-- /top navigation -->
 
       <!-- page content -->
       <?php
-      require_once('carer_page_main.php');
+      include_once('carer_page_main.php');
       ?>
       <!-- /page content -->
     </div>

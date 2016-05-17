@@ -1,6 +1,6 @@
 <?php
-/*require_once('CommonClass/common.php');
-require_once('CommonClass/ClassManager.php');
+/*include_once('CommonClass/common.php');
+include_once('CommonClass/ClassManager.php');
 $db = new DBConnections();
 $adm = new AdminClassController();*/
 $careQuery = "SELECT  * FROM tblcarer";
@@ -768,6 +768,6 @@ $admCount = $db->getNumOfRows($admQuery);
 -->
 <!-- footer content -->
 
-<?php require_once('footer.php') ?>
+<?php include_once('footer.php') ?>
 <!-- /footer content -->
 </div>

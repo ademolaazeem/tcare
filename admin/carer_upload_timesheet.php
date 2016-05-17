@@ -1,11 +1,11 @@
 ﻿<?php //error_reporting(0);
-require_once('CommonClass/common.php');
-require_once('CommonClass/ClassManager.php');
+include_once('CommonClass/common.php');
+include_once('CommonClass/ClassManager.php');
 $db = new DBConnections();
 $adm = new AdminClassController();
 
 if(isset($_SESSION['userid'])==''){
-    session_start();
+    //session_start();
     header("location:login.php?r=".base64_encode('uas'));
 
 }
@@ -22,7 +22,7 @@ if(isset($_POST['uploadTimeSheet']))
 
 
 <?php
-require_once('head.php');
+include_once('head.php');
 ?>
 
 
@@ -39,26 +39,26 @@ require_once('head.php');
 
       <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
-            <?php require_once('nav_title.php') ?>
+            <?php include_once('nav_title.php') ?>
 
             <!-- menu prile quick info -->
-            <?php require_once('menu_prile.php') ?>
+            <?php include_once('menu_prile.php') ?>
             <!-- /menu prile quick info -->
 
           <br />
 
             <!-- sidebar menu -->
-            <?php require_once('carer_side_menu.php') ?>
+            <?php include_once('carer_side_menu.php') ?>
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
-            <?php require_once('footer_buttons.php'); ?>
+            <?php include_once('footer_buttons.php'); ?>
             <!-- /menu footer buttons -->
         </div>
       </div>
 
       <!-- top navigation -->
-      <?php require_once('top_nav.php'); ?>
+      <?php include_once('top_nav.php'); ?>
       <!-- /top navigation -->
 
       <!-- page content -->
@@ -91,10 +91,10 @@ require_once('head.php');
                       <input type="hidden" name="carerid" id="carerid" value="<?php echo $carerid; ?>"/>
 
                       <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Sheet Date <span class="required">*</span>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Sheet Date <span class="included">*</span>
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input id="sheetDate" name="sheetDate" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                              <input id="sheetDate" name="sheetDate" class="date-picker form-control col-md-7 col-xs-12" included="included" type="text">
                           </div>
                       </div>
 
@@ -193,7 +193,7 @@ require_once('head.php');
         <!-- /page content -->
 
         <!-- footer content -->
-      <?php require_once('footer.php'); ?>
+      <?php include_once('footer.php'); ?>
         <!-- /footer content -->
 
       </div>

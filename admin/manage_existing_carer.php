@@ -1,6 +1,6 @@
 ﻿<?php //error_reporting(0);
-require_once('CommonClass/common.php');
-require_once('CommonClass/ClassManager.php');
+include_once('CommonClass/common.php');
+include_once('CommonClass/ClassManager.php');
 $db = new DBConnections();
 $adm = new AdminClassController();
 
@@ -12,7 +12,7 @@ if(isset($_POST['update']))
 <?php
 
 // First we execute our CommonClass code to connection to the database and start the session
-require("common.php");
+include("common.php");
 
 /* // At the top of the page we check to see whether the user is logged in or not
  if(empty($_SESSION['user']))
@@ -85,7 +85,7 @@ if(!empty($_GET))
 
 
 
-<?php require_once('head.php');?>
+<?php include_once('head.php');?>
 
 <body class="nav-md">
 
@@ -96,26 +96,26 @@ if(!empty($_GET))
 
       <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
-            <?php require_once('nav_title.php') ?>
+            <?php include_once('nav_title.php') ?>
 
             <!-- menu prile quick info -->
-            <?php require_once('menu_prile.php') ?>
+            <?php include_once('menu_prile.php') ?>
             <!-- /menu prile quick info -->
 
           <br />
 
             <!-- sidebar menu -->
-            <?php require_once('sidebar_menu.php') ?>
+            <?php include_once('sidebar_menu.php') ?>
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
-            <?php require_once('footer_buttons.php'); ?>
+            <?php include_once('footer_buttons.php'); ?>
             <!-- /menu footer buttons -->
         </div>
       </div>
 
       <!-- top navigation -->
-      <?php require_once('top_nav.php'); ?>
+      <?php include_once('top_nav.php'); ?>
       <!-- /top navigation -->
 
       <!-- page content -->
@@ -173,19 +173,19 @@ if(!empty($_GET))
                       </p>
 
                     <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">First Name <span class="required">*</span>
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">First Name <span class="included">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" id="firstname" name="firstname" required="required" value="<?php echo $firstname ?>" class="form-control col-md-7 col-xs-12">
+                        <input type="text" id="firstname" name="firstname" included="included" value="<?php echo $firstname ?>" class="form-control col-md-7 col-xs-12">
 
 
                       </div>
                     </div>
                     <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Last Name <span class="required">*</span>
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Last Name <span class="included">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input type="text"  id="lastname" name="lastname" value="<?php echo $lastname ?>" required="required" class="form-control col-md-7 col-xs-12">
+                        <input type="text"  id="lastname" name="lastname" value="<?php echo $lastname ?>" included="included" class="form-control col-md-7 col-xs-12">
 
                       </div>
                     </div>
@@ -217,61 +217,61 @@ if(!empty($_GET))
                      </div>
 
                       <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Email Address <span class="required">*</span>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Email Address <span class="included">*</span>
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text"  id="emailaddress" name="emailaddress" value="<?php echo $emailaddress ?>" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="text"  id="emailaddress" name="emailaddress" value="<?php echo $emailaddress ?>" included="included" class="form-control col-md-7 col-xs-12">
 
                           </div>
                       </div>
 
                       <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Address <span class="required">*</span>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Address <span class="included">*</span>
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text"  name="address" id="content" value="<?php echo $address ?>" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="text"  name="address" id="content" value="<?php echo $address ?>" included="included" class="form-control col-md-7 col-xs-12">
 
                           </div>
                       </div>
 
                       <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">County <span class="required">*</span>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">County <span class="included">*</span>
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text"  id="county" name="county" value="<?php echo $county ?>" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="text"  id="county" name="county" value="<?php echo $county ?>" included="included" class="form-control col-md-7 col-xs-12">
 
                           </div>
                       </div>
 
                       <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Phone <span class="required">*</span>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Phone <span class="included">*</span>
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text"  id="phone" name="phone" value="<?php echo $phone ?>" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="text"  id="phone" name="phone" value="<?php echo $phone ?>" included="included" class="form-control col-md-7 col-xs-12">
 
                           </div>
                       </div>
 
                       <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">PPS Number <span class="required">*</span>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">PPS Number <span class="included">*</span>
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input type="text"  id="ppsnumber" name="ppsnumber" value="<?php echo $ppsnumber ?>" required="required" class="form-control col-md-7 col-xs-12">
+                              <input type="text"  id="ppsnumber" name="ppsnumber" value="<?php echo $ppsnumber ?>" included="included" class="form-control col-md-7 col-xs-12">
 
                           </div>
                       </div>
 
                     <div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Birth <span class="required">*</span>
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Birth <span class="included">*</span>
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                        <input id="birthday" name="birthday" value="<?php echo $dateofbirth ?>" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                        <input id="birthday" name="birthday" value="<?php echo $dateofbirth ?>" class="date-picker form-control col-md-7 col-xs-12" included="included" type="text">
                       </div>
                     </div>
 
 
                       <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Admin Note <span class="required">*</span>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Admin Note <span class="included">*</span>
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
                               <textarea class="form-control" rows="2" id="adminnote" name="adminnote"><?php echo $adminnote ?></textarea>
@@ -315,7 +315,7 @@ if(!empty($_GET))
         <!-- /page content -->
 
         <!-- footer content -->
-      <?php require_once('footer.php'); ?>
+      <?php include_once('footer.php'); ?>
         <!-- /footer content -->
 
       </div>

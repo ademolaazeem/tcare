@@ -130,7 +130,7 @@
 								<li>Email, text  your rotas, invoices and timesheets from one place</li>
 								<li>Configure the roster report to include just the information your staff need</li>
 								<li>Encrypt keysafe numbers so that only your staff can read them</li>
-								<li>Keep in touch with your care staff on the move with our text message dashboard</li>
+								<li>Keep in touch with your care staff on the move with  message</li>
 								</ol>
 							</div>
 						</div>
@@ -146,8 +146,8 @@
 								<ol>
 								<li>Produce professional invoices and timesheets complete with your company logo</li>
 								<li>Customise how the page is presented, and what information is shown to the user</li>
-								<li>Easy integration with Sage, Sage Payroll or IRIS</li>
-								<li>Keep track of unpaid and overdue invoices</li>
+								<li>Produce an error message if the timesheet did not upload</li>
+								
 								<li>Choose carers based on their proximity to any given service user</li>
 								</ol>
 								
@@ -167,7 +167,7 @@
 								<li>Generate reports on staff punctuality and attendance</li>
 								<li>Receive confirmation of completed calls or explanations for non-completed appointments</li>
 								<li>Generate reports on staff punctuality and attendance</li>
-								<li>Receive alerts if staff haven’t arrived at appointments</li>
+								<li>Receive confirmation if staff could not make it</li>
 								</ol>
 								
 							</div>
@@ -183,10 +183,10 @@
 								<h4 class= "service-heading">Secure, cloud-based system</h4>
 								<ol>
 								<li>Service available from any web browser without installing any software</li>
-								<li>You can upload a pdf from your drive</li>
+								<li>You can upload  and print a pdf from your drive</li>
 								<li>Keep all your documents together in one secure system</li>
 								<li>Permissions can be set to control what users can access</li>
-								<li>Generate reports on staff punctuality and attendance</li>
+								<li>Generate reports on staff details</li>
 								</ol>
 								
 										
@@ -225,39 +225,8 @@
 
 		<section id="footer">
 			<div class="container">
-				<div class="row">
-					<div class="col-md-6 col-md-offset-3">
-						<ul class="text-center contact">
-				        	<li class= "socials-icons">
-								<a href="#" data-toggle="tooltip" title="Share in Facebook" class="facebook"><i class="fa fa-facebook"></i></a>
-							</li>
-							<li class= "socials-icons">
-								<a href="#" data-toggle="tooltip" title="Share in Twitter" class="twitter"><i class="fa fa-twitter"></i></a>
-							</li>
-							<li class= "socials-icons">
-								<a href="#" data-toggle="tooltip" title="Share in Google +" class="google-plus"><i class="fa fa-google-plus"></i></a>
-							</li>
-							<li class= "socials-icons">
-								<a href="#" data-toggle="tooltip" title="Share in Instagram" class="instagram"><i class="fa fa-instagram"></i></a>
-							</li>
-							<li class= "socials-icons">
-								<a href="#" data-toggle="tooltip" title="Share in Pinterest" class="pinterest"><i class="fa fa-pinterest"></i></a>
-							</li>
-							<li class= "socials-icons">
-								<a href="#" data-toggle="tooltip" title="Connect with Skype" class="skype"><i class="fa fa-skype"></i></a>
-							</li>
-				      	</ul>
-					</div>
-				</div>
-				<!--<div class="row">
-					<div class="col-md-12">
-						<div class="copy-right-text text-center">
-							&copy; Copyright 2014, Your Website Link. Theme by <a href="https://themewagon.com/">ThemeWagon</a>
-							
-						</div>
-						
-					</div>
-				</div>-->
+				
+			
                 <?php include('footer.php'); ?>
 			</div>
 		</section>

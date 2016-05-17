@@ -756,6 +756,6 @@ $schedCount = $db->getNumOfRows($schedQuery);
 -->
 <!-- footer content -->
 
-<?php require_once('footer.php') ?>
+<?php include_once('footer.php') ?>
 <!-- /footer content -->
 </div>

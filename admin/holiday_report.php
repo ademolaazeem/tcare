@@ -1,6 +1,6 @@
 <?php
-require_once('CommonClass/common.php');
-require_once('CommonClass/ClassManager.php');
+include_once('CommonClass/common.php');
+include_once('CommonClass/ClassManager.php');
 $db = new DBConnections();
 $adm = new AdminClassController();
 
@@ -34,7 +34,7 @@ $res=mysqli_query($db->getConnection(), $query) or die(mysql_error());
 <html lang="en">
 
 <?php
-require_once('head.php');
+include_once('head.php');
 ?>
 
 
@@ -48,26 +48,26 @@ require_once('head.php');
       <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
 
-            <?php require_once('nav_title.php'); ?>
+            <?php include_once('nav_title.php'); ?>
 
           <!-- menu prile quick info -->
-            <?php require_once('menu_prile.php'); ?>
+            <?php include_once('menu_prile.php'); ?>
           <!-- /menu prile quick info -->
 
           <br />
 
           <!-- sidebar menu -->
-            <?php require_once('sidebar_menu.php'); ?>
+            <?php include_once('sidebar_menu.php'); ?>
           <!-- /sidebar menu -->
 
           <!-- /menu footer buttons -->
-            <?php require_once('footer_buttons.php'); ?>
+            <?php include_once('footer_buttons.php'); ?>
           <!-- /menu footer buttons -->
         </div>
       </div>
 
       <!-- top navigation -->
-      <?php require_once('top_nav.php'); ?>
+      <?php include_once('top_nav.php'); ?>
       <!-- /top navigation -->
 
       <!-- page content -->
@@ -299,7 +299,7 @@ require_once('head.php');
                       <div class="col-xs-12">
                           <button class="btn btn-primary pull-right" style="margin-right: 5px;" onclick="window.print();"><i class="fa fa-print"></i> &nbsp; <i class="fa fa-download"></i> Generate PDF/ Print</button>
                        <!-- <button class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i> Print</button>
-                       <!-- <button class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment</button>-->
+                       <!-- <button class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment</button>
                         <button class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generate PDF</button>-->
                       </div>
                     </div>
@@ -311,7 +311,7 @@ require_once('head.php');
         </div>
 
         <!-- footer content -->
-        <?php require_once('footer.php'); ?>
+        <?php include_once('footer.php'); ?>
         <!-- /footer content -->
 
       </div>

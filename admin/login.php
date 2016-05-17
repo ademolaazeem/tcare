@@ -1,7 +1,7 @@
 <?php
 //error_reporting(0);
-require_once("CommonClass/Common.php");
-require_once("CommonClass/ClassManager.php");
+include_once("CommonClass/Common.php");
+include_once("CommonClass/ClassManager.php");
 
 $db = new DBConnections();
 $adm = new AdminClassController();
@@ -60,7 +60,7 @@ elseif(isset($_GET['r']) && base64_decode($_GET['r'])=="empty")
 <!DOCTYPE html>
 <html lang="en">
 
-<?php require_once('head.php'); ?>
+<?php include_once('head.php'); ?>
 
 <body style="background:#F7F7F7;">
 
@@ -78,12 +78,12 @@ elseif(isset($_GET['r']) && base64_decode($_GET['r'])=="empty")
 
 
               <div>
-              <input  type="text" class="form-control" placeholder="Username" id="userId"  name="userId" autofocus required />
+              <input  type="text" class="form-control" placeholder="Username" id="userId"  name="userId" autofocus included />
             </div>
             <div>
-              <input type="password" class="form-control" placeholder="Password" name="password" id="password" required="" />
+              <input type="password" class="form-control" placeholder="Password" name="password" id="password" included="" />
             </div>
-              <div><select id="userType" name="userType" data-placeholder="User Type..." class="form-control" required>
+              <div><select id="userType" name="userType" data-placeholder="User Type..." class="form-control" included>
                       <option value="">User Type...</option>
                       <option value="admin">Admin</option>
                       <option value="carer">Carer</option>
@@ -93,7 +93,7 @@ elseif(isset($_GET['r']) && base64_decode($_GET['r'])=="empty")
                 <br/>
              <!-- <a class="btn btn-default submit" href="index.html">Log in</a>-->
                 <button type="submit" name="btnSignIn" class="btn btn-default submit">Log in</button>
-              <a class="reset_pass" href="#">Lost your password?</a>
+              <a class="reset_pass" href="forgot_password.php">Lost your password?</a>
             </div>
             <div class="clearfix"></div>
             <div class="separator">
@@ -121,7 +121,7 @@ elseif(isset($_GET['r']) && base64_decode($_GET['r'])=="empty")
             <h1>Create Account</h1>
               <?php if(isset($msgC)) echo $msgC; ?>
               <div class="item form-group">
-                  <label class="control-label col-md-4 col-sm-4 col-xs-12" for="firstname">Firstname <span class="required">*</span>
+                  <label class="control-label col-md-4 col-sm-4 col-xs-12" for="firstname">Firstname <span class="included">*</span>
                   </label>
 
                   <!--value = "--><?php /*if(isset($username)) echo $username; */?>
@@ -131,14 +131,14 @@ elseif(isset($_GET['r']) && base64_decode($_GET['r'])=="empty")
               </div>
 
               <div class="item form-group">
-                  <label class="control-label col-md-4 col-sm-4 col-xs-12" for="lastname">Lastname <span class="required">*</span>
+                  <label class="control-label col-md-4 col-sm-4 col-xs-12" for="lastname">Lastname <span class="included">*</span>
                   </label>
                   <div class="col-md-8 col-sm-8 col-xs-12">
                       <input id="lastname" name="lastname" class="form-control col-md-8 col-xs-12"  placeholder="Firstname"  type="text">
                   </div>
               </div>
               <div class="item form-group">
-                  <label class="control-label col-md-4 col-sm-4 col-xs-12" for="username">Username <span class="required">*</span>
+                  <label class="control-label col-md-4 col-sm-4 col-xs-12" for="username">Username <span class="included">*</span>
                   </label>
                   <div class="col-md-8 col-sm-8 col-xs-12">
                       <input id="username" name="username" class="form-control col-md-8 col-xs-12"
@@ -146,21 +146,21 @@ elseif(isset($_GET['r']) && base64_decode($_GET['r'])=="empty")
                   </div>
               </div>
              <div class="item form-group">
-                  <label class="control-label col-md-4 col-sm-4 col-xs-12" for="email">Email <span class="required">*</span>
+                  <label class="control-label col-md-4 col-sm-4 col-xs-12" for="email">Email <span class="included">*</span>
                   </label>
                   <div class="col-md-8 col-sm-8 col-xs-12">
                       <input type="email" id="email" name="email" placeholder="Email"  class="form-control col-md-8 col-xs-12">
                   </div>
               </div>
               <div class="item form-group">
-                  <label class="control-label col-md-4 col-sm-4 col-xs-12" for="email2">Confirm Email <span class="required">*</span>
+                  <label class="control-label col-md-4 col-sm-4 col-xs-12" for="email2">Confirm Email <span class="included">*</span>
                   </label>
                   <div class="col-md-8 col-sm-8 col-xs-12">
                       <input type="email" id="email2" name="email2"   placeholder="Confirm Email"  class="form-control col-md-7 col-xs-12">
                   </div>
               </div>
               <div class="item form-group">
-                  <label class="control-label col-md-4 col-sm-4 col-xs-12" for="password">Password <span class="required">*</span>
+                  <label class="control-label col-md-4 col-sm-4 col-xs-12" for="password">Password <span class="included">*</span>
                   </label>
                   <div class="col-md-8 col-sm-8 col-xs-12">
                       <input id="password" type="password" name="password"  class="form-control col-md-8 col-xs-12"
@@ -169,7 +169,7 @@ elseif(isset($_GET['r']) && base64_decode($_GET['r'])=="empty")
               </div>
 
               <div class="item form-group">
-                  <label for="password2" class="control-label col-md-4 col-sm-4 col-xs-12">Confirm Password<span class="required">*</span>
+                  <label for="password2" class="control-label col-md-4 col-sm-4 col-xs-12">Confirm Password<span class="included">*</span>
                   </label>
                   <div class="col-md-8 col-sm-8 col-xs-12">
                       <input id="password2" type="password" name="password2" placeholder="Confirm Password"
@@ -179,7 +179,7 @@ elseif(isset($_GET['r']) && base64_decode($_GET['r'])=="empty")
 
 
               <div class="item form-group">
-                  <label class="control-label col-md-4 col-sm-4 col-xs-12">Gender<span class="required">*</span></label>
+                  <label class="control-label col-md-4 col-sm-4 col-xs-12">Gender<span class="included">*</span></label>
                   <div class="col-md-8 col-sm-8 col-xs-12">
                       <select class="form-control" id = "sex" name = "sex">
                           <option value="">Select Gender</option>
@@ -194,7 +194,7 @@ elseif(isset($_GET['r']) && base64_decode($_GET['r'])=="empty")
 
 
               <div class="item form-group">
-                  <label class="control-label col-md-4 col-sm-4 col-xs-12" for="address">Address <span class="required">*</span>
+                  <label class="control-label col-md-4 col-sm-4 col-xs-12" for="address">Address <span class="included">*</span>
                   </label>
                   <div class="col-md-8 col-sm-8 col-xs-12">
                       <textarea id="address" name="address" placeholder="Address" class="form-control col-md-8 col-xs-12"></textarea>
@@ -206,7 +206,7 @@ elseif(isset($_GET['r']) && base64_decode($_GET['r'])=="empty")
 
 
               <div class="item form-group">
-                  <label class="control-label col-md-4 col-sm-4 col-xs-12" for="phone">Phone Number <span class="required">*</span>
+                  <label class="control-label col-md-4 col-sm-4 col-xs-12" for="phone">Phone Number <span class="included">*</span>
                   </label>
                   <div class="col-md-8 col-sm-8 col-xs-12">
                       <input id="phone" name="phone" class="form-control col-md-8 col-xs-12" data-validate-length-range="15"  placeholder="Phone Number" type="text">
@@ -214,7 +214,7 @@ elseif(isset($_GET['r']) && base64_decode($_GET['r'])=="empty")
               </div>
 
               <div class="item form-group">
-                  <label class="control-label col-md-4 col-sm-4 col-xs-12" for="phone">County <span class="required">*</span>
+                  <label class="control-label col-md-4 col-sm-4 col-xs-12" for="phone">County <span class="included">*</span>
                   </label>
                   <div class="col-md-8 col-sm-8 col-xs-12">
                       <input id="county" name="county" class="form-control col-md-8 col-xs-12"  placeholder="County" type="text">
@@ -222,7 +222,7 @@ elseif(isset($_GET['r']) && base64_decode($_GET['r'])=="empty")
               </div>
 
               <div class="item form-group">
-                  <label class="control-label col-md-4 col-sm-4 col-xs-12">Date Of Birth <span class="required">*</span>
+                  <label class="control-label col-md-4 col-sm-4 col-xs-12">Date Of Birth <span class="included">*</span>
                   </label>
                   <div class="col-md-8 col-sm-8 col-xs-12">
                       <input id="birthday" name="birthday" class="date-picker form-control col-md-8 col-xs-12" type="text">
@@ -230,7 +230,7 @@ elseif(isset($_GET['r']) && base64_decode($_GET['r'])=="empty")
               </div>
 
               <div class="item form-group">
-                  <label class="control-label col-md-4 col-sm-4 col-xs-12" for="pps">PPS Number <span class="required">*</span>
+                  <label class="control-label col-md-4 col-sm-4 col-xs-12" for="pps">PPS Number <span class="included">*</span>
                   </label>
                   <div class="col-md-8 col-sm-8 col-xs-12">
                       <input id="pps" name="pps" class="form-control col-md-8 col-xs-12" data-validate-length-range="6" placeholder="PPS Number"  type="text">
@@ -293,11 +293,11 @@ elseif(isset($_GET['r']) && base64_decode($_GET['r'])=="empty")
 
       // validate a field on "blur" event, a 'select' on 'change' event & a '.reuired' classed multifield on 'keyup':
       $('form')
-          .on('blur', 'input[required], input.optional, select.required', validator.checkField)
-          .on('change', 'select.required', validator.checkField)
-          .on('keypress', 'input[required][pattern]', validator.keypress);
+          .on('blur', 'input[included], input.optional, select.included', validator.checkField)
+          .on('change', 'select.included', validator.checkField)
+          .on('keypress', 'input[included][pattern]', validator.keypress);
 
-      $('.multi.required')
+      $('.multi.included')
           .on('keyup blur', 'input', function() {
               validator.checkField.apply($(this).siblings().last()[0]);
           });

@@ -1,6 +1,6 @@
 ﻿<?php //error_reporting(0);
-require_once('CommonClass/common.php');
-require_once('CommonClass/ClassManager.php');
+include_once('CommonClass/common.php');
+include_once('CommonClass/ClassManager.php');
 $db = new DBConnections();
 $adm = new AdminClassController();
 
@@ -12,7 +12,7 @@ if(isset($_POST['update']))
 <?php
 
 // First we execute our CommonClass code to connection to the database and start the session
-require("common.php");
+include("common.php");
 
 /* // At the top of the page we check to see whether the user is logged in or not
  if(empty($_SESSION['user']))
@@ -77,7 +77,7 @@ if(!empty($_GET))
 
 
 <?php
-require_once('head.php');
+include_once('head.php');
 ?>
 
 
@@ -94,26 +94,26 @@ require_once('head.php');
 
       <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
-            <?php require_once('nav_title.php') ?>
+            <?php include_once('nav_title.php') ?>
 
             <!-- menu prile quick info -->
-            <?php require_once('menu_prile.php') ?>
+            <?php include_once('menu_prile.php') ?>
             <!-- /menu prile quick info -->
 
           <br />
 
             <!-- sidebar menu -->
-            <?php require_once('sidebar_menu.php') ?>
+            <?php include_once('sidebar_menu.php') ?>
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
-            <?php require_once('footer_buttons.php'); ?>
+            <?php include_once('footer_buttons.php'); ?>
             <!-- /menu footer buttons -->
         </div>
       </div>
 
       <!-- top navigation -->
-      <?php require_once('top_nav.php'); ?>
+      <?php include_once('top_nav.php'); ?>
       <!-- /top navigation -->
 
       <!-- page content -->
@@ -153,7 +153,7 @@ require_once('head.php');
                       </p>
 
                       <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">From Date <span class="required">*</span>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">From Date <span class="included">*</span>
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
                               <?php
@@ -163,7 +163,7 @@ require_once('head.php');
                       </div>
 
                       <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">To Date <span class="required">*</span>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">To Date <span class="included">*</span>
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
 
@@ -174,7 +174,7 @@ require_once('head.php');
 
 
                       <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Number of Days <span class="required">*</span>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Number of Days <span class="included">*</span>
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
                                 <?php echo $noOfDays; ?>
@@ -256,7 +256,7 @@ require_once('head.php');
         <!-- /page content -->
 
         <!-- footer content -->
-      <?php require_once('footer.php'); ?>
+      <?php include_once('footer.php'); ?>
         <!-- /footer content -->
 
       </div>

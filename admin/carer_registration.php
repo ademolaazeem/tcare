@@ -1,7 +1,7 @@
 ﻿<?php
 //error_reporting(0);
-require_once("CommonClass/Common.php");
-require_once("CommonClass/ClassManager.php");
+include_once("CommonClass/Common.php");
+include_once("CommonClass/ClassManager.php");
 
 $db = new Connection();
 $adm = new AdminClassController();
@@ -49,7 +49,7 @@ elseif(isset($_GET['r']) && base64_decode($_GET['r'])=="empty")
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php require_once('head.php'); ?>
+<?php include_once('head.php'); ?>
 <body>
 
 	<div class="navbar navbar-fixed-top">

@@ -1,5 +1,5 @@
 <?php
-require_once("Common.php");
+include_once("Common.php");
 
 class Format
 {

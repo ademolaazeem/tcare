@@ -1,6 +1,6 @@
 ﻿<?php //error_reporting(0);
-require_once('CommonClass/common.php');
-require_once('CommonClass/ClassManager.php');
+include_once('CommonClass/common.php');
+include_once('CommonClass/ClassManager.php');
 $db = new DBConnections();
 $adm = new AdminClassController();
 //session_start();
@@ -21,7 +21,7 @@ if(isset($_POST['bookHoliday']))
 
 
 <?php
-require_once('head.php');
+include_once('head.php');
 ?>
 
 
@@ -38,26 +38,26 @@ require_once('head.php');
 
       <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
-            <?php require_once('nav_title.php') ?>
+            <?php include_once('nav_title.php') ?>
 
             <!-- menu prile quick info -->
-            <?php require_once('menu_prile.php') ?>
+            <?php include_once('menu_prile.php') ?>
             <!-- /menu prile quick info -->
 
           <br />
 
             <!-- sidebar menu -->
-            <?php require_once('carer_side_menu.php') ?>
+            <?php include_once('carer_side_menu.php') ?>
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
-            <?php require_once('footer_buttons.php'); ?>
+            <?php include_once('footer_buttons.php'); ?>
             <!-- /menu footer buttons -->
         </div>
       </div>
 
       <!-- top navigation -->
-      <?php require_once('top_nav.php'); ?>
+      <?php include_once('top_nav.php'); ?>
       <!-- /top navigation -->
 
       <!-- page content -->
@@ -93,27 +93,27 @@ require_once('head.php');
                         <em> After selecting from and to date, click on the number of days text box to get the number of days automatically. </em>
                       </div>
                       <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">From Date <span class="required">*</span>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">From Date <span class="included">*</span>
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input id="fromDate" name="fromDate" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                              <input id="fromDate" name="fromDate" class="date-picker form-control col-md-7 col-xs-12" included="included" type="text">
                           </div>
                       </div>
 
                       <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">To Date <span class="required">*</span>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">To Date <span class="included">*</span>
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input id="toDate" name="toDate" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                              <input id="toDate" name="toDate" class="date-picker form-control col-md-7 col-xs-12" included="included" type="text">
                           </div>
                       </div>
 
 
                       <div class="form-group">
-                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Number of Days <span class="required">*</span>
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12">Number of Days <span class="included">*</span>
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input id="NoOfHours" onclick = "holidayDiff();"  name="NoOfHours" type="text" class="date-picker form-control col-md-7 col-xs-12" required="required" readonly >
+                              <input id="NoOfHours" onclick = "holidayDiff();"  name="NoOfHours" type="text" class="date-picker form-control col-md-7 col-xs-12" included="included" readonly >
                           </div>
                       </div>
                     <div class="ln_solid"></div>
@@ -161,7 +161,7 @@ require_once('head.php');
         <!-- /page content -->
 
         <!-- footer content -->
-      <?php require_once('footer.php'); ?>
+      <?php include_once('footer.php'); ?>
         <!-- /footer content -->
 
       </div>
